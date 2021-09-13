@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import './nav.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Nav_modal from './nav__components/nav_modal.js';
 
 class Nav extends Component {
   render() {
@@ -14,12 +15,8 @@ class Nav extends Component {
 
         <div className="content_backboard">
           <div className="content_area">
-
-            <div className="content_title">
-              <h2> 요양시설을 찾으세요?</h2>
-              <a>읽어보세요</a>
-            </div>
-            
+            <Nav_modal></Nav_modal>
+               
             <div className="content_box">
               <div className="icon_box">
                 <div className="image"><img src="https://caredoc.kr/img/main/icon/ADMISSION_FACILITY.svg" /></div>
