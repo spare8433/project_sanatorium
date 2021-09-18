@@ -1,31 +1,10 @@
 .Nav{
   width: 100%;    
 }
-.search_box{
-  width: 1024px;
-  font-size: 1.8rem;
-  background-color: #f3f3f3;
-  height: auto;
-  display: flex;
-  border-radius: 1.0rem;
-  padding: 1.0rem 2.0rem;
-  margin: 0 auto ;  
-}
-.search_box input[type=text]{
-  font-family: 'NotoSansKR_m';
-  background-color: #f3f3f3;
-  width: 90%;  
-  margin: 0;
-  margin-left: 1.5rem;
-  padding: 0%;
-  border:none!important;
-  outline: none!important;
-}
 .content_backboard{
   width: 100%;  
   padding: 3.0rem 0;
   background-color: #E7886E;
-  margin: 3.0rem 0;
 }
 .content_area{
   width: 1024px;

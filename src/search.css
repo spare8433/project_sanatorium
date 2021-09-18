@@ -1,0 +1,30 @@
+.Search{
+  width: 1024px;
+  margin: 0 auto ;
+}
+.select_box{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.dropdown{
+  width: 30%;
+}
+.dropdown-menu.show{
+  width: 100%!important;
+  margin-top: 0.1rem;
+}
+.dropdown-item{
+  width: 100%;
+  font-size: 1.4rem!important;
+}
+.btn-primary,.btn-primary:focus,.btn-primary:active,.btn-primary:hover ,.show>.btn-primary.dropdown-toggle{
+  width: 100%;
+  background-color: white;
+  color: black;
+  outline: none;
+  border: none;
+  font-size: 1.8rem;
+  font-family: 'NotoSansKR_m';
+  box-shadow: 0.25rem 0.5rem 0.5rem rgb(30 40 80 / 10%);
+}

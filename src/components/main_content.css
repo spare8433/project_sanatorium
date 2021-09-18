@@ -1,0 +1,32 @@
+.Main_content{
+  width: 100%;
+}
+.containor_box{
+  width: 1024px;
+  margin: 0 auto ;
+  padding: 3.0rem 0;
+}
+.containor_title{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+    
+}
+.containor_title h2{
+ 
+}
+.containor_content{
+  text-align: left;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 1.0rem;
+  margin: 2.0rem 0;
+  font-size: 1.6rem;
+}
+.containor_content .item{
+  background-color: white;
+  border-radius: 1.0rem;
+  border: 1px solid #fff;
+  box-shadow: 0.25rem 0.5rem 0.5rem rgb(30 40 80 / 10%);
+  padding: 1.0rem 1.5rem;
+}

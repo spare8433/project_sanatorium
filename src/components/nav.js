@@ -8,10 +8,6 @@ class Nav extends Component {
   render() {
     return (
       <div className="Nav">
-        <div className="search_box">
-          <div className="image"><img src="img/search.png"/></div>
-          <input type="text" placeholder="시설 검색" />
-        </div>
 
         <div className="content_backboard">
           <div className="content_area">

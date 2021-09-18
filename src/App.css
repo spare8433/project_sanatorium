@@ -5,5 +5,6 @@
   text-align: center;
   margin: 0 auto;
   padding: 0;
+  background-color:#f3f3f3;   
 }
 .image{display: flex;justify-content:center;align-items: center;}
