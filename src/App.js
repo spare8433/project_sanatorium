@@ -25,8 +25,7 @@ class App extends Component {
               <Main_content></Main_content>    
             </Route>          
                   
-            <Route exact path="/search" >    
-              <Search></Search>
+            <Route exact path="/search" component={Search}>    
             </Route>
           </Switch>
           {/*<Footer></Footer> */}
