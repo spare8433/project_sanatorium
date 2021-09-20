@@ -17,35 +17,35 @@ const Nav = (props) => {
           <Nav_modal></Nav_modal>
               
           <div className="content_box">
-            <Link to={`/search?type=hospital`}>
+            <Link to={`/search?type=요양병원`}>
               <div className="icon_box">
                 <div className="image"><img src="https://caredoc.kr/img/main/icon/ADMISSION_FACILITY.svg" /></div>
                 <span> 요양병원 </span>
               </div>
             </Link>            
             
-            <Link to={`/search?type=sanatorum`}>
+            <Link to={`/search?type=요양원`}>
               <div className="icon_box">
                 <div className="image"><img src="https://caredoc.kr/img/main/icon/NURSING_HOSPITAL.svg" /></div>
                 <span> 요양원 </span>
               </div>
             </Link>
                       
-            <Link to={`/search?type=visit_care`}>
+            <Link to={`/search?type=방문요양`}>
               <div className="icon_box">
                 <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_CARE.svg" /></div>
                 <span> 방문요양 </span>
               </div>
             </Link>
                     
-            <Link to={`/search?type=visit_bath`}>
+            <Link to={`/search?type=방문목욕`}>
               <div className="icon_box">
                 <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_BATH.svg" /></div>
                 <span> 방문목욕 </span>
               </div>
             </Link>
             
-            <Link to={`/search?type=day_protection`}> 
+            <Link to={`/search?type=주야간보호`}> 
             <div className="icon_box">
               <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_CARE.svg" /></div>
               <span> 주야간보호 </span>

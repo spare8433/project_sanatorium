@@ -1,77 +1,80 @@
 import React, { useState, useEffect} from 'react';
+import {useLocation} from "react-router-dom";
 import axios from 'axios';
 import './search.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import qs from "qs";
 
-const Search = ({ location }) => {
-  console.log(location);  
-  let query =qs.parse(location.search, {ignoreQueryPrefix: true});
-  console.log(query);
-
+const Search = ({location}) => {
+    
   let [search_text,setSearch_text] = useState('');  
-  let [type,setType] = useState('시설을 선택하세요');  
-  let [city,setCity] = useState('도시를 선택하세요');
-  let [district,setDistrict] = useState('지역을 선택하세요');
+  let [type,setType] = useState('');  
+  let [city,setCity] = useState('');
+  let [district,setDistrict] = useState(''); 
+  
+  let query =qs.parse(location.search, {ignoreQueryPrefix: true});
 
   useEffect(()=> {
-    if(query.hasOwnProperty('type')){
-      switch(query.type){
-        case 'hospital': setType('요양병원');
-          break;
-        case 'sanatorum': setType('요양원');
-          break;
-        case 'visit_care': setType('방문요양');
-          break;
-        case 'visit_bath': setType('방문목욕');
-          break;
-        case 'day_protection': setType('주야간보호');
-          break;
-        default : setType('시설을 선택하세요');
-          break;           
-      }      
-    }
     if(query.hasOwnProperty('search_text')){
-      
+      setSearch_text(query.search_text);
+    }
+    if(query.hasOwnProperty('type')){
+      setType(query.type);
+    }
+    if(query.hasOwnProperty('city')){
+      setCity(query.city);
     }
   }, [])
 
-  // apu 호출부분 
-  // useEffect(() => { const apiCall = async () => {
-  //   let homecare_url = "https://openapi.gg.go.kr/HtygdWelfaclt"
-  //   let username = "hoonkk";
-  //   const response = await axios.get(`${homecare_url}/${username}`); 
-  //   console.log(response.data); 
-  // }; 
-  //   apiCall(); 
-  // }, [])
+  //apu 호출부분 
+  useEffect(() => { const apiCall = async () => {
+    let _city=query.city;
+    console.log(query.city);
+    console.log(query);
+    let API_url = "";
+    
+    let API_info ={
+      KEY:'96cea9b672ae4c3a91008987ac395ed0',
+      Type:'json'      
+    }      
+    //console.log(type(API_info));
 
+    if(query.hasOwnProperty('type')){
+      switch(query.type){
+        case '요양병원': 
+          API_url = `https://openapi.gg.go.kr/Hosptlevaltnrcper?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}`;          
+          break;
+        case '요양원': 
+          API_url = `https://openapi.gg.go.kr/HtygdWelfaclt?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}`;          
+          break;
+        case '방문요양':
+        case '방문목욕':
+        case '주야간보호': 
+          API_url = `https://openapi.gg.go.kr/OldpsnMedcareWelfac?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}`;           
+          break;
+        default : 
+          break;           
+      }      
+    }
+    console.log(API_url);
+    const response = await axios.get(`${API_url}`).then(function (response) {
+      // response
+      console.log(response.data);   
+    }).catch(function (error) {
+        // 오류발생시 실행
+    }).then(function() {
+        // 항상 실행       
+    });
+    
+  }; 
+    apiCall(); 
+  }, [])
   
-
-
   return (
-    <div className="Search">
-      <div className="select_box">
-        <DropdownButton id="type" title={type} >
-          <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>요양병원</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>요양원</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>방문요양</Dropdown.Item>
-        </DropdownButton>
-
-        <DropdownButton id="city" title={city} >
-          <Dropdown.Item onClick={(e) => setCity(e.target.textContent)}>성남시</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => setCity(e.target.textContent)}>ㅇㅇ시</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => setCity(e.target.textContent)}>ㅁㅁ시</Dropdown.Item>
-        </DropdownButton>
-
-        <DropdownButton id="district" title={district} >
-          <Dropdown.Item onClick={(e) => setDistrict(e.target.textContent)}>산성동</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => setDistrict(e.target.textContent)}>태평동</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => setDistrict(e.target.textContent)}>복정동</Dropdown.Item>
-        </DropdownButton>
-      </div>
+    <div>
+      {search_text}
+      {city}
+      {type}
     </div>
   );
 };

@@ -37,9 +37,7 @@
   border-top-left-radius: calc(1.0rem - 1px);
   border-top-right-radius: calc(1.0rem - 1px);
 }
-.nav_modal_content {
 
-}
 .nav_modal_content .grid_box{
   display: grid;
   grid-template-columns: 1fr 1fr;
