@@ -34,7 +34,7 @@ const Header = () => {
           break;
         case 'day_protection': setType('주야간보호');
           break;
-        default : setType('시설을 선택하세요');
+        default :
           break;           
       }      
     }
@@ -45,7 +45,7 @@ const Header = () => {
 
   function handleKeyPress(e){
     if (e.key === "Enter") {
-      history.push({ pathname: `/search?search_text=${e.target.value}&type=${type}&city=${city}` });
+      history.push({ search:`?search_text=${e.target.value}&type=${type}&city=${city}`,pathname: `/search` });
     }
   }
 
