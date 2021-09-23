@@ -46,15 +46,15 @@ const Search = ({location}) => {
 
     let query =qs.parse(location.search, {ignoreQueryPrefix: true});
     let _city=query.city;
-    console.log(query.city);
-    console.log(query);
     let API_url = "";
     let json_title = 0;
-    
+    setCurrent(query.p);
     let API_info ={
       KEY:'96cea9b672ae4c3a91008987ac395ed0',
       Type:'json'      
-    }      
+    }
+    
+    
     //console.log(type(API_info));
 
     if(query.hasOwnProperty('type')){
@@ -121,33 +121,43 @@ const Search = ({location}) => {
 
       var result = [];
       if(json_title === 0){
-        // for(var i = (current-1)*16;i < current*16;i++){
-        //   result.push(
-        //     <div className="item">
-        //     <div className="title">{json_array[i].INST_NM}</div>
-        //     <div className="address">{json_array[i].REFINE_ROADNM_ADDR}</div>
-        //     <div className="type">{json_array[i].DIV_NM}</div>
-        //     <div className="tag">{json_array[i].GRAD}</div>
+        for(var i = (current-1)*16;i < current*16;i++){
+          result.push(
+            <div className="item">
+              <div className="title">{i}{json_array[i].INST_NM}</div>
+              <div className="address">{json_array[i].REFINE_ROADNM_ADDR}</div>
+              <div className="type">{json_array[i].DIV_NM}</div>
+              <div className="tag">{json_array[i].GRAD}</div>
+            </div>
+          )
+        }      
+        // result =  json_array.map(row => 
+        //   <div className="item">
+        //     <div className="title">{row.INST_NM}</div>
+        //     <div className="address">{row.REFINE_ROADNM_ADDR}</div>
+        //     <div className="type">{row.DIV_NM}</div>
+        //     <div className="tag">{row.GRAD}</div>
         //   </div>
-        //   )
-        // }      
-        result =  json_array.map(row => 
-          <div className="item">
-            <div className="title">{row.INST_NM}</div>
-            <div className="address">{row.REFINE_ROADNM_ADDR}</div>
-            <div className="type">{row.DIV_NM}</div>
-            <div className="tag">{row.GRAD}</div>
-          </div>
-        );
-      }else{          
-        result =  json_array.map(row => 
-          <div className="item">
-            <div className="title">{row.FACLT_NM}</div>
-            <div className="address">{row.REFINE_ROADNM_ADDR}</div>
-            <div className="type">{row.FACLT_KIND_NM}</div>
-            <div className="tag">{row.FACLT_INSTL_DETAIL_DE}</div>
-          </div>
-        );      
+        // );
+      }else{  
+        for(var i = (current-1)*16;i < current*16;i++){
+          result.push(
+            <div className="item">
+              <div className="title">{i}{json_array[i].FACLT_NM}</div>
+              <div className="address">{json_array[i].REFINE_ROADNM_ADDR}</div>
+              <div className="type">{json_array[i].FACLT_KIND_NM}</div>
+              <div className="tag">{json_array[i].FACLT_INSTL_DETAIL_DE}</div>
+            </div>
+          )
+        }         
+        // result =  json_array.map(row => 
+        //   <div className="item">
+        //     <div className="title">{row.FACLT_NM}</div>
+        //     <div className="address">{row.REFINE_ROADNM_ADDR}</div>
+        //     <div className="type">{row.FACLT_KIND_NM}</div>
+        //     <div className="tag">{row.FACLT_INSTL_DETAIL_DE}</div>
+        //   </div>
+        // );      
       }
      
       setSearchItem(result);
