@@ -20,7 +20,7 @@ const Search = ({location}) => {
   let [last,setLast] = useState(0);
 
   let [postedItemCount,setPostedItemCount] = useState(16);  //화면에 뜨는 갯수
-  let [pageCount,setPageCount] = useState(5);               //페이지네이션 총 수
+  let [pageCount,setPageCount] = useState(5);               
   let [pagenationCode,setPagenationCode] = useState('');
 
     
@@ -34,11 +34,7 @@ const Search = ({location}) => {
     if(query.hasOwnProperty('city')){
       setCity(query.city);
     }
-    if ((search_data.length + 1) % postedItemCount > 0){
-      setLast((search_data.length + 1) / postedItemCount + 1);
-    }else{
-      setLast((search_data.length + 1) / postedItemCount);
-    }
+    
   }, [])
 
   //apu 호출부분 
@@ -48,13 +44,19 @@ const Search = ({location}) => {
     let _city=query.city;
     let API_url = "";
     let json_title = 0;
-    setCurrent(query.p);
+
+    let newCurrent = query.p ?? 1;
+    let pagenation_start = start;
+    let pagenation_last = last;
+    let newPageCount =pageCount;
+    
+    console.log(newCurrent,newPageCount,pagenation_start,pagenation_last);
+    setCurrent(newCurrent);
     let API_info ={
       KEY:'96cea9b672ae4c3a91008987ac395ed0',
       Type:'json'      
     }
-    
-    
+        
     //console.log(type(API_info));
 
     if(query.hasOwnProperty('type')){
@@ -92,77 +94,61 @@ const Search = ({location}) => {
       }      
       let json_array = JSON.parse(json_data);
       setSearchData(json_array);
+      
+      if ((search_data.length + 1) % postedItemCount > 0){
+        pagenation_last = parseInt((search_data.length + 1) / postedItemCount + 1);
+        setLast(pagenation_last);
+      }else{
+        pagenation_last =parseInt((search_data.length + 1) / postedItemCount);
+        setLast(pagenation_last);
+      }
+                     
+      if(newCurrent > newPageCount){
+        if(newPageCount+5 <= last){
+          newPageCount +=5;
+        }else{                       
+          newPageCount = pagenation_last;
+        }
+        pagenation_start += 5     
+        
+      }else if(newCurrent < start){                                  
+          pagenation_start -= 5
+          newPageCount = pagenation_start * 5;                                    
+      }
+      setPageCount(newPageCount);
+      setStart(pagenation_start);
 
-      var result = [];      
-      if((current-1) / pageCount == 1){
-        setPageCount(pageCount*2)
-      }
-
-      let previous = '?';
-      console.log(query);
-      if(query?.type) {
-        previous += `type=${query.type}`;
-        console.log('외않됌');
-      }
-      if(query?.city) {
-        previous += `&city=${query.city}`;
-      }
-      if(query?.search_text) {
-        previous += `&search_text=${query.search_text}`;
-      }
-
-      for(var i = pageCount-4; i <= pageCount;i++){
-        result.push(<Link to={{
-          pathname: '/search',
-          search: `${previous}&p=${i}`
-        }}>{i}</Link>);
-      }
-      setPagenationCode(result);
+      makePagenation(newCurrent,newPageCount,pagenation_start,pagenation_last);
 
       var result = [];
+      
+      let slice_start = (newCurrent-1)*16;
+      let slice_end =  newCurrent*16;
+
+
       if(json_title === 0){
-        for(var i = (current-1)*16;i < current*16;i++){
-          result.push(
-            <div className="item">
-              <div className="title">{i}{json_array[i].INST_NM}</div>
-              <div className="address">{json_array[i].REFINE_ROADNM_ADDR}</div>
-              <div className="type">{json_array[i].DIV_NM}</div>
-              <div className="tag">{json_array[i].GRAD}</div>
-            </div>
-          )
-        }      
-        // result =  json_array.map(row => 
-        //   <div className="item">
-        //     <div className="title">{row.INST_NM}</div>
-        //     <div className="address">{row.REFINE_ROADNM_ADDR}</div>
-        //     <div className="type">{row.DIV_NM}</div>
-        //     <div className="tag">{row.GRAD}</div>
-        //   </div>
-        // );
-      }else{  
-        for(var i = (current-1)*16;i < current*16;i++){
-          result.push(
-            <div className="item">
-              <div className="title">{i}{json_array[i].FACLT_NM}</div>
-              <div className="address">{json_array[i].REFINE_ROADNM_ADDR}</div>
-              <div className="type">{json_array[i].FACLT_KIND_NM}</div>
-              <div className="tag">{json_array[i].FACLT_INSTL_DETAIL_DE}</div>
-            </div>
-          )
-        }         
-        // result =  json_array.map(row => 
-        //   <div className="item">
-        //     <div className="title">{row.FACLT_NM}</div>
-        //     <div className="address">{row.REFINE_ROADNM_ADDR}</div>
-        //     <div className="type">{row.FACLT_KIND_NM}</div>
-        //     <div className="tag">{row.FACLT_INSTL_DETAIL_DE}</div>
-        //   </div>
-        // );      
+        result = json_array.slice(slice_start, slice_end).map(row => 
+          <div className="item">
+            <div className="title">{row.INST_NM}</div>
+            <div className="address">{row.REFINE_ROADNM_ADDR}</div>
+            <div className="type">{row.DIV_NM}</div>
+            <div className="tag">{row.GRAD}</div>
+          </div>
+        );          
+      }else{
+        result = json_array.slice(slice_start, slice_end).map(row => 
+          <div className="item">
+            <div className="title">{row.FACLT_NM}</div>
+            <div className="address">{row.REFINE_ROADNM_ADDR}</div>
+            <div className="type">{row.FACLT_KIND_NM}</div>
+            <div className="tag">{row.FACLT_INSTL_DETAIL_DE}</div>
+          </div>
+        );                      
       }
      
       setSearchItem(result);
       console.log(json_array);
-
+      console.log(result);
     }).catch(function (error) {
         // 오류발생시 실행
     }).then(function() {
@@ -173,6 +159,41 @@ const Search = ({location}) => {
     apiCall(); 
   }, [location])
   
+  function makePagenation(_current,_pageCount,_start,_last) {
+    let previous = '?';
+    var result = []; 
+
+    console.log(_current,_pageCount,_start,_last);
+    if(query?.type) 
+      previous += `type=${query.type}`;
+    if(query?.city) 
+      previous += `&city=${query.city}`;    
+    if(query?.search_text) 
+      previous += `&search_text=${query.search_text}`;    
+
+    if(_current > 1){
+      result.push(<Link to={{
+        pathname: '/search',
+        search: `${previous}&p=${Number(_current)-1}`    
+      }}><a>&lt;</a></Link>);
+    }
+
+    for(var i = _start; i <= _pageCount;i++){                  
+      result.push(<Link to={{
+        pathname: '/search',
+        search: `${previous}&p=${i}`
+      }}><a>{i}</a></Link>);        
+    }
+
+    if(_current < _last){
+      result.push(<Link to={{
+        pathname: '/search',
+        search: `${previous}&p=${Number(_current)+1}`
+      }}><a>&gt;</a></Link>);
+    }
+    setPagenationCode(result);
+  }
+
   return (
     <div className="Search">
       <div className="Main_content">
@@ -180,7 +201,9 @@ const Search = ({location}) => {
           <div className="containor_content"> 
             {!!search_item.length && search_item}
           </div>
-          {!!pagenationCode.length && pagenationCode}
+          <div className="pagination">
+            {!!pagenationCode.length && pagenationCode}
+          </div>
         </div>
       </div>
     </div>
