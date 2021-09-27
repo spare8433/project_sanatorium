@@ -47,7 +47,7 @@ const Nav = (props) => {
             
             <Link to={`/search?type=주야간보호`}> 
             <div className="icon_box">
-              <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_CARE.svg" /></div>
+              <div className="image"><img src="https://caredoc.kr/img/main/icon/DAY_NIGHT_CARE.svg" /></div>
               <span> 주야간보호 </span>
             </div> 
           </Link>

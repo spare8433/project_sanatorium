@@ -43,6 +43,7 @@
   grid-template-columns: 1fr 1fr;
 }
 .nav_modal_content h1{
+  text-align: left;
   margin: 2.0rem auto;
   color: #E7886E;
   font-size: 2.4rem;
@@ -50,25 +51,31 @@
 }
 .nav_modal_content .grid_box .content_item{
   display: flex;
-  margin-left: 2.0rem;
+  margin-bottom: 3.0rem;
+  margin-left: 2.0rem;  
 }
+.flex_end{justify-content: flex-end;text-align: right;}
+.flex_start{justify-content: flex-start;text-align: left;}
 .nav_modal_content .grid_box .content_item .text_box{
   margin:  0 1.5rem ;
+  width: 100%;
 }
 
 .nav_modal_content .grid_box .content_item .text_box h3{
-  font-size: 1.8rem;
+  text-align: left;
+  font-size: 2.0rem;
   font-family: 'NotoSansKR_m';
 }
 
 .nav_modal_content .grid_box .content_item .text_box p{
+  text-align: left;
   font-size: 1.6rem;
   font-family: 'NotoSansKR_r';
   margin: 0;
 }
 
-.modal-body .grid_box .content_item .image img{
-  width: 4.0rem;
+.grid_box .content_item .image img{
+  width: 6.4rem;
 }
 .content_box{
   width: auto;
