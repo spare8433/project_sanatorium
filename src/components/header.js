@@ -75,7 +75,7 @@ const Header = () => {
       <div className="logo_box">
         <Link to={`/`}><img src="img/logo.png" alt="care_home" /></Link>         
         <ul>
-          <li>깃</li>
+          <li>로그인/회원가입</li>
         </ul>
       </div>     
 

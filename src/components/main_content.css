@@ -13,7 +13,12 @@
     
 }
 .containor_title h2{
- 
+  text-align: left;
+  margin: 3.0rem 0;
+  color: #2a2a2a;
+  font-size: 3.0rem;
+  font-family: 'NotoSansKR_m';
+  font-weight: bold;
 }
 .containor_content{
   text-align: left;
@@ -29,4 +34,70 @@
   border: 1px solid #fff;
   box-shadow: 0.25rem 0.5rem 0.5rem rgb(30 40 80 / 10%);
   padding: 1.0rem 1.5rem;
+}
+.nav-tabs{
+  width: 100%;
+  font-size: 1.8rem;
+  font-family: 'NotoSansKR_m';
+  border-bottom: 1px solid #dee2e6;
+  /* background-color: white; */
+}
+.nav-item{
+  width: 25%;
+}
+.nav-item button{
+  width: 100%;
+}
+.nav-tabs .nav-link{
+  color:#495057;    
+  border: none;
+  outline: none;
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+  padding: 1.5rem 0;
+}
+.nav-link.active{
+  border-bottom:0.3rem solid;
+  border-color: #E7886E !important;
+  
+}
+.nav-tabs .nav-link button{
+  border: none;
+  outline: none;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+  color:#E7886E;
+  border-color: none;
+  background-color: #f3f3f3!important;
+}
+.tab-content>.active,.tab-content>.tap-pane{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:10px;
+}
+.tab_containor{
+  width: 100%;  
+}
+.tab_item{
+  width:100%;
+  height: 10.0rem;
+  padding: 1.0rem 1.0rem 1.5rem;
+  background-color: white;
+  box-shadow: 0.25rem 0.5rem 0.5rem rgb(30 40 80 / 10%);
+}
+.tab_item_title{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight:600;
+  font-family: 'NotoSansKR_m';
+  text-align: left;
+}
+.tab_item_content{
+  font-size: 1.4rem;
+  width: 100%;
+  padding: 1.0rem 0;
+  font-family: 'NotoSansKR_r';
+  text-align: left;
 }

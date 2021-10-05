@@ -12,6 +12,7 @@ import Header from './components/header.js';
 import Nav from './components/nav.js';
 import Main_content from './components/main_content.js';
 import Search from './search.js';
+import Footer from './components/footer';
 
 class App extends Component {
   render() {
@@ -27,9 +28,9 @@ class App extends Component {
                   
             <Route path="/search" component={Search}>
                   
-            </Route>
+            </Route>          
           </Switch>
-          {/*<Footer></Footer> */}
+          <Footer></Footer> 
         </div>
       </Router>
     );

@@ -21,8 +21,8 @@ class Nav_modal extends Component {
       <div className="Nav_modal">
       <div className="content_title">
         <h2> 특정 요양시설을 찾으세요?</h2>
-        <a onClick={() => this.setLgShow(true)}>요양시설별 특징</a>
-        <Modal
+        {/* <a onClick={() => this.setLgShow(true)}>요양시설별 특징</a> */}
+        {/* <Modal
           size="lg"
           show={this.state.lgShow}
           onHide={() => this.setLgShow(false)}
@@ -94,7 +94,7 @@ class Nav_modal extends Component {
               </div>
             </div>
           </Modal.Body>
-        </Modal>
+        </Modal> */}
       </div>
       </div>
     );

@@ -4,16 +4,19 @@ import './main_content.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import SimpleCarousel from './main_components/carousel_banner';
+import Tab_menu from './main_components/tab_menu';
 
 const Main_content = (props) => {
   
   return (
     <div className="Main_content">
       <div className="containor_box">
-        <div className="advertisement_banner">
-        
-        <SimpleCarousel></SimpleCarousel>
+        <div className="advertisement_banner">        
+          <SimpleCarousel></SimpleCarousel>
         </div>
+
+        <div className="containor_title"><h2>요양시설별 특징</h2></div>
+        
         <div className="nav_modal_content">
           <h1>입소 시설</h1>
           <div className="grid_box">
@@ -69,17 +72,17 @@ const Main_content = (props) => {
 
         <div className="containor_title">
 
-          <h2>신규 시설</h2>
+          <h2>관련 정책</h2>
           <div>
-            <span>더보기</span>
+            
             <div className="image"><img></img></div>
           </div>
         </div>
 
-        {/* 시설정보 그리드 박스 */}
+        {/* 시설정보 그리드 박스 
         <div className="containor_content"> 
         
-          {/* 시설정보 아이템 */}
+           시설정보 아이템 
           <div className="item">
             <div className="title">케어윌</div>            
             <div className="address">서울특별시 성북구 보문로 50</div>
@@ -107,8 +110,9 @@ const Main_content = (props) => {
             <div className="type">요양원</div>                        
             <div className="tag">A 등급, 설립11년</div>            
           </div>
-        </div>
+        </div>*/}
 
+        <Tab_menu></Tab_menu>
       </div>
     </div>
   );
