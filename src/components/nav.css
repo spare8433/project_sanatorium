@@ -26,17 +26,7 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
-.modal-content{
-  border-radius: 1.0rem;
-}
-.modal-header{
-  background-color: #E7886E;
-  color: #fff;
-  font-size: 1.8rem;
-  font-family: 'NotoSansKR_r';
-  border-top-left-radius: calc(1.0rem - 1px);
-  border-top-right-radius: calc(1.0rem - 1px);
-}
+
 
 .nav_modal_content .grid_box{
   display: grid;

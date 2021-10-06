@@ -68,26 +68,23 @@ const Search = ({location}) => {
     }
         
     //console.log(type(API_info));
-    console.log('웨지고구마');
     console.log(query.type);
-
     if(query.hasOwnProperty('type')){
       switch(query.type){
         case '요양병원': 
-          API_url = `https://openapi.gg.go.kr/Hosptlevaltnrcper?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUNGU_NM=${_city}`;          
+          API_url = `https://openapi.gg.go.kr/Hosptlevaltnrcper?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUNGU_NM=${_city}&pSize=212`;          
           _json_title = 0;
           setJson_title(_json_title);        
           break;
         case '요양원': 
-          API_url = `https://openapi.gg.go.kr/OldpsnMedcareWelfac?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}`;                     
+          API_url = `https://openapi.gg.go.kr/OldpsnMedcareWelfac?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}&pSize=1663`;                     
           _json_title = 1;
-          console.log('웨지감자');
           setJson_title(_json_title);
           break;
         case '방문요양':
         case '방문목욕':
         case '주야간보호': 
-          API_url = `https://openapi.gg.go.kr/HtygdWelfaclt?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}`;          
+          API_url = `https://openapi.gg.go.kr/HtygdWelfaclt?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUNGU_NM=${_city}&pSize=554`;          
           _json_title = 2;
           setJson_title(_json_title);
           break;
@@ -107,9 +104,9 @@ const Search = ({location}) => {
         json_data = JSON.stringify(response.data.HtygdWelfaclt[1].row); 
       }else{
       }      
+      console.log(json_data)
       let json_array = JSON.parse(json_data);
-      setJson_array(json_array);
-      //console.log(json_array);
+      setJson_array(json_array);   
 
 
       var searchedData = [];
@@ -122,7 +119,7 @@ const Search = ({location}) => {
       if(_json_title === 0){
         searchedData = json_array.filter(row => row.INST_NM.search(_search_text) !== -1 );      
         result = searchedData.slice(slice_start, slice_end).map(row =>                 
-          <div className="item" onClick={()=>{compose_modal(row);handleShow();}}>
+          <div className="item" onClick={()=>{compose_modal(row,_json_title);handleShow();}}>
             <div className="title">{row.INST_NM}</div>
             <div className="address">{row.REFINE_ROADNM_ADDR}</div>
             <div className="type">{row.DIV_NM}</div>
@@ -132,7 +129,7 @@ const Search = ({location}) => {
       }else{
         searchedData = json_array.filter(row => row.FACLT_NM.search(_search_text) !== -1 );              
         result = searchedData.slice(slice_start, slice_end).map(row =>
-          <div className="item" onClick={()=>{compose_modal(row);handleShow();}}>
+          <div className="item" onClick={()=>{compose_modal(row,_json_title);handleShow();}}>
             <div className="title">{row.FACLT_NM}</div>
             <div className="address">{row.REFINE_ROADNM_ADDR}</div>
             <div className="type">{row.FACLT_KIND_NM}</div>
@@ -193,15 +190,7 @@ const Search = ({location}) => {
   }; 
     apiCall(); 
   }, [location])
-
-  useEffect(() => {
-    if(json_title === 0){
-
-    }else{
-
-    }
-  },[json_title]);
-  
+ 
   function makePagenation(_current,_pageCount,_start,_last) {
     let previous = '?';
     var result = []; 
@@ -237,74 +226,94 @@ const Search = ({location}) => {
     setPagenationCode(result);
   }
 
-  function compose_modal(tar) { 
+  function compose_modal(tar,_json_title) { 
     console.log(tar);
     var result=[];  
          
-    if(json_title === 0){
-      console.log('들어옴0?');
-      console.log(json_title);      
+    if(_json_title === 0){
+      result =
+        <Container className="search_modal">
+          <Row>
+            <Col className="col_th">시설명</Col>
+            <Col lg={9}>{tar.INST_NM}</Col>        
+          </Row>
+          <Row>
+            <Col className="col_th">시설종류</Col>
+            <Col lg={9}>{tar.DIV_NM}</Col>        
+          </Row>
+          <Row>
+            <Col className="col_th">평가등급</Col>
+            <Col lg={9}>{tar.GRAD}</Col>        
+          </Row>
+          <Row>
+            <Col className="col_th">도로명주소</Col>
+            <Col lg={9}>{tar.REFINE_ROADNM_ADDR}</Col>        
+          </Row>
+          <Row>
+            <Col className="col_th">지번주소</Col>
+            <Col lg={9}>{tar.REFINE_LOTNO_ADDR}</Col>        
+          </Row>
+          <Row>
+            <Col className="col_th">우편번호</Col>
+            <Col lg={9}>{tar.REFINE_ZIP_CD}</Col>        
+          </Row>         
+          <Row>
+            {/*<Col>지도가 들어가질도</Col>*/}
+          </Row>
+        </Container>               
+      setModalCode(result);
     }else{            
       result =
         <Container className="search_modal">
           <Row>
-            <Col>시설명</Col>
-            <Col>{tar.FACLT_NM}</Col>        
+            <Col className="col_th">시설명</Col>
+            <Col lg={9}>{tar.FACLT_NM}</Col>        
           </Row>
           <Row>
-            <Col>시설종류</Col>
-            <Col>{tar.FACLT_KIND_NM}</Col>        
+            <Col className="col_th">시설종류</Col>
+            <Col lg={9}>{tar.FACLT_KIND_NM}</Col>        
           </Row>
           <Row>
-            <Col>도로명주소</Col>
-            <Col>{tar.REFINE_ROADNM_ADDR}</Col>        
+            <Col className="col_th">도로명주소</Col>
+            <Col lg={9}>{tar.REFINE_ROADNM_ADDR}</Col>        
           </Row>
           <Row>
-            <Col>지번주소</Col>
-            <Col>{tar.REFINE_LOTNO_ADDR}</Col>        
+            <Col className="col_th">지번주소</Col>
+            <Col lg={9}>{tar.REFINE_LOTNO_ADDR}</Col>        
           </Row>
           <Row>
-            <Col>전화번호</Col>
-            <Col>{tar.DETAIL_TELNO}</Col>        
+            <Col className="col_th">전화번호</Col>
+            <Col lg={9}>{tar.DETAIL_TELNO}</Col>        
           </Row>
           <Row>
-            <Col>우편번호</Col>
-            <Col>{tar.REFINE_ZIP_CD}</Col>        
+            <Col className="col_th">우편번호</Col>
+            <Col lg={9}>{tar.REFINE_ZIP_CD}</Col>        
           </Row>
           <Row>
-            <Col>FAX번호</Col>
-            <Col>{tar.DETAIL_FAXNO}</Col>        
+            <Col className="col_th">FAX번호</Col>
+            <Col lg={9}>{tar.DETAIL_FAXNO}</Col>        
           </Row>          
           <Row>
-            <Col>설치일자</Col>
-            <Col>{tar.FACLT_INSTL_DETAIL_DE}</Col>        
+            <Col className="col_th">설치일자</Col>
+            <Col lg={9}>{tar.FACLT_INSTL_DETAIL_DE}</Col>        
           </Row>
           <Row>
-            <Col>입소정원</Col>
+            <Col className="col_th">입소정원</Col>
             <Col>{tar.ENTRNC_PSN_CAPA}</Col>   
-            <Col>종사자정원</Col>
+            <Col className="col_th">종사자정원</Col>
             <Col>{tar.ENFLPSN_PSN_CAPA}</Col>      
           </Row>
           <Row>
-            <Col>운영</Col>
+            <Col className="col_th">운영</Col>
             <Col>{tar.INSTL_MAINBD_DIV_NM}</Col>
-            <Col>영리/비영리</Col>
+            <Col className="col_th">영리/비영리</Col>
             <Col>{tar.PRFTMK_DIV_NM}</Col>             
           </Row>
           <Row>
-            <Col>지도가 들어가질도</Col>     
+            {/*<Col>지도가 들어가질도</Col>*/}
           </Row>
-        </Container>        
-        // <div className="search_modal">
-        //   <div className="title">{row.FACLT_NM}</div>
-        //   <div className="address">{row.REFINE_ROADNM_ADDR}</div>
-        //   <div className="type">{row.FACLT_KIND_NM}</div>
-        //   <div className="tag">{row.FACLT_INSTL_DETAIL_DE}</div>
-        // </div>
-      ; 
+        </Container>               
       setModalCode(result);
-      console.log(result)
-      console.log('들어옴12?');
     }
   }
 
@@ -327,16 +336,15 @@ const Search = ({location}) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>시설 상세정보</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {modalCode}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">Understood</Button>
+          <div className="d-grid gap-2">
+              <Button variant="outline-secondary" size="lg" onClick={handleClose}>닫기</Button>
+          </div>         
         </Modal.Footer>
       </Modal>
     </div>

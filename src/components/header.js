@@ -19,29 +19,29 @@ const Header = () => {
   //let [search_text,setSearch_text] = useState('');  
   let [type,setType] = useState('요양원');  
   let [city,setCity] = useState('성남시');
-  let [province,setProvince] = useState('가평군');
+  let [province,setProvince] = useState('경기도');
 
-  useEffect(()=> {
-    if(query.hasOwnProperty('type')){
-      switch(query.type){
-        case 'hospital': setType('요양병원');
-          break;
-        case 'sanatorum': setType('요양원');
-          break;
-        case 'visit_care': setType('방문요양');
-          break;
-        case 'visit_bath': setType('방문목욕');
-          break;
-        case 'day_protection': setType('주야간보호');
-          break;
-        default :
-          break;           
-      }      
-    }
-    if(query.hasOwnProperty('search_text')){
+  // useEffect(()=> {
+  //   if(query.hasOwnProperty('type')){
+  //     switch(query.type){
+  //       case 'hospital': setType('요양병원');
+  //         break;
+  //       case 'sanatorum': setType('요양원');
+  //         break;
+  //       case 'visit_care': setType('방문요양');
+  //         break;
+  //       case 'visit_bath': setType('방문목욕');
+  //         break;
+  //       case 'day_protection': setType('주야간보호');
+  //         break;
+  //       default :
+  //         break;           
+  //     }      
+  //   }
+  //   if(query.hasOwnProperty('search_text')){
       
-    }
-  }, [])
+  //   }
+  // }, [])
 
   function handleKeyPress(e){
     if (e.key === "Enter") {
@@ -90,6 +90,8 @@ const Header = () => {
           <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>요양병원</Dropdown.Item>
           <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>요양원</Dropdown.Item>
           <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>방문요양</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>방문목욕</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => setType(e.target.textContent)}>주야간보호</Dropdown.Item>
         </DropdownButton>
 
         <DropdownButton id="province" title={province} >
