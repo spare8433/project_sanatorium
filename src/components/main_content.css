@@ -93,6 +93,7 @@
   font-weight:600;
   font-family: 'NotoSansKR_m';
   text-align: left;
+  cursor: pointer;
 }
 .tab_item_content{
   font-size: 1.4rem;
