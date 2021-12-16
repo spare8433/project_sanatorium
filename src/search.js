@@ -77,7 +77,7 @@ const Search = ({location}) => {
           setJson_title(_json_title);        
           break;
         case '요양원': 
-          API_url = `https://openapi.gg.go.kr/OldpsnMedcareWelfac?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}&pSize=1663`;                     
+          API_url = `https://openapi.gg.go.kr/OldpsnMedcareWelfac?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}&pSize=1000`;                     
           _json_title = 1;
           setJson_title(_json_title);
           break;
@@ -92,6 +92,7 @@ const Search = ({location}) => {
           break;           
       }      
     }  
+    console.log(API_url);
 
     const response = await axios.get(`${API_url}`).then(function (response) {
       // response
