@@ -53,13 +53,22 @@ const Search = ({location}) => {
         search: `${previous}&p=${Number(_current)-1}`    
       }}><a href='#!'>&lt;</a></Link>);
     }
-
-    for(var i = _start; i <= _pageCount;i++){                  
+   
+    let limit = 0;
+    
+    if (_pageCount >= _last)
+      limit = _last;
+    else
+      limit = _pageCount;
+    
+    for(var i = _start; i <= limit;i++){                  
       result.push(<Link to={{
         pathname: '/search',
         search: `${previous}&p=${i}`
       }}><a href='#!'>{i}</a></Link>);        
     }
+
+   
 
     if(_current < _last){
       result.push(<Link to={{
@@ -68,7 +77,7 @@ const Search = ({location}) => {
       }}><a href='#!'>&gt;</a></Link>);
     }
     setPagenationCode(result);
-  },[query])
+  },[])
 
   //apu 호출부분 
   useEffect(() => { const apiCall = async () => {
@@ -238,7 +247,7 @@ const Search = ({location}) => {
     
   }; 
     apiCall(); 
-  }, [json_title, last, location, makePagenation, pageCount, query, start])
+  }, [location])
   
 
 
