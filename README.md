@@ -21,3 +21,6 @@ x
 axios 정도만 사용함 데이터베이스는 따로 사용하지 않고 오픈 API 데이터를 활용 함
 
 ## Page
+<img src='/sampleScreenshot/main.png' />
+<img src='/sampleScreenshot/search.png' />
+<img src='/sampleScreenshot/subpage-modal.png' />
