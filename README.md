@@ -21,6 +21,6 @@ x
 axios 정도만 사용함 데이터베이스는 따로 사용하지 않고 오픈 API 데이터를 활용 함
 
 ## Page
-<img src='/sampleScreenshot/main.png' />
-<img src='/sampleScreenshot/search.png' />
-<img src='/sampleScreenshot/subpage-modal.png' />
+![search](https://user-images.githubusercontent.com/80731330/154101392-19cd8dfa-9e9f-4087-a80e-86c7467e9942.png)
+![main](https://user-images.githubusercontent.com/80731330/154101397-4286effd-6ea9-4ede-9271-633e7f6278da.png)
+![subpage-modal](https://user-images.githubusercontent.com/80731330/154101403-2edb57e4-1949-4664-a830-288dae968e63.png)
