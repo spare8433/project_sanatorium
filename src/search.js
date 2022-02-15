@@ -1,47 +1,85 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import {Container,Row,Col,Modal,Button} from 'react-bootstrap';
-import {useLocation,Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from 'axios';
 import './search.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import qs from "qs";
 
+require("dotenv").config();
+
 const Search = ({location}) => {
-  let [search_text,setSearch_text] = useState('');  
-  let [type,setType] = useState('');  
-  let [city,setCity] = useState('');
-  let [district,setDistrict] = useState(''); 
+  let [ ,setSearch_text] = useState('');  
+  //let [type,setType] = useState('');  
+  //let [city,setCity] = useState('');
+  
   //let [search_data,setSearchData] = useState('');
   let [search_item,setSearchItem] = useState('');
 
   let query =qs.parse(location.search, {ignoreQueryPrefix: true});
 
   let [start,setStart] = useState(1);
-  let [current,setCurrent] = useState(1);
+  //let [current,setCurrent] = useState(1);
   let [last,setLast] = useState(0);
 
-  let [postedItemCount,setPostedItemCount] = useState(16);  //화면에 뜨는 갯수
   let [pageCount,setPageCount] = useState(5);               
   let [pagenationCode,setPagenationCode] = useState('');
   let [json_title,setJson_title] = useState(0);
   let [modalCode,setModalCode] = useState('');
-  let [json_array,setJson_array] = useState([])
+  //let [json_array,setJson_array] = useState([])
+  
+  const postedItemCount = 16; //화면에 뜨는 갯수
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const makePagenation = useCallback((_current,_pageCount,_start,_last) => {
+    let previous = '?';
+    var result = []; 
+
+    console.log(_current,_pageCount,_start,_last);
+    if(query?.type) 
+      previous += `type=${query.type}`;
+    if(query?.city) 
+      previous += `&city=${query.city}`;    
+    if(query?.search_text) 
+      previous += `&search_text=${query.search_text}`;    
+
+    if(_current > 1){
+      result.push(<Link to={{
+        pathname: '/search',
+        search: `${previous}&p=${Number(_current)-1}`    
+      }}><a href='#!'>&lt;</a></Link>);
+    }
+
+    for(var i = _start; i <= _pageCount;i++){                  
+      result.push(<Link to={{
+        pathname: '/search',
+        search: `${previous}&p=${i}`
+      }}><a href='#!'>{i}</a></Link>);        
+    }
+
+    if(_current < _last){
+      result.push(<Link to={{
+        pathname: '/search',
+        search: `${previous}&p=${Number(_current)+1}`
+      }}><a href='#!'>&gt;</a></Link>);
+    }
+    setPagenationCode(result);
+  },[query])
+
   //apu 호출부분 
   useEffect(() => { const apiCall = async () => {
-    let query =qs.parse(location.search, {ignoreQueryPrefix: true});    
-    let API_url = "";
+    console.log(process.env.REACT_APP_API_KEY);    
+    let API_url = '';        
     let _json_title = json_title;
 
     let newCurrent = query.p ?? 1;
     let pagenation_start = start;
     let pagenation_last = last;
-    let newPageCount =pageCount == 1 ? 5 : pageCount ;
+    let newPageCount = pageCount === 1 ? 5 : pageCount;
     
     let _search_text ="";
     let _type ="";
@@ -53,48 +91,57 @@ const Search = ({location}) => {
     }        
     if(query.hasOwnProperty('type')){
       _type = query.type;
-      setType(_type);
+      //setType(_type);
     }          
     if(query.hasOwnProperty('city')){
       _city = query.city;
-      setCity(_city);
+      //setCity(_city);
     }
       
     console.log(newCurrent,newPageCount,pagenation_start,pagenation_last);
-    setCurrent(newCurrent);
-    let API_info ={
-      KEY:'96cea9b672ae4c3a91008987ac395ed0',
-      Type:'json'      
-    }
+    //setCurrent(newCurrent);  
         
     //console.log(type(API_info));
     console.log(query.type);
     if(query.hasOwnProperty('type')){
-      switch(query.type){
-        case '요양병원': 
-          API_url = `https://openapi.gg.go.kr/Hosptlevaltnrcper?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUNGU_NM=${_city}&pSize=212`;          
-          _json_title = 0;
-          setJson_title(_json_title);        
+      
+      let detail_address = '';
+      let queryKey =`KEY=${process.env.REACT_APP_API_KEY}`
+      let queryType = '&Type=json'
+      let queryPageSize='';
+      let querySiName =''
+
+      switch(_type){
+        case '요양병원':
+          detail_address = 'Hosptlevaltnrcper?'
+          querySiName = `&SIGUNGU_NM=${_city}`
+          queryPageSize= '&pSize=212';                    
+          _json_title = 0;                  
           break;
-        case '요양원': 
-          API_url = `https://openapi.gg.go.kr/OldpsnMedcareWelfac?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUN_NM=${_city}&pSize=1000`;                     
-          _json_title = 1;
-          setJson_title(_json_title);
+        case '요양원':
+          detail_address = 'OldpsnMedcareWelfac?'
+          querySiName = `&SIGUNGU_NM=${_city}`           
+          queryPageSize='&pSize=1000';
+          _json_title = 1;          
           break;
         case '방문요양':
         case '방문목욕':
-        case '주야간보호': 
-          API_url = `https://openapi.gg.go.kr/HtygdWelfaclt?KEY=${API_info.KEY}&Type=${API_info.Type}&SIGUNGU_NM=${_city}&pSize=554`;          
-          _json_title = 2;
-          setJson_title(_json_title);
+        case '주야간보호':
+          detail_address = 'HtygdWelfaclt?'
+          querySiName = `&SIGUNGU_NM=${_city}`           
+          queryPageSize='&pSize=554';
+          _json_title = 2;          
           break;
         default : 
           break;           
-      }      
-    }  
+      }
+      setJson_title(_json_title);
+      API_url = 'https://openapi.gg.go.kr/' + detail_address + queryKey + queryType + querySiName + queryPageSize;
+    }
+
     console.log(API_url);
 
-    const response = await axios.get(`${API_url}`).then(function (response) {
+    await axios.get(`${API_url}`).then(function (response) {
       // response
       let json_data = "";   
       if(_json_title === 0){
@@ -107,7 +154,7 @@ const Search = ({location}) => {
       }      
       console.log(json_data)
       let json_array = JSON.parse(json_data);
-      setJson_array(json_array);   
+      //setJson_array(json_array);   
 
 
       var searchedData = [];
@@ -118,9 +165,9 @@ const Search = ({location}) => {
 
       //console.log(_search_text);
       if(_json_title === 0){
-        searchedData = json_array.filter(row => row.INST_NM.search(_search_text) !== -1 );      
-        result = searchedData.slice(slice_start, slice_end).map(row =>                 
-          <div className="item" onClick={()=>{compose_modal(row,_json_title);handleShow();}}>
+        searchedData = json_array.filter( row => row.INST_NM.search(_search_text) !== -1 );      
+        result = searchedData.slice(slice_start, slice_end).map( (row,index) =>                 
+          <div key={'searched_faclt_'+index} className="item" onClick={()=>{compose_modal(row,_json_title);handleShow();}}>
             <div className="title">{row.INST_NM}</div>
             <div className="address">{row.REFINE_ROADNM_ADDR}</div>
             <div className="type">{row.DIV_NM}</div>
@@ -129,8 +176,8 @@ const Search = ({location}) => {
         ); 
       }else{
         searchedData = json_array.filter(row => row.FACLT_NM.search(_search_text) !== -1 );              
-        result = searchedData.slice(slice_start, slice_end).map(row =>
-          <div className="item" onClick={()=>{compose_modal(row,_json_title);handleShow();}}>
+        result = searchedData.slice(slice_start, slice_end).map( (row,index) =>
+          <div key={'searched_faclt_'+index} className="item" onClick={()=>{compose_modal(row,_json_title);handleShow();}}>
             <div className="title">{row.FACLT_NM}</div>
             <div className="address">{row.REFINE_ROADNM_ADDR}</div>
             <div className="type">{row.FACLT_KIND_NM}</div>
@@ -162,6 +209,7 @@ const Search = ({location}) => {
       //console.log(newPageCount);      
       
       console.log(newCurrent,newPageCount,pagenation_start,pagenation_last);
+
       if(newCurrent > newPageCount){
         if(newPageCount+5 <= last){
           newPageCount +=5;
@@ -190,42 +238,44 @@ const Search = ({location}) => {
     
   }; 
     apiCall(); 
-  }, [location])
- 
-  function makePagenation(_current,_pageCount,_start,_last) {
-    let previous = '?';
-    var result = []; 
+  }, [json_title, last, location, makePagenation, pageCount, query, start])
+  
 
-    console.log(_current,_pageCount,_start,_last);
-    if(query?.type) 
-      previous += `type=${query.type}`;
-    if(query?.city) 
-      previous += `&city=${query.city}`;    
-    if(query?.search_text) 
-      previous += `&search_text=${query.search_text}`;    
 
-    if(_current > 1){
-      result.push(<Link to={{
-        pathname: '/search',
-        search: `${previous}&p=${Number(_current)-1}`    
-      }}><a>&lt;</a></Link>);
-    }
+  // function makePagenation(_current,_pageCount,_start,_last) {
+  //   let previous = '?';
+  //   var result = []; 
 
-    for(var i = _start; i <= _pageCount;i++){                  
-      result.push(<Link to={{
-        pathname: '/search',
-        search: `${previous}&p=${i}`
-      }}><a>{i}</a></Link>);        
-    }
+  //   console.log(_current,_pageCount,_start,_last);
+  //   if(query?.type) 
+  //     previous += `type=${query.type}`;
+  //   if(query?.city) 
+  //     previous += `&city=${query.city}`;    
+  //   if(query?.search_text) 
+  //     previous += `&search_text=${query.search_text}`;    
 
-    if(_current < _last){
-      result.push(<Link to={{
-        pathname: '/search',
-        search: `${previous}&p=${Number(_current)+1}`
-      }}><a>&gt;</a></Link>);
-    }
-    setPagenationCode(result);
-  }
+  //   if(_current > 1){
+  //     result.push(<Link to={{
+  //       pathname: '/search',
+  //       search: `${previous}&p=${Number(_current)-1}`    
+  //     }}><a href='#!'>&lt;</a></Link>);
+  //   }
+
+  //   for(var i = _start; i <= _pageCount;i++){                  
+  //     result.push(<Link to={{
+  //       pathname: '/search',
+  //       search: `${previous}&p=${i}`
+  //     }}><a href='#!'>{i}</a></Link>);        
+  //   }
+
+  //   if(_current < _last){
+  //     result.push(<Link to={{
+  //       pathname: '/search',
+  //       search: `${previous}&p=${Number(_current)+1}`
+  //     }}><a href='#!'>&gt;</a></Link>);
+  //   }
+  //   setPagenationCode(result);
+  // }
 
   function compose_modal(tar,_json_title) { 
     console.log(tar);

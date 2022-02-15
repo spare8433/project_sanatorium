@@ -1,12 +1,10 @@
-import React, {useEffect, useState, useMemo} from 'react';
-
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-const Tab_menu = (props) => {
+const TabMenu = (props) => {
   const [key, setKey] = useState('노인정책');
   const [tab_jsx, setTab_jsx] = useState('');
   const tab_content = [
@@ -105,6 +103,8 @@ const Tab_menu = (props) => {
           case '요양보험운영':
             menu_id += '063904'
             break;
+          default:
+            break
         }
         page+=index+1;
         url += menu_id += page;            
@@ -113,7 +113,7 @@ const Tab_menu = (props) => {
           <div className="tab_item">            
             <div className="tab_item_title" onClick={()=> window.open(url,'_blank')}>
               <span>{item.tab_item_title}</span>
-              <div className="image"><img src="img/go.png"></img></div>                            
+              <div className="image"><img src="img/go.png" alt=''></img></div>                            
             </div>           
             <div className="tab_item_content">{item.tab_item_content}</div>
           </div>
@@ -145,4 +145,4 @@ const Tab_menu = (props) => {
   );
 };
 
-export default Tab_menu;
+export default TabMenu;

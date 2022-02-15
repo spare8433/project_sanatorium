@@ -10,7 +10,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/header.js';
 import Nav from './components/nav.js';
-import Main_content from './components/main_content.js';
+import MainContent from './components/main_content.js';
 import Search from './search.js';
 import Footer from './components/footer';
 
@@ -23,7 +23,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/">
               <Nav></Nav>
-              <Main_content></Main_content>    
+              <MainContent />
             </Route>          
                   
             <Route path="/search" component={Search}>

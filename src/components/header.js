@@ -1,5 +1,5 @@
-import React, {useState , useEffect} from 'react';
-import {useHistory, useLocation} from "react-router-dom";
+import React, {useState} from 'react';
+import {useHistory} from "react-router-dom";
 import {Link} from "react-router-dom";
 
 import './header.css';
@@ -7,41 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import qs from "qs";
 
 
 const Header = () => {
    
-  let location = useLocation();
   let history = useHistory();
-  let query =qs.parse(location.search, {ignoreQueryPrefix: true});
 
-  //let [search_text,setSearch_text] = useState('');  
   let [type,setType] = useState('요양원');  
   let [city,setCity] = useState('성남시');
   let [province,setProvince] = useState('경기도');
-
-  // useEffect(()=> {
-  //   if(query.hasOwnProperty('type')){
-  //     switch(query.type){
-  //       case 'hospital': setType('요양병원');
-  //         break;
-  //       case 'sanatorum': setType('요양원');
-  //         break;
-  //       case 'visit_care': setType('방문요양');
-  //         break;
-  //       case 'visit_bath': setType('방문목욕');
-  //         break;
-  //       case 'day_protection': setType('주야간보호');
-  //         break;
-  //       default :
-  //         break;           
-  //     }      
-  //   }
-  //   if(query.hasOwnProperty('search_text')){
-      
-  //   }
-  // }, [])
 
   function handleKeyPress(e){
     if (e.key === "Enter") {
@@ -61,12 +35,22 @@ const Header = () => {
     포천시 : 41650,    하남시 : 41450,    화성시 : 41590}
 
   function show_cityList() {
-    const result =[];
-    for (const key in cityList) {
-      if (Object.hasOwnProperty.call(cityList, key)) {
-        result.push(<Dropdown.Item onClick={(e) => setCity(e.target.textContent)}>{key}</Dropdown.Item>)        
-      }
-    }    
+    let result =[];
+
+    // result = Object.keys(cityList).map((row,index) => 
+    //   <Dropdown.Item key={'city_'+ index} onClick={(e) => setCity(e.target.textContent)}>{row}</Dropdown.Item>       
+    // );
+
+    // for (const key in cityList) {
+    //   if (Object.hasOwnProperty.call(cityList, key)) {
+    //     result.push(<Dropdown.Item onClick={(e) => setCity(e.target.textContent)}>{key}</Dropdown.Item>)        
+    //   }
+    // }
+    console.log(Object.entries(cityList))
+
+    for (var [key,value] of Object.entries(cityList)){      
+      result.push(<Dropdown.Item data-value={value} onClick={(e) => {setCity(e.target.textContent);}}>{key}</Dropdown.Item>)        
+    }
     return result
   }
 
@@ -75,12 +59,12 @@ const Header = () => {
       <div className="logo_box">
         <Link to={`/`}><img src="img/logo.png" alt="care_home" /></Link>         
         <ul>
-          <li>로그인/회원가입</li>
+          <li key={'로그인/회원가입'}>로그인/회원가입</li>
         </ul>
       </div>     
 
       <div className="search_box">
-        <div className="image"><img src="img/search.png"/></div>
+        <div className="image"><img src="img/search.png" alt='#!'/></div>
         <input type="text" placeholder="시설 검색" onKeyPress={handleKeyPress}/>
       </div>
 

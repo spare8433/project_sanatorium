@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './main_content.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import SimpleCarousel from './main_components/carousel_banner';
-import Tab_menu from './main_components/tab_menu';
 
-const Main_content = (props) => {
+import SimpleCarousel from './main_components/carousel_banner';
+import TabMenu from './main_components/tab_menu';
+
+const MainContent = (props) => {
   
   return (
     <div className="Main_content">
@@ -22,7 +22,7 @@ const Main_content = (props) => {
           <div className="grid_box">
 
             <div className="content_item">
-              <div className="image"><img src="https://caredoc.kr/img/main/icon/ADMISSION_FACILITY.svg" /></div>
+              <div className="image"><img src="/img/hospital.png" alt=''/></div>
               <div className="text_box">
                 <h3>요양병원</h3>
                 <p>꾸준한 진료 및 치료, 재활이 필요하신 분에게 필요해요<br></br>※ 평가등급을 확인하세요.</p>
@@ -30,7 +30,7 @@ const Main_content = (props) => {
             </div> 
 
             <div className="content_item">                
-              <div className="image"><img src="https://caredoc.kr/img/main/icon/NURSING_HOSPITAL.svg" /></div>                  
+              <div className="image"><img src="/img/stay-home.png" alt=''/></div>                  
               <div className="text_box">
                 <h3>요양원</h3>
                 <p>
@@ -44,7 +44,7 @@ const Main_content = (props) => {
           <div className="grid_box">
 
             <div className="content_item">
-            <div className="image"><img src="https://caredoc.kr/img/main/icon/DAY_NIGHT_CARE.svg" /></div>
+            <div className="image"><img src="/img/protect-day.png" alt=''/></div>
               <div className="text_box">
                 <h3>주야간보호</h3>
                 <p>주간 또는 야간 일정시간 어르신을 보호하며 신체활동 및 심신기능을 지원하는 서비스예요</p>
@@ -52,7 +52,7 @@ const Main_content = (props) => {
             </div>
 
               <div className="content_item">
-            <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_CARE.svg" /></div>
+            <div className="image"><img src="/img/support.png" alt=''/></div>
               <div className="text_box">
                 <h3>방문요양</h3>
                 <p>어르신 가정에 요양보호사가 직접 방문하여 필요한 일상 생활을 지원해요</p>
@@ -60,7 +60,7 @@ const Main_content = (props) => {
             </div>
 
             <div className="content_item">
-            <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_BATH.svg" /></div>
+            <div className="image"><img src="/img/bath.png" alt=''/></div>
               <div className="text_box">
                 <h3>방문목욕</h3>
                 <p>목욕 시설을 갖춘 차량, 혹은 가정 내에서 목욕을 지원하는 서비스예요</p>
@@ -75,7 +75,7 @@ const Main_content = (props) => {
           <h2>관련 정책</h2>
           <div>
             
-            <div className="image"><img></img></div>
+            {/* <div className="image"><img></img></div> */}
           </div>
         </div>
 
@@ -112,10 +112,10 @@ const Main_content = (props) => {
           </div>
         </div>*/}
 
-        <Tab_menu></Tab_menu>
+        <TabMenu />
       </div>
     </div>
   );
 };
 
-export default Main_content;
+export default MainContent;

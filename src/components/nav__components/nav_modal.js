@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 
-class Nav_modal extends Component {
+class NavModal extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -108,4 +105,4 @@ class Nav_modal extends Component {
   }
 }
 
-export default Nav_modal;
+export default NavModal;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import './footer.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,7 +28,7 @@ const Footer = (props) => {
         <div className="item">
           <ul className="secondUl_2">
             <li>이용약관</li>
-            <li><a>개인정보처리방침</a></li>
+            <li><a href='#!'>개인정보처리방침</a></li>
           </ul>
         </div>
 

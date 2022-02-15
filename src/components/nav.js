@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import './nav.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav_modal from './nav__components/nav_modal.js';
+import NavModal from './nav__components/nav_modal.js';
 import {Link} from "react-router-dom";
 
 const Nav = (props) => {
@@ -14,40 +14,40 @@ const Nav = (props) => {
 
       <div className="content_backboard">
         <div className="content_area">
-          <Nav_modal></Nav_modal>
+          <NavModal />
               
           <div className="content_box">
             <Link to={`/search?type=요양병원`}>
               <div className="icon_box">
-                <div className="image"><img src="https://caredoc.kr/img/main/icon/ADMISSION_FACILITY.svg" /></div>
+                <div className="image"><img src="/img/hospital.png" alt='#!'/></div>
                 <span> 요양병원 </span>
               </div>
             </Link>            
             
             <Link to={`/search?type=요양원`}>
               <div className="icon_box">
-                <div className="image"><img src="https://caredoc.kr/img/main/icon/NURSING_HOSPITAL.svg" /></div>
+                <div className="image"><img src="/img/stay-home.png" alt='#!'/></div>
                 <span> 요양원 </span>
               </div>
             </Link>
                       
             <Link to={`/search?type=방문요양`}>
               <div className="icon_box">
-                <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_CARE.svg" /></div>
+                <div className="image"><img src="/img/support.png" alt='#!'/></div>
                 <span> 방문요양 </span>
               </div>
             </Link>
                     
             <Link to={`/search?type=방문목욕`}>
               <div className="icon_box">
-                <div className="image"><img src="https://caredoc.kr/img/main/icon/VISITING_BATH.svg" /></div>
+                <div className="image"><img src="/img/bath.png" alt='#!'/></div>
                 <span> 방문목욕 </span>
               </div>
             </Link>
             
             <Link to={`/search?type=주야간보호`}> 
             <div className="icon_box">
-              <div className="image"><img src="https://caredoc.kr/img/main/icon/DAY_NIGHT_CARE.svg" /></div>
+              <div className="image"><img src="/img/protect-day.png" alt='#!'/></div>
               <span> 주야간보호 </span>
             </div> 
           </Link>
