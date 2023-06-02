@@ -4,21 +4,20 @@
 * **설명** : 수도권 지역 노인 복지 시설 정보를 간단하게 제공하는 사이트
 
 ## Installation
-
 x
 
 ## Built In
-개발 기간 : 기억안남 (느긋하게 3 개월 한 듯)
+개발 기간 : 2021-09 ~ 2022 2
 
 ### Front
 
 #### React, Javascript, antd, css    
-순수 css 와 antd 로만 디자인했고 , class 형 컴포넌트로 구성되어있음 
+순수 css 와 antd 로만 디자인했고 , class 형 컴포넌트로 구성 
 
 ### Back
 
 #### Node.js Express
-axios 정도만 사용함 데이터베이스는 따로 사용하지 않고 오픈 API 데이터를 활용 함
+axios 활용 / 데이터베이스 없이 오픈 API 데이터를 활용
 
 ## Page
 ![search](https://user-images.githubusercontent.com/80731330/154101392-19cd8dfa-9e9f-4087-a80e-86c7467e9942.png)
