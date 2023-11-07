@@ -1,45 +1,56 @@
-import React from 'react';
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
-import './footer.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+const FooterContainor = styled.footer`
+  width: 100%;
+  height: 18rem;
+  padding: 3rem 0 5rem;
+  display: flex;
+  justify-content: space-between;
+  border-top: 0.1rem solid gray;
+`
 
-const Footer = (props) => {
-  
+const LogoLink = styled(Link)`
+  height: fit-content;
+`
+
+const OtherInfoBox = styled.div`
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`
+
+const MyProfileInfoBox = styled.ul`
+  li {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+  }
+`
+
+const CopyrightText = styled.h4``
+
+const Footer = () => {
   return (
-    <div className="Footer">
-      <div className="information_box">
+    <FooterContainor>
+      <LogoLink to="/">
+        <img src="/img/logo.png" alt="logo" />
+      </LogoLink>
 
-        <div className="item">
-          <span>상호</span> (주)케어홈  <span>대표자명</span> 송병관<br></br>
-          <span>사업자등록번호</span> 000-00-00000 <span>통신판매업신고번호</span> 제0000-성남-0000호<br></br>
-          <span>연락처</span> 00-000-0000  <span>팩스</span> 000-0000-0000  <span>이메일</span> byg@carehome.com<br></br>
-          <span>주소</span> 경기도 성남시 수정구 단대동 산성대로437번길 7  지하주차장
-        </div>
+      <OtherInfoBox>
+        <MyProfileInfoBox>
+          <li>email : byeongchan66@google.com</li>
+          <li>
+            gitHub: <Link to="https://github.com/spare8433">https://github.com/spare8433</Link>
+          </li>
+          <li>
+            blog : <Link to="https://spare8433.tistory.com">https://spare8433.tistory.com</Link>
+          </li>
+        </MyProfileInfoBox>
+        <CopyrightText>Copyright © 2023 spare8433 All Rights Reserved.</CopyrightText>
+      </OtherInfoBox>
+    </FooterContainor>
+  )
+}
 
-        <div className="item">
-          <ul className="secondUl_1">
-            <li>상품등록</li>
-            <li>내 상품</li>
-            <li>쪽지</li>
-            <li>프로필</li>
-          </ul>
-        </div>
-
-        <div className="item">
-          <ul className="secondUl_2">
-            <li>이용약관</li>
-            <li><a href='#!'>개인정보처리방침</a></li>
-          </ul>
-        </div>
-
-        <div className="item">
-            <img src="img/facebook.png" alt="" ></img>
-            <img src="img/instagram.png" alt="" ></img>
-            <img src="img/blog.png" alt="" ></img>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Footer;
+export default Footer

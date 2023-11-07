@@ -1,12 +1,14 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import GlobalStyles from '@styles/globalStyle'
+import Layout from '@components/layoout'
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <div>Hello world!</div>,
-    children: []
+    path: '/',
+    element: <Layout>Hello world!</Layout>,
+    children: [],
   },
-]);
+])
 
 function App() {
   return (
@@ -17,4 +19,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
