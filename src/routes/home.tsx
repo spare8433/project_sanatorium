@@ -1,11 +1,13 @@
 import MainContent from '@components/main_content'
-import Nav from '@components/nav'
+import ShortCutList from '@components/shortCutList'
+import TabMenu from '@components/tabMenu'
 
 const Home = () => {
   return (
     <>
-      <Nav />
+      <ShortCutList />
       <MainContent />
+      <TabMenu />
     </>
   )
 }
