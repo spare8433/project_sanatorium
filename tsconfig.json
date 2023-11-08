@@ -18,7 +18,16 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["./components/*"],
+      "@api/*": ["./api/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@assets/*": ["./assets/*"],
+      "@styles/*": ["./styles/*"]
+    }
   },
   "include": ["src", "vite.config"],
   "exclude": ["node_modules"],
