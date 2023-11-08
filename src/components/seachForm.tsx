@@ -6,7 +6,9 @@ import CityList from '@assets/staticData/cityList'
 import styled from 'styled-components'
 
 const SearchContainor = styled.div`
-  width: 100%;
+  width: 1024px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
 `
 
 const SearchInputBox = styled.div`
@@ -85,7 +87,7 @@ const SeachForm = () => {
   const facilityType = ['요양병원', '요양원', '방문요양', '방문목욕', '주야간보호']
 
   // 행정구역 도 구분 카테고리
-  const provinceCategory = ['성남시']
+  const provinceCategory = ['경기도']
 
   return (
     <SearchContainor>
@@ -100,21 +102,27 @@ const SeachForm = () => {
         {/* 요양시설 카테고리 드롭 다운 버튼 */}
         <DropdownButton id="type" title={type}>
           {facilityType.map((facType) => (
-            <Dropdown.Item onClick={() => setType(facType)}>{facType}</Dropdown.Item>
+            <Dropdown.Item key={facType} onClick={() => setType(facType)}>
+              {facType}
+            </Dropdown.Item>
           ))}
         </DropdownButton>
 
         {/* 행정구역 도 구분 카테고리 드롭 다운 버튼 */}
         <DropdownButton id="province" title={province}>
           {provinceCategory.map((pvcCtg) => (
-            <Dropdown.Item onClick={() => setProvince(pvcCtg)}>{pvcCtg}</Dropdown.Item>
+            <Dropdown.Item key={pvcCtg} onClick={() => setProvince(pvcCtg)}>
+              {pvcCtg}
+            </Dropdown.Item>
           ))}
         </DropdownButton>
 
         {/* 행정구역 시 구분 카테고리 드롭 다운 버튼 */}
         <DropdownButton id="city" title={city}>
           {Object.entries(CityList).map(([cityNm]) => (
-            <Dropdown.Item onClick={() => setCity(cityNm)}>{cityNm}</Dropdown.Item>
+            <Dropdown.Item key={cityNm} onClick={() => setCity(cityNm)}>
+              {cityNm}
+            </Dropdown.Item>
           ))}
         </DropdownButton>
       </SelectBox>

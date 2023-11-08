@@ -6,7 +6,8 @@ import styled from 'styled-components'
 import SeachForm from './seachForm'
 
 const Containor = styled.div`
-  width: 1024px;
+  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
 `
 

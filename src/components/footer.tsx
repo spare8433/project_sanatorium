@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const FooterContainor = styled.footer`
-  width: 100%;
+  width: 1024px;
+  margin: 0 auto;
   height: 18rem;
   padding: 3rem 0 5rem;
   display: flex;

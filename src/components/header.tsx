@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const HeaderContainor = styled.header`
-  width: 100%;
+  width: 1024px;
+  margin: 0 auto;
   padding: 2rem 0;
   margin-bottom: 2rem;
 `
