@@ -38,12 +38,13 @@ const StyledTabs = styled(Tabs)`
 
     button {
       width: 100%;
+      font-weight: 600;
     }
   }
 
   width: 100%;
   font-size: 1.8rem;
-  font-weight: 500;
+
   border-bottom: 1px solid #dee2e6;
 
   .nav-link {

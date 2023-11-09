@@ -62,7 +62,7 @@ const SelectBox = styled.div`
     outline: none;
     border: none;
     font-size: 1.8rem;
-    font-weight: 500;
+    font-weight: 600;
     box-shadow: 0.25rem 0.5rem 0.5rem rgb(30 40 80 / 10%);
   }
 `

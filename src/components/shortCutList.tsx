@@ -14,7 +14,6 @@ const ShortCutListBox = styled.div`
 
   h4 {
     color: #fff;
-    font-weight: 500;
     margin-bottom: 1rem;
   }
 `
@@ -38,7 +37,7 @@ const ShortCutItemLink = styled(Link)`
   font-size: 1.8rem;
 
   span {
-    font-weight: 500;
+    font-weight: 600;
   }
 
   img {
