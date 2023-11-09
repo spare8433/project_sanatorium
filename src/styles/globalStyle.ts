@@ -1,8 +1,33 @@
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'styled-normalize'
+import Bold from '@assets/font/NotoSansKR-Bold.woff2'
+import SemiBold from '@assets/font/NotoSansKR-SemiBold.woff2'
+import Regular from '@assets/font/NotoSansKR-Regular.woff2'
+import Light from '@assets/font/NotoSansKR-Light.woff2'
 
 const GlobalStyles = createGlobalStyle`
     ${normalize}
+    @font-face {
+      font-family: "NotoSansKR";
+      src: url(${Bold}) format('woff2');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: "NotoSansKR";
+      src: url(${SemiBold}) format('woff2');
+      font-weight: 600;
+    }
+    @font-face {
+      font-family: "NotoSansKR";
+      src: url(${Regular}) format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: "NotoSansKR";
+      src: url(${Light}) format('woff2');
+      font-weight: 300;
+    }
+
     * {
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 400;
@@ -20,7 +45,7 @@ const GlobalStyles = createGlobalStyle`
     }
     h1,h2,h3,h4,h5,h6 {
       margin: 0;
-      font-weight: 500;
+      font-weight: 600;
     }
     p { 
       font-size: 1.4rem;
