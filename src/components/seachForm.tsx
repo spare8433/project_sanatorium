@@ -4,6 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import CityList from '@assets/staticData/cityList'
 import styled from 'styled-components'
+import { FacilityCategory } from '@assets/staticData/facilityType'
 
 const SearchContainor = styled.div`
   width: 1024px;
@@ -83,9 +84,6 @@ const SeachForm = () => {
     }
   }
 
-  // 요양 시설 카테고리
-  const facilityType = ['요양병원', '요양원', '방문요양', '방문목욕', '주야간보호']
-
   // 행정구역 도 구분 카테고리
   const provinceCategory = ['경기도']
 
@@ -99,15 +97,6 @@ const SeachForm = () => {
       </SearchInputBox>
 
       <SelectBox>
-        {/* 요양시설 카테고리 드롭 다운 버튼 */}
-        <DropdownButton id="type" title={type}>
-          {facilityType.map((facType) => (
-            <Dropdown.Item key={facType} onClick={() => setType(facType)}>
-              {facType}
-            </Dropdown.Item>
-          ))}
-        </DropdownButton>
-
         {/* 행정구역 도 구분 카테고리 드롭 다운 버튼 */}
         <DropdownButton id="province" title={province}>
           {provinceCategory.map((pvcCtg) => (
@@ -122,6 +111,15 @@ const SeachForm = () => {
           {Object.entries(CityList).map(([cityNm]) => (
             <Dropdown.Item key={cityNm} onClick={() => setCity(cityNm)}>
               {cityNm}
+            </Dropdown.Item>
+          ))}
+        </DropdownButton>
+
+        {/* 요양시설 카테고리 드롭 다운 버튼 */}
+        <DropdownButton id="type" title={type}>
+          {FacilityCategory.map((facType) => (
+            <Dropdown.Item key={facType} onClick={() => setType(facType)}>
+              {facType}
             </Dropdown.Item>
           ))}
         </DropdownButton>
