@@ -61,7 +61,6 @@ export const getHospitalAPI: GetHospitalAPI = async (param) => {
         if (index * MAX_API_CONTENTS_COUNT < list_total_count) await recursiveReq(++index)
       })
   }
-
   await recursiveReq()
 
   return {
@@ -122,6 +121,7 @@ export const getSanatoriumAPI: GetSanatoriumAPI = async (param) => {
       })
   }
   await recursiveReq()
+
   return {
     dataArr: result.slice((page - 1) * notiCount, page * notiCount),
     totalCount: result.length,
@@ -176,10 +176,9 @@ export const getWelfareServiceAPI: GetWelfareServiceAPI = async (param) => {
         )
 
         // 전체 데이터 갯수 데이터가 시작인덱스 보다 크면 가져올 데이터가 있는 것으로 판단 test 함수 다시 호출
-        if (index * MAX_API_CONTENTS_COUNT < list_total_count) recursiveReq(++index)
+        if (index * MAX_API_CONTENTS_COUNT < list_total_count) await recursiveReq(++index)
       })
   }
-
   await recursiveReq()
 
   return {
