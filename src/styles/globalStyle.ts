@@ -60,8 +60,8 @@ const GlobalStyles = createGlobalStyle`
       font-weight: 700;
     }
     h3 {font-size: 2.0rem}
-    h4 {font-size: 1.6rem}
-    h5 {font-size: 1.5rem}
+    h4 {font-size: 1.8rem}
+    h5 {font-size: 1.6rem}
     h6 {font-size: 1.4rem}
     a {
       cursor: pointer;
