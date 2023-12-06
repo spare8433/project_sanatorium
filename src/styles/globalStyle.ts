@@ -40,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
     }
     html {font-size: 10px;}
     body {
-      background-color: #F5F5F5;
+      background-color: #fff;
       box-sizing: border-box;
     }
     h1,h2,h3,h4,h5,h6 {
