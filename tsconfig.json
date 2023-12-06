@@ -27,7 +27,8 @@
       "@api/*": ["./api/*"],
       "@hooks/*": ["./hooks/*"],
       "@assets/*": ["./assets/*"],
-      "@styles/*": ["./styles/*"]
+      "@styles/*": ["./styles/*"],
+      "@context/*": ["./context/*"]
     }
   },
   "include": ["src", "vite.config"],

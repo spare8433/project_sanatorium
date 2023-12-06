@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useContext } from 'react'
 import styled from 'styled-components'
 import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import { Pagination } from 'react-bootstrap'
@@ -6,6 +6,7 @@ import DetailInfoModal from '@components/detailInfoModal'
 import useSwitch from '@hooks/useSwitch'
 import { APIResponse } from '@api/type'
 import SearchedItems from './searchedItems'
+import SearchOptionContext from '@context/searchOptionContext'
 
 const FacilityGridBox = styled.main`
   display: grid;
@@ -23,21 +24,15 @@ const PaginationContainor = styled(Pagination)`
 interface Props {
   data: APIResponse<HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData>
   showItemsCount: number
-  queryData: {
-    facCtg: string
-    city: string
-    searchText: string
-    detailCategory: string
-    profit: string
-    grade: string
-    page: number
-  }
+  facCtg: string
 }
 
-const SearchedContents = ({ data, showItemsCount, queryData }: Props) => {
-  const { facCtg, city, searchText, detailCategory, profit, grade, page } = queryData
+const SearchedContents = ({ data, facCtg, showItemsCount }: Props) => {
+  const { states, getPaginationQuery } = useContext(SearchOptionContext)
+  const { p } = states
+
   const { totalCount, dataArr } = data
-  const [isModalOn, turnOn, turnOff] = useSwitch()
+  const [isModalOn, turnOn, turnOff] = useSwitch(false)
   const [detailData, setDetailData] = useState<
     HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData | null
   >(null)
@@ -47,47 +42,21 @@ const SearchedContents = ({ data, showItemsCount, queryData }: Props) => {
   const SHOW_MAX_PAGINATION_COUNT = 8
   /** 화면에 노출 되는 콘텐츠 갯수 */
 
-  const makePageItemHref = useCallback(() => {
-    let href = `?facCtg=${facCtg}&city=${city}&searchText=${searchText}`
-    switch (facCtg) {
-      case '요양병원':
-        href += `&grade=${grade}`
-        break
-      case '요양시설':
-      case '재가노인복지시설':
-        href += `&detailCategory=${detailCategory}&profit=${profit}`
-        break
-      default:
-        throw Error
-    }
-    return href
-  }, [facCtg, city, searchText, detailCategory, profit, grade])
-
-  const makePrevHref = useCallback(
-    () => `${makePageItemHref()}&p=${page - 1}`,
-    [makePageItemHref, page],
-  )
-
-  const makeNextHref = useCallback(
-    () => `${makePageItemHref()}&p=${page + 1}`,
-    [makePageItemHref, page],
-  )
-
   const renderPaginationItem = useCallback(() => {
     const result: JSX.Element[] = []
-    const sectionNum = Math.ceil(page / SHOW_MAX_PAGINATION_COUNT)
+    const sectionNum = Math.ceil(p / SHOW_MAX_PAGINATION_COUNT)
     const startNum = (sectionNum - 1) * SHOW_MAX_PAGINATION_COUNT + 1
     const endNum = sectionNum * SHOW_MAX_PAGINATION_COUNT
 
     for (let num = startNum; num <= endNum && num <= lastIndex; num++) {
       result.push(
-        <Pagination.Item key={num} href={`${makePageItemHref()}&p=${num}`}>
+        <Pagination.Item key={num} href={getPaginationQuery(num)}>
           {num}
         </Pagination.Item>,
       )
     }
     return result
-  }, [page])
+  }, [p])
 
   const showModal = (
     item: HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData,
@@ -103,9 +72,9 @@ const SearchedContents = ({ data, showItemsCount, queryData }: Props) => {
         <SearchedItems dataArr={dataArr} facCtg={facCtg} showFn={showModal} />
       </FacilityGridBox>
       <PaginationContainor size="lg">
-        {page > 1 && <Pagination.Prev href={makePrevHref()} />}
+        {p > 1 && <Pagination.Prev href={getPaginationQuery(p - 1)} />}
         {renderPaginationItem()}
-        {lastIndex > page && <Pagination.Next href={makeNextHref()} />}
+        {lastIndex > p && <Pagination.Next href={getPaginationQuery(p + 1)} />}
       </PaginationContainor>
     </>
   )
