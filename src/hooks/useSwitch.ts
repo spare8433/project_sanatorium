@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-export default (): [boolean, () => void, () => void] => {
-  const [isOn, setCurrentState] = useState(false)
+export default (defaultState: boolean): [boolean, () => void, () => void] => {
+  const [isOn, setCurrentState] = useState(defaultState ?? false)
 
   const turnOn = () => setCurrentState(true)
   const turnOff = () => setCurrentState(false)
