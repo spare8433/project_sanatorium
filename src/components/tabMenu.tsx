@@ -9,6 +9,7 @@ import {
   PolicyKeywords,
   PolicyContents,
 } from '@assets/staticData/policyContents'
+import ExternalLink from './externalLink'
 
 const TabMenuContainor = styled.div`
   width: 1024px;
@@ -44,7 +45,6 @@ const StyledTabs = styled(Tabs)`
 
   width: 100%;
   font-size: 1.8rem;
-
   border-bottom: 1px solid #dee2e6;
 
   .nav-link {
@@ -67,7 +67,7 @@ const StyledTabs = styled(Tabs)`
   .nav-link {
     color: #e7886e !important;
     border-color: none;
-    background-color: #f3f3f3 !important;
+    background-color: white !important;
   }
 `
 
@@ -89,12 +89,12 @@ const TabMenu = () => {
   const setTabcontent = (type: PolicyKeywordsType) => {
     return PolicyContents[type].map((item) => (
       <TapItem key={item.id}>
-        <Link to={{ pathname: mainLink, search: `?mid${item.id}` }}>
+        <ExternalLink href={`${mainLink}?mid=${item.id}`}>
           <TabTitleLine>
             <h4>{item.tab_item_title}</h4>
             <img src="img/go.png" alt=""></img>
           </TabTitleLine>
-        </Link>
+        </ExternalLink>
         <p>{item.tab_item_content}</p>
       </TapItem>
     ))
