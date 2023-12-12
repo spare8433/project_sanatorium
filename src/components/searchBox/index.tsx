@@ -1,20 +1,25 @@
-import { useContext, KeyboardEventHandler } from 'react'
+import { KeyboardEventHandler } from 'react'
 import { SearchContainor, SearchFormBox, SearchInputBox } from './style'
 import { useNavigate } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
-import SearchOptionContext from '@context/searchOptionContext'
+import useSearchQuery from '@hooks/useSearchQuery'
+import { SearchStatesType } from 'types/searchState'
 
-const SearchBox = () => {
+interface Props {
+  states: SearchStatesType
+  changeSearchText: (e: React.ChangeEvent) => void
+}
+
+const SearchBox = ({ states, changeSearchText }: Props) => {
   const navigate = useNavigate()
-  const { states, changeFns, getCurrentQuery } = useContext(SearchOptionContext)
-  const { changeSearchText } = changeFns
+  const getSearchQuery = useSearchQuery()
   const { searchText } = states
 
   const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
       navigate({
         pathname: `/search`,
-        search: getCurrentQuery(),
+        search: getSearchQuery(states),
       })
     }
   }

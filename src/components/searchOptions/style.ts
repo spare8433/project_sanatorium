@@ -1,14 +1,7 @@
 import styled from 'styled-components'
-import { Button } from 'react-bootstrap'
 
 export const Containor = styled.div`
   width: 100%;
-  button[type='submit'] {
-    margin-top: 3rem;
-    font-size: 1.8rem;
-    padding: 0.6rem 3rem;
-    float: right;
-  }
 `
 
 export const HeaderSearchOptionList = styled.ul`
@@ -73,5 +66,20 @@ export const SearchOptionList = styled.div`
       margin-right: 1rem;
       box-sizing: content-box;
     }
+  }
+`
+export const ButtonBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 3rem;
+
+  span {
+    font-size: 1.4rem;
+  }
+
+  button[type='submit'] {
+    font-size: 1.8rem;
+    padding: 0.6rem 3rem;
   }
 `

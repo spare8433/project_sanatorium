@@ -10,7 +10,9 @@ const HospitalModalContent = ({ data }: Props) => {
     <Container className="search_modal">
       <Row>
         <Col className="col_th">시설명</Col>
-        <Col lg={9}>{data.INST_NM}</Col>
+        <Col lg={9}>
+          <h4>{data.INST_NM}</h4>
+        </Col>
       </Row>
       <Row>
         <Col className="col_th">시설종류</Col>

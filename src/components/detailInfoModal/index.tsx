@@ -3,6 +3,8 @@ import HospitalModalContent from './hospitalModalContent'
 import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import SanatoriumModalContent from './sanatoriumModalContent'
 import styled from 'styled-components'
+import { useCallback } from 'react'
+import { FacilityType } from '@assets/staticData/facilityType'
 
 export const ModalContainor = styled(Modal)`
   .modal-content {
@@ -38,20 +40,22 @@ export const ModalContainor = styled(Modal)`
 
 interface Props {
   closeFn: () => void
-  facCtg: string
+  queryFacCtg: string | null
   show: boolean
   data: HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData | null
 }
 
-const DetailInfoModal = ({ closeFn, show, facCtg, data }: Props) => {
+const DetailInfoModal = ({ closeFn, show, data, queryFacCtg }: Props) => {
   const renderModalContent = () => {
-    switch (facCtg) {
+    switch (queryFacCtg) {
       case '요양병원':
         return <HospitalModalContent data={data as HospitalDetailData} />
       case '요양시설':
         return <SanatoriumModalContent data={data as SanatoriumDetailData} />
       case '재가노인복지시설':
         return <SanatoriumModalContent data={data as WelfareServiceDetailData} />
+      default:
+        return <>데이터가 없습니다</>
     }
   }
 

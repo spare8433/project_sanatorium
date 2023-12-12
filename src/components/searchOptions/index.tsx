@@ -4,26 +4,26 @@ import {
   SntFacCategory,
   WfSFacCategory,
 } from '@assets/staticData/facilityType'
-import { useContext, FormEventHandler } from 'react'
-import { Containor, SearchOptionList } from './style'
+import { FormEventHandler } from 'react'
+import { ButtonBox, Containor, SearchOptionList } from './style'
 import { Button, Form } from 'react-bootstrap'
 import { CityList } from '@assets/staticData/cityList'
-import SearchOptionContext from '@context/searchOptionContext'
-import { useNavigate } from 'react-router-dom'
+import { FullSearchStatesType, SearchChangeFnsType } from 'types/searchState'
+import useSearchQuery from '@hooks/useSearchQuery'
 
-const SearchOptions = () => {
-  const navigate = useNavigate()
-  const { states, changeFns, getCurrentQuery } = useContext(SearchOptionContext)
-  const { facCtg, city, province, detailCtg, profit, grade } = states
-  const { changeFacCtg, changeCity, changeProvince, changeDetailCtg, changeProfit, changeGrade } =
-    changeFns
+interface Props {
+  states: FullSearchStatesType
+  changeFns: SearchChangeFnsType
+}
+
+const SearchOptions = ({ states, changeFns }: Props) => {
+  const getSearchQuery = useSearchQuery()
+  const { facCtg, city, detailCtg, profit, grade } = states
+  const { changeFacCtg, changeCity, changeDetailCtg, changeProfit, changeGrade } = changeFns
 
   const submitSearchOption: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
-    navigate({
-      pathname: `/search`,
-      search: getCurrentQuery(),
-    })
+    location.href = getSearchQuery(states)
   }
 
   return (
@@ -48,7 +48,9 @@ const SearchOptions = () => {
             <strong>시설 분류</strong>
             <Form.Select onChange={changeFacCtg} value={facCtg}>
               {FacilityCategory.map((ctg) => (
-                <option value={ctg}>{ctg}</option>
+                <option key={`facilityCategory-${ctg}`} value={ctg}>
+                  {ctg}
+                </option>
               ))}
             </Form.Select>
           </span>
@@ -58,7 +60,9 @@ const SearchOptions = () => {
             <Form.Select onChange={changeCity} value={city}>
               <option value="전체">전체</option>
               {CityList.map((city) => (
-                <option value={city}>{city}</option>
+                <option key={`cityList-${city}`} value={city}>
+                  {city}
+                </option>
               ))}
             </Form.Select>
           </span>
@@ -69,7 +73,9 @@ const SearchOptions = () => {
               <Form.Select onChange={changeGrade} value={grade}>
                 <option value="전체">전체</option>
                 {HosGradeList.map((grd) => (
-                  <option value={grd}>{grd}</option>
+                  <option key={`hosGradeList-${grd}`} value={grd}>
+                    {grd}
+                  </option>
                 ))}
               </Form.Select>
             </span>
@@ -82,7 +88,9 @@ const SearchOptions = () => {
               <Form.Select onChange={changeDetailCtg} value={detailCtg}>
                 <option value="전체">전체</option>
                 {SntFacCategory.map((ctg) => (
-                  <option value={ctg}>{ctg}</option>
+                  <option key={`sntFacCategory-${ctg}`} value={ctg}>
+                    {ctg}
+                  </option>
                 ))}
               </Form.Select>
             </span>
@@ -95,7 +103,9 @@ const SearchOptions = () => {
               <Form.Select onChange={changeDetailCtg} value={detailCtg}>
                 <option value="전체">전체</option>
                 {WfSFacCategory.map((ctg) => (
-                  <option value={ctg}>{ctg}</option>
+                  <option key={`WfSFacCategory-${ctg}`} value={ctg}>
+                    {ctg}
+                  </option>
                 ))}
               </Form.Select>
             </span>
@@ -114,9 +124,12 @@ const SearchOptions = () => {
           )}
         </SearchOptionList>
 
-        <Button variant="primary" type="submit" size="lg">
-          검색
-        </Button>
+        <ButtonBox>
+          <span> * 화면에 시설 정보를 클릭시 상세정보를 확인 할 수 있습니다.</span>
+          <Button variant="primary" type="submit" size="lg">
+            검색
+          </Button>
+        </ButtonBox>
       </Form>
     </Containor>
   )

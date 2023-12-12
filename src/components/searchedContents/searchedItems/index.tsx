@@ -3,13 +3,13 @@ import HospitalItem from './hospitalItem'
 import SanatoriumItem from './sanatoriumItem'
 
 interface Props {
+  queryFacCtg: string | null
   dataArr: (HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData)[]
-  facCtg: string
   showFn: (item: HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData) => void
 }
 
-const SearchedItems = ({ dataArr, facCtg, showFn }: Props) => {
-  switch (facCtg) {
+const SearchedItems = ({ dataArr, showFn, queryFacCtg }: Props) => {
+  switch (queryFacCtg) {
     case '요양병원':
       return (dataArr as HospitalDetailData[]).map((item, index) => (
         <HospitalItem key={`${item.INST_NM}_${index}`} item={item} showFn={showFn} />

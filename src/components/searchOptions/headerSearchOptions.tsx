@@ -4,29 +4,46 @@ import {
   SntFacCategory,
   WfSFacCategory,
 } from '@assets/staticData/facilityType'
-import { useContext, FormEventHandler } from 'react'
+import { FormEventHandler } from 'react'
 import { Containor, HeaderSearchOptionList } from './style'
-import { Button, Form, ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
+import {
+  Button,
+  Form,
+  ToggleButton,
+  ToggleButtonGroup,
+  ToggleButtonGroupProps,
+  ToggleButtonProps,
+} from 'react-bootstrap'
 import { CityList } from '@assets/staticData/cityList'
-import SearchOptionContext from '@context/searchOptionContext'
 import { useNavigate } from 'react-router-dom'
+import useSearchQuery from '@hooks/useSearchQuery'
+import { SearchChangeFnsType, SearchStatesType } from 'types/searchState'
 
 interface Props {
   turnOff: () => void
+  states: SearchStatesType
+  changeFns: SearchChangeFnsType
 }
 
-const SearchOptions = ({ turnOff }: Props) => {
+const SearchRadioButton = (props: ToggleButtonProps) => (
+  <ToggleButton {...props} variant="outline-primary" type="radio" />
+)
+
+const SearchRadioButtonGroup = (props: ToggleButtonGroupProps<any>) => (
+  <ToggleButtonGroup {...props} type="radio" name={props.name ?? 'defaultName'} />
+)
+
+const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
   const navigate = useNavigate()
-  const { states, changeFns, getCurrentQuery } = useContext(SearchOptionContext)
-  const { facCtg, city, province, detailCtg, profit, grade } = states
-  const { changeFacCtg, changeCity, changeProvince, changeDetailCtg, changeProfit, changeGrade } =
-    changeFns
+  const { facCtg, city, detailCtg, profit, grade } = states
+  const getSearchQuery = useSearchQuery()
+  const { changeFacCtg, changeCity, changeDetailCtg, changeProfit, changeGrade } = changeFns
 
   const submitSearchOption: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
     navigate({
       pathname: `/search`,
-      search: getCurrentQuery(),
+      search: getSearchQuery(states),
     })
     turnOff()
   }
@@ -54,45 +71,45 @@ const SearchOptions = ({ turnOff }: Props) => {
             <Form.Select onChange={changeCity} value={city}>
               <option value="전체">전체</option>
               {CityList.map((city) => (
-                <option value={city}>{city}</option>
+                <option key={`cityList-${city}`} value={city}>
+                  {city}
+                </option>
               ))}
             </Form.Select>
           </li>
 
           <li>
             <strong>시설 분류</strong>
-            <ToggleButtonGroup
-              type="radio"
+            <SearchRadioButtonGroup
               name="facility-category"
               value={facCtg}
               onChange={(v, e) => changeFacCtg(e)}
             >
               {FacilityCategory.map((ctg) => (
-                <ToggleButton variant="outline-primary" id={ctg} type="radio" value={ctg}>
+                <SearchRadioButton key={`facilityCategory-${ctg}`} id={ctg} value={ctg}>
                   {ctg}
-                </ToggleButton>
+                </SearchRadioButton>
               ))}
-            </ToggleButtonGroup>
+            </SearchRadioButtonGroup>
           </li>
 
           {facCtg === '요양병원' && (
             <li>
               <strong>등급</strong>
-              <ToggleButtonGroup
-                type="radio"
+              <SearchRadioButtonGroup
                 name="grade"
                 value={grade}
                 onChange={(v, e) => changeGrade(e)}
               >
-                <ToggleButton variant="outline-primary" id="등급-전체" type="radio" value="전체">
+                <SearchRadioButton id="등급-전체" value="전체">
                   전체
-                </ToggleButton>
+                </SearchRadioButton>
                 {HosGradeList.map((grd) => (
-                  <ToggleButton variant="outline-primary" id={grd} type="radio" value={grd}>
+                  <SearchRadioButton key={`hosGradeList-${grd}`} id={grd} value={grd}>
                     {grd}
-                  </ToggleButton>
+                  </SearchRadioButton>
                 ))}
-              </ToggleButtonGroup>
+              </SearchRadioButtonGroup>
             </li>
           )}
 
@@ -100,26 +117,20 @@ const SearchOptions = ({ turnOff }: Props) => {
           {facCtg === '요양시설' && (
             <li>
               <strong>상세 카테고리</strong>
-              <ToggleButtonGroup
-                type="radio"
+              <SearchRadioButtonGroup
                 name="detail-category"
                 value={detailCtg}
                 onChange={(v, e) => changeDetailCtg(e)}
               >
-                <ToggleButton
-                  variant="outline-primary"
-                  id="요양시설-전체"
-                  type="radio"
-                  value="전체"
-                >
+                <SearchRadioButton id="요양시설-전체" value="전체">
                   전체
-                </ToggleButton>
+                </SearchRadioButton>
                 {SntFacCategory.map((ctg) => (
-                  <ToggleButton variant="outline-primary" id={ctg} type="radio" value={ctg}>
+                  <SearchRadioButton key={`sntFacCategory-${ctg}`} id={ctg} value={ctg}>
                     {ctg}
-                  </ToggleButton>
+                  </SearchRadioButton>
                 ))}
-              </ToggleButtonGroup>
+              </SearchRadioButtonGroup>
             </li>
           )}
 
@@ -128,23 +139,17 @@ const SearchOptions = ({ turnOff }: Props) => {
             <li>
               <strong>상세 카테고리</strong>
               <ToggleButtonGroup
-                type="radio"
                 name="detail-category"
                 value={detailCtg}
                 onChange={(v, e) => changeDetailCtg(e)}
               >
-                <ToggleButton
-                  variant="outline-primary"
-                  id="재가노인복지시설-전체"
-                  type="radio"
-                  value="전체"
-                >
+                <SearchRadioButton id="재가노인복지시설-전체" value="전체">
                   전체
-                </ToggleButton>
+                </SearchRadioButton>
                 {WfSFacCategory.map((ctg) => (
-                  <ToggleButton variant="outline-primary" id={ctg} type="radio" value={ctg}>
+                  <SearchRadioButton key={`WfSFacCategory-${ctg}`} id={ctg} value={ctg}>
                     {ctg}
-                  </ToggleButton>
+                  </SearchRadioButton>
                 ))}
               </ToggleButtonGroup>
             </li>
@@ -154,26 +159,16 @@ const SearchOptions = ({ turnOff }: Props) => {
           {facCtg !== '요양병원' && (
             <li>
               <strong>영리 여부</strong>
-              <ToggleButtonGroup
-                type="radio"
-                name="profit"
-                value={profit}
-                onChange={(v, e) => changeProfit(e)}
-              >
-                <ToggleButton
-                  variant="outline-primary"
-                  id="요양병원-전체"
-                  type="radio"
-                  value="전체"
-                >
+              <ToggleButtonGroup name="profit" value={profit} onChange={(v, e) => changeProfit(e)}>
+                <SearchRadioButton id="요양병원-전체" value="전체">
                   전체
-                </ToggleButton>
-                <ToggleButton variant="outline-primary" id="영리" type="radio" value="영리">
+                </SearchRadioButton>
+                <SearchRadioButton id="영리" value="영리">
                   영리
-                </ToggleButton>
-                <ToggleButton variant="outline-primary" id="비영리" type="radio" value="비영리">
+                </SearchRadioButton>
+                <SearchRadioButton id="비영리" value="비영리">
                   비영리
-                </ToggleButton>
+                </SearchRadioButton>
               </ToggleButtonGroup>
             </li>
           )}

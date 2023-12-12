@@ -10,7 +10,9 @@ const SanatoriumModalContent = ({ data }: Props) => {
     <Container>
       <Row>
         <Col className="col_th">시설명</Col>
-        <Col lg={9}>{data.FACLT_NM}</Col>
+        <Col lg={9}>
+          <h4>{data.FACLT_NM}</h4>
+        </Col>
       </Row>
       <Row>
         <Col className="col_th">시설종류</Col>
