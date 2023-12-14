@@ -72,10 +72,11 @@ const StyledTabs = styled(Tabs)`
 `
 
 const TapItem = styled.div`
-  height: 10rem;
+  min-height: 10rem;
   padding: 1rem 1rem 1.5rem;
   background-color: white;
-  box-shadow: 0.25rem 0.5rem 0.5rem rgb(30 40 80 / 10%);
+  box-shadow: 0.25rem 0.5rem 1rem rgb(0 0 0 / 15%);
+  border-radius: 0.5rem;
 
   p {
     padding: 1rem 0;

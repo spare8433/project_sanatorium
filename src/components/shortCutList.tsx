@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const ShortCutListContainor = styled.div`
-  width: 1024px;
-  margin: 2rem auto;
+  width: 100%;
   padding: 3rem 6rem;
   background-color: #e7886e;
+  margin-bottom: 8rem;
 `
 
 const ShortCutListBox = styled.div`
-  width: 100%;
+  width: 1024px;
+  margin: 0 auto;
 
   h4 {
     color: #fff;

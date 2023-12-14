@@ -6,7 +6,6 @@ import {
 } from '@assets/staticData/facilityType'
 import useInput from '@hooks/useInput'
 import { createContext, useCallback, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 
 type DetailCtgType = WelfareServiceFacCtgType | SanatoriumFacCtgType | '전체'
 type ProfitType = '영리' | '비영리' | '전체'

@@ -38,7 +38,7 @@ export const FacilityCategory = ['요양병원', '요양시설', '재가노인�
 /**
  * 요양시설 카테고리
  */
-export const SntFacCategory = [
+export const WfSFacCategory = [
   '방문요양',
   '방문목욕',
   '주야간보호',
@@ -51,7 +51,7 @@ export const SntFacCategory = [
 /**
  * 재가노인복지시설 카테고리
  */
-export const WfSFacCategory = ['노인요양공동생활가정', '노인요양시설']
+export const SntFacCategory = ['노인요양공동생활가정', '노인요양시설']
 
 /**
  * 요양병원 등급 종류

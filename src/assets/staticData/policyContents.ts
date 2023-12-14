@@ -60,7 +60,7 @@ export const PolicyContents: {
     {
       id: 'a10712020300',
       tab_item_title: '장사제도',
-      tab_item_content: '장사정책 안내',
+      tab_item_content: '장사제도 기준 및 안내',
     },
     {
       id: 'a10712020400',
