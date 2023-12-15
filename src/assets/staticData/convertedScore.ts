@@ -1,9 +1,9 @@
 interface ConvertedScore {
   physicalPart: { [index: number]: number }
-  recognitionPart: { [index: number]: number }
+  recognPart: { [index: number]: number }
   behaviorPart: { [index: number]: number }
-  nursingCarePart: { [index: number]: number }
-  rehabilitationPart: { [index: number]: number }
+  nursingPart: { [index: number]: number }
+  rehabPart: { [index: number]: number }
 }
 
 export const ConvertedScore: ConvertedScore = {
@@ -36,7 +36,7 @@ export const ConvertedScore: ConvertedScore = {
     36: 100.0,
   },
   /** 인지기능 영역 환산점수 */
-  recognitionPart: {
+  recognPart: {
     0: 0.0,
     1: 19.71,
     2: 33.81,
@@ -65,7 +65,7 @@ export const ConvertedScore: ConvertedScore = {
     14: 100.0,
   },
   /** 간호처치 영역 환산점수 */
-  nursingCarePart: {
+  nursingPart: {
     0: 0.0,
     1: 19.84,
     2: 36.9,
@@ -78,7 +78,7 @@ export const ConvertedScore: ConvertedScore = {
     9: 100.0,
   },
   /** 재활 운동 장애 영역 환산점수 */
-  rehabilitationPart: {
+  rehabPart: {
     10: 0.0,
     11: 11.51,
     12: 19.43,

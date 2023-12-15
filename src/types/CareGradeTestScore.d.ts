@@ -27,7 +27,7 @@ export interface CareGradeTestScore {
     urineControl: number
   }
   /** 인지기능 영역 점수 (예: 1, 아니오: 0) */
-  recognitionPart: {
+  recognPart: {
     /** 단기 기억장애 */
     shortTermMemoryAngle: number
     /** 날짜불인지 */
@@ -75,7 +75,7 @@ export interface CareGradeTestScore {
     impurityFecesAct: number
   }
   /** 간호처치 영역 점수 (있다: 1, 없다: 0) */
-  nursingCarePart: {
+  nursingPart: {
     /** 기관지 절개관 간호 */
     bronchostomyTube: number
     /** 흡인 */
@@ -99,7 +99,7 @@ export interface CareGradeTestScore {
    * 재활 운동 장애 영역 점수 (운동장애없음: 1, 불운동장애: 2, 완전운동장애: 3)
    * 재활 관절 제한 영역 점수 (제한없음: 1, 한쪽관절제한: 2, 양관절제한: 3)
    * */
-  rehabilitationPart: {
+  rehabPart: {
     /** 우측상지 */
     rightUpperLimb: number
     /** 우측하지 */

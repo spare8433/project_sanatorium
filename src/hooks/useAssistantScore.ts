@@ -1,8 +1,8 @@
-import { CareGradeTestScore } from 'types/CareGradeTestScore'
+import { CareGradeTestScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
 const useAssistantScore = (ScoreObj: CareGradeTestScore) => {
-  const { physicalPart, behaviorPart, nursingCarePart, rehabilitationPart } = ScoreObj
+  const { physicalPart, behaviorPart, nursingPart, rehabPart } = ScoreObj
 
   const [, convertedScore] = useCareGradeScore(ScoreObj)
 
@@ -12,7 +12,7 @@ const useAssistantScore = (ScoreObj: CareGradeTestScore) => {
     } else {
       if (physicalPart.useBathRoom === 1) {
         if (physicalPart.washTeeth <= 2) {
-          return rehabilitationPart.rightLowerLimb === 1 ? 3.6 : 6.0
+          return rehabPart.rightLowerLimb === 1 ? 3.6 : 6.0
         } else return 6.8
       } else {
         return behaviorPart.meaninglessBehavior === 0 ? 6.6 : 9.2
@@ -24,7 +24,7 @@ const useAssistantScore = (ScoreObj: CareGradeTestScore) => {
         return convertedScore.behaviorPart <= 28.83 ? 6.4 : 9.3
       } else return 10.9
     } else {
-      return nursingCarePart.bedsores === 0 ? 14.0 : 18.7
+      return nursingPart.bedsores === 0 ? 14.0 : 18.7
     }
   }
 }

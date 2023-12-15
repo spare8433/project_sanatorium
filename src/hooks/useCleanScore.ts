@@ -1,8 +1,8 @@
-import { CareGradeTestScore } from 'types/CareGradeTestScore'
+import { CareGradeTestScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
-const useFinalCleanScore = (ScoreObj: CareGradeTestScore) => {
-  const { physicalPart, recognitionPart } = ScoreObj
+const useCleanScore = (ScoreObj: CareGradeTestScore) => {
+  const { physicalPart, recognPart } = ScoreObj
 
   const [, convertedScore] = useCareGradeScore(ScoreObj)
 
@@ -14,18 +14,18 @@ const useFinalCleanScore = (ScoreObj: CareGradeTestScore) => {
         return convertedScore.physicalPart <= 39.21 ? 2.9 : 4.1
       }
     } else {
-      return recognitionPart.ageBirthRecognition === 0 ? 9.0 : 13.0
+      return recognPart.ageBirthRecognition === 0 ? 9.0 : 13.0
     }
   } else {
     if (physicalPart.washTeeth <= 2) {
       if (physicalPart.useBathRoom === 1) return 8.6
       else {
-        return recognitionPart.dateRecognition === 0 ? 9.0 : 13.0
+        return recognPart.dateRecognition === 0 ? 9.0 : 13.0
       }
     } else {
       if (physicalPart.useBathRoom === 1) return 11.6
       else {
-        if (convertedScore.rehabilitationPart <= 40.16) {
+        if (convertedScore.rehabPart <= 40.16) {
           convertedScore.behaviorPart <= 60.34 ? 15.4 : 19.6
         } else {
           return 17.2
@@ -35,4 +35,4 @@ const useFinalCleanScore = (ScoreObj: CareGradeTestScore) => {
   }
 }
 
-export default useFinalCleanScore
+export default useCleanScore

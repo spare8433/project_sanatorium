@@ -1,9 +1,8 @@
-import { CareGradeTestScore } from 'types/CareGradeTestScore'
+import { CareGradeTestScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
 const useExcretionScore = (ScoreObj: CareGradeTestScore) => {
-  const { physicalPart, recognitionPart, behaviorPart, nursingCarePart, rehabilitationPart } =
-    ScoreObj
+  const { physicalPart, recognPart, behaviorPart, nursingPart, rehabPart } = ScoreObj
 
   const [, convertedScore] = useCareGradeScore(ScoreObj)
 
@@ -11,16 +10,16 @@ const useExcretionScore = (ScoreObj: CareGradeTestScore) => {
     if (physicalPart.urineControl === 1) {
       if (physicalPart.cloth <= 1) {
         if (convertedScore.physicalPart === 0) {
-          if (recognitionPart.decisionDecline === 0) {
+          if (recognPart.decisionDecline === 0) {
             return convertedScore.behaviorPart <= 15.58 ? 0.3 : 0.7
           } else {
             return 1.2
           }
         } else {
-          if (rehabilitationPart.kneeJoint <= 1) {
+          if (rehabPart.kneeJoint <= 1) {
             return 1.0
           } else {
-            return recognitionPart.dateRecognition === 0 ? 1.2 : 2.5
+            return recognPart.dateRecognition === 0 ? 1.2 : 2.5
           }
         }
       } else {
@@ -43,7 +42,7 @@ const useExcretionScore = (ScoreObj: CareGradeTestScore) => {
     if (physicalPart.eating === 1) {
       return 6.8
     } else {
-      if (nursingCarePart.bedsores === 0) {
+      if (nursingPart.bedsores === 0) {
         return physicalPart.fecalControl <= 2 ? 8.8 : 12.5
       } else {
         return behaviorPart.sadFeeling === 0 ? 12.8 : 18.7

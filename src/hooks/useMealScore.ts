@@ -1,4 +1,4 @@
-import { CareGradeTestScore } from 'types/CareGradeTestScore'
+import { CareGradeTestScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
 const useExcretionScore = (ScoreObj: CareGradeTestScore) => {
@@ -25,7 +25,7 @@ const useExcretionScore = (ScoreObj: CareGradeTestScore) => {
       } else return 23.4
     }
   } else {
-    return convertedScore.rehabilitationPart <= 41.21 ? 31.7 : 37.6
+    return convertedScore.rehabPart <= 41.21 ? 31.7 : 37.6
   }
 }
 
