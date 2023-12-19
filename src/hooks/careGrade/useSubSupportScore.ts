@@ -1,7 +1,7 @@
-import { CareGradeTestScore } from 'types/careGradeTestScore'
+import { CareGradeTotalScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
-const useSubSupportScore = (ScoreObj: CareGradeTestScore) => {
+const useSubSupportScore = (ScoreObj: CareGradeTotalScore) => {
   const { physicalPart, behaviorPart } = ScoreObj
 
   const [, convertedScore] = useCareGradeScore(ScoreObj)

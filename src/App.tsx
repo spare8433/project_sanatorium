@@ -5,9 +5,10 @@ import SearchLayout from '@components/layout/searchLayout'
 import Home from './routes/home'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import Test from '@routes/test'
 import Search from '@routes/search'
-import { SearchOptionProvider } from '@context/searchOptionContext'
+import { CareGradeProvider } from '@context/careGradeContext'
+import TestPage from '@routes/testPage'
+import CareGradePage from '@routes/careGrade'
 
 const router = createBrowserRouter([
   {
@@ -41,11 +42,11 @@ const queryClient = new QueryClient()
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <SearchOptionProvider>
+      <CareGradeProvider>
         <ReactQueryDevtools />
         <GlobalStyles />
         <RouterProvider router={router}></RouterProvider>
-      </SearchOptionProvider>
+      </CareGradeProvider>
     </QueryClientProvider>
   )
 }
