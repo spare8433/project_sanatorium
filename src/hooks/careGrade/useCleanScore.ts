@@ -26,7 +26,7 @@ const useCleanScore = (ScoreObj: CareGradeTotalScore) => {
       if (physicalPart.useBathRoom === 1) return 11.6
       else {
         if (convertedScore.rehabPart <= 40.16) {
-          convertedScore.behaviorPart <= 60.34 ? 15.4 : 19.6
+          return convertedScore.behaviorPart <= 60.34 ? 15.4 : 19.6
         } else {
           return 17.2
         }

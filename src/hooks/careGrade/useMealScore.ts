@@ -1,7 +1,7 @@
 import { CareGradeTotalScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
-const useExcretionScore = (ScoreObj: CareGradeTotalScore) => {
+const useMealScore = (ScoreObj: CareGradeTotalScore) => {
   const { physicalPart, behaviorPart } = ScoreObj
 
   const [, convertedScore] = useCareGradeScore(ScoreObj)
@@ -9,7 +9,7 @@ const useExcretionScore = (ScoreObj: CareGradeTotalScore) => {
   if (physicalPart.eating <= 2) {
     if (physicalPart.washTeeth <= 2) {
       if (physicalPart.washTeeth === 1) {
-        convertedScore.physicalPart <= 6.59 ? 7.1 : 9.4
+        return convertedScore.physicalPart <= 6.59 ? 7.1 : 9.4
       } else {
         if (physicalPart.moveAndSitting === 1) {
           return behaviorPart.leave === 0 ? 11.5 : 14.3
@@ -29,4 +29,4 @@ const useExcretionScore = (ScoreObj: CareGradeTotalScore) => {
   }
 }
 
-export default useExcretionScore
+export default useMealScore

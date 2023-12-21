@@ -1,7 +1,7 @@
 import { CareGradeTotalScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
-const useAssistantScore = (ScoreObj: CareGradeTotalScore) => {
+const useBehaviorScore = (ScoreObj: CareGradeTotalScore) => {
   const { physicalPart, behaviorPart } = ScoreObj
 
   const [, convertedScore] = useCareGradeScore(ScoreObj)
@@ -25,4 +25,4 @@ const useAssistantScore = (ScoreObj: CareGradeTotalScore) => {
   }
 }
 
-export default useAssistantScore
+export default useBehaviorScore

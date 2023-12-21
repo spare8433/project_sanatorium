@@ -31,7 +31,8 @@ const useExcretionScore = (ScoreObj: CareGradeTotalScore) => {
       } else {
         return 8.3
       }
-    } else if (physicalPart.urineControl === 3) {
+    } else {
+      /**physicalPart.urineControl === 3 일때 */
       if (behaviorPart.leave === 0) {
         return physicalPart.washFace === 1 ? 5.3 : 10.2
       } else {
