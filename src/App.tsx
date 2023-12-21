@@ -35,6 +35,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/caregrade',
+    element: <CareGradePage />,
+  },
 ])
 
 const queryClient = new QueryClient()

@@ -1,12 +1,12 @@
-import MainContent from '@components/main_content'
+import CareGradeBanner from '@components/careGradeBanner'
 import ShortCutList from '@components/shortCutList'
-import TabMenu from '@components/tabMenu'
+import TabMenu from '@components/mainTabMenu'
 
 const Home = () => {
   return (
     <>
       <ShortCutList />
-      <MainContent />
+      <CareGradeBanner />
       <TabMenu />
     </>
   )
