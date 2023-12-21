@@ -41,7 +41,7 @@ module.exports = {
   trailingComma: 'all',
 
   //  일정 길이보다 크면 강제 엔터 처리
-  printWidth: 100,
+  printWidth: 120,
 
   // \t 탭문자인지 \s 스페이스인지
   useTabs: false,

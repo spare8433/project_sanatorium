@@ -46,10 +46,8 @@ const CareGradeProvider = ({ children }: { children: React.ReactNode }) => {
   const [recognScore, setRecognScore, updateRecognScore] = useObjectState(RecognInitObj)
   const [behaviorScore, setBehaviorScore, updateBehaviorScore] = useObjectState(BehaviorInitObj)
   const [nursingScore, setNursingScore, updateNursingScore] = useObjectState(NursingInitObj)
-  const [rehabExerciseScore, setRehabExerciseScore, updateRehabExerciseScore] =
-    useObjectState(RehabExerciseInitObj)
-  const [rehabJointScore, setRehabJointScore, updateRehabJointScore] =
-    useObjectState(RehabJointInitObj)
+  const [rehabExerciseScore, setRehabExerciseScore, updateRehabExerciseScore] = useObjectState(RehabExerciseInitObj)
+  const [rehabJointScore, setRehabJointScore, updateRehabJointScore] = useObjectState(RehabJointInitObj)
 
   const states = {
     mode,

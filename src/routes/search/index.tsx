@@ -123,9 +123,7 @@ const Search = () => {
       <MainSearchForm states={states} changeFns={changeFns} />
       <SearchContainor>
         <ContentBox>
-          {data && (
-            <SearchedContents querys={querys} data={data} showItemsCount={SHOW_ITEMS_COUNT} />
-          )}
+          {data && <SearchedContents querys={querys} data={data} showItemsCount={SHOW_ITEMS_COUNT} />}
           {isLoading && <PlaceHolder />}
           {error && <>error 발생</>}
         </ContentBox>

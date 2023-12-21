@@ -29,7 +29,7 @@ module.exports = {
     'linebreak-style': 'off',
     'object-curly-newline': 'off',
     'no-tabs': 'off',
-    'max-len': ['error', { code: 100 }],
+    'max-len': ['error', { code: 120 }],
     'import/order': [
       'error',
       {
