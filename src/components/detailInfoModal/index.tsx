@@ -3,8 +3,6 @@ import HospitalModalContent from './hospitalModalContent'
 import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import SanatoriumModalContent from './sanatoriumModalContent'
 import styled from 'styled-components'
-import { useCallback } from 'react'
-import { FacilityType } from '@assets/staticData/facilityType'
 
 export const ModalContainor = styled(Modal)`
   .modal-content {
@@ -60,14 +58,7 @@ const DetailInfoModal = ({ closeFn, show, data, queryFacCtg }: Props) => {
   }
 
   return (
-    <ModalContainor
-      show={show}
-      onHide={closeFn}
-      backdrop="static"
-      keyboard={false}
-      centered={true}
-      size="lg"
-    >
+    <ModalContainor show={show} onHide={closeFn} backdrop="static" keyboard={false} centered={true} size="lg">
       <Modal.Header closeButton>
         <Modal.Title>
           <h3>시설 상세정보</h3>

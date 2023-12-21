@@ -1,10 +1,6 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 
-type UseCheckQueryType = <VT = any>(
-  queryName: string,
-  defaultValue: VT | any,
-  limitValues?: any[],
-) => VT
+type UseCheckQueryType = <VT = any>(queryName: string, defaultValue: VT | any, limitValues?: any[]) => VT
 
 const useCheckQuery: UseCheckQueryType = (queryName, defaultValue, limitValues) => {
   let getParameter = useCallback(

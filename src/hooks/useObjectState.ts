@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
-type UseObjectStateType = <OT = any>(
-  obj: OT,
-) => [OT, React.Dispatch<React.SetStateAction<OT>>, (key: string, value: any) => void]
+type UseObjectStateType = <OT = any>(obj: OT) => [OT, Dispatch<SetStateAction<OT>>, (key: string, value: any) => void]
 
 const useObjectState: UseObjectStateType = (obj) => {
   const [state, setState] = useState(obj)

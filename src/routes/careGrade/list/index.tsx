@@ -1,5 +1,4 @@
 import { Button, Modal } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
 import { ButtonBox, ModalContainor } from '../style'
 import { ReactNode, useCallback, useContext } from 'react'
 import { GradeCategory, ListContentBox } from './style'
@@ -7,7 +6,6 @@ import CareGradeContext from '@context/careGradeContext'
 import { ModeType } from '@context/careGradeContext/type'
 
 const CareGradeList = () => {
-  const navigate = useNavigate()
   const { states, setStates } = useContext(CareGradeContext)
   const { physicalScore, recognScore, behaviorScore, nursingScore, rehabExerciseScore, rehabJointScore } = states
   const { setMode } = setStates

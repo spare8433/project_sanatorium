@@ -12,22 +12,17 @@ import {
   WrapHeaderBox,
 } from './style'
 import useInput from '@hooks/useInput'
-import {
-  DetailCtgType,
-  FacilityType,
-  HosGradeListType,
-  ProfitType,
-} from '@assets/staticData/facilityType'
+import { DetailCtgType, FacilityType, HosGradeListType, ProfitType } from '@assets/staticData/facilityType'
 import { SearchChangeFnsType, SearchStatesType } from 'types/searchState'
 
 const Header = () => {
-  const [searchText, changeSearchText, setSearchText] = useInput('')
+  const [searchText, changeSearchText] = useInput('')
   // const [province, changeProvince, setProvince] = useInput('경기도')
-  const [facCtg, changeFacCtg, setFacCtg] = useInput<FacilityType>('요양병원')
-  const [city, changeCity, setCity] = useInput('전체')
-  const [detailCtg, changeDetailCtg, setDetailCtg] = useInput<DetailCtgType | '전체'>('전체')
-  const [profit, changeProfit, setProFit] = useInput<ProfitType | '전체'>('전체')
-  const [grade, changeGrade, setGrade] = useInput<HosGradeListType | '전체'>('전체')
+  const [facCtg, changeFacCtg] = useInput<FacilityType>('요양병원')
+  const [city, changeCity] = useInput('전체')
+  const [detailCtg, changeDetailCtg] = useInput<DetailCtgType | '전체'>('전체')
+  const [profit, changeProfit] = useInput<ProfitType | '전체'>('전체')
+  const [grade, changeGrade] = useInput<HosGradeListType | '전체'>('전체')
 
   const [isOnSearchOptions, turnOnSearchOptions, turnOffSearchOptions] = useSwitch(false)
 
@@ -70,11 +65,7 @@ const Header = () => {
 
       <SearchOptionContainor $isOn={isOnSearchOptions}>
         <SearchOptionBox>
-          <HeaderSearchOptions
-            turnOff={turnOffSearchOptions}
-            states={states}
-            changeFns={changeFns}
-          />
+          <HeaderSearchOptions turnOff={turnOffSearchOptions} states={states} changeFns={changeFns} />
         </SearchOptionBox>
       </SearchOptionContainor>
 

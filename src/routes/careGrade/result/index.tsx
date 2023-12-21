@@ -1,15 +1,14 @@
 import { Button, Modal } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ButtonBox, ModalContainor } from '../style'
-import { ReactNode, useCallback, useContext } from 'react'
+import { useContext } from 'react'
 import CareGradeContext from '@context/careGradeContext'
-import { ModeType } from '@context/careGradeContext/type'
 import useCareGradeFinalScore from '@hooks/careGrade/useCareGradeFinalScore'
 import { GradeCriteriaTable, GradeLine, ResultContentBox, ScoreBox, ScoreLine } from './style'
 
 const CareGradeResult = () => {
   const navigate = useNavigate()
-  const { states, setStates, updateFns } = useContext(CareGradeContext)
+  const { states, setStates } = useContext(CareGradeContext)
   const { nursingScore, physicalScore, recognScore, behaviorScore, rehabExerciseScore, rehabJointScore } = states
   const { setMode } = setStates
 
