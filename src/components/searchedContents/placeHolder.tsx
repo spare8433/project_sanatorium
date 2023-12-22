@@ -47,7 +47,7 @@ const PlaceHolder = () => {
       </SpinnerBox>
       <Placeholder as="div" animation="glow">
         <ContentGridBox>
-          {new Array(16).fill(null).map((v, i) => (
+          {new Array(16).fill(null).map((_v, i) => (
             <Placeholder key={i} as="span" size="sm" />
           ))}
         </ContentGridBox>

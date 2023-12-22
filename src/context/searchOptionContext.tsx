@@ -76,7 +76,7 @@ const SearchOptionContext = createContext<ContextType>({
     changeGrade: () => {},
   },
   getCurrentQuery: () => '',
-  getPaginationQuery: (pageNum: number = 1) => '',
+  getPaginationQuery: (_pageNum: number = 1) => '',
 })
 
 const SearchOptionProvider = ({ children }: { children: React.ReactNode }) => {
@@ -94,12 +94,8 @@ const SearchOptionProvider = ({ children }: { children: React.ReactNode }) => {
   const [detailCtg, changeDetailCtg, setDetailCtg] = useInput<DetailCtgType>(
     (getParameter('detailCtg') ?? '전체') as DetailCtgType,
   )
-  const [profit, changeProfit, setProFit] = useInput<ProfitType>(
-    (getParameter('profit') ?? '전체') as ProfitType,
-  )
-  const [grade, changeGrade, setGrade] = useInput<GradeType>(
-    (getParameter('grade') ?? '전체') as GradeType,
-  )
+  const [profit, changeProfit, setProFit] = useInput<ProfitType>((getParameter('profit') ?? '전체') as ProfitType)
+  const [grade, changeGrade, setGrade] = useInput<GradeType>((getParameter('grade') ?? '전체') as GradeType)
   const [p, setP] = useState(parseInt(getParameter('p') ?? '1'))
 
   const states = {
@@ -172,9 +168,7 @@ const SearchOptionProvider = ({ children }: { children: React.ReactNode }) => {
   )
 
   return (
-    <SearchOptionContext.Provider
-      value={{ states, setStates, changeFns, getCurrentQuery, getPaginationQuery }}
-    >
+    <SearchOptionContext.Provider value={{ states, setStates, changeFns, getCurrentQuery, getPaginationQuery }}>
       {children}
     </SearchOptionContext.Provider>
   )

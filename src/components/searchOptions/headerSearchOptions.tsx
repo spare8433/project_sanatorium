@@ -1,9 +1,4 @@
-import {
-  FacilityCategory,
-  HosGradeList,
-  SntFacCategory,
-  WfSFacCategory,
-} from '@assets/staticData/facilityType'
+import { FacilityCategory, HosGradeList, SntFacCategory, WfSFacCategory } from '@assets/staticData/facilityType'
 import { FormEventHandler } from 'react'
 import { Containor, HeaderSearchOptionList } from './style'
 import {
@@ -80,11 +75,7 @@ const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
 
           <li>
             <strong>시설 분류</strong>
-            <SearchRadioButtonGroup
-              name="facility-category"
-              value={facCtg}
-              onChange={(v, e) => changeFacCtg(e)}
-            >
+            <SearchRadioButtonGroup name="facility-category" value={facCtg} onChange={(_v, e) => changeFacCtg(e)}>
               {FacilityCategory.map((ctg) => (
                 <SearchRadioButton key={`facilityCategory-${ctg}`} id={ctg} value={ctg}>
                   {ctg}
@@ -96,11 +87,7 @@ const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
           {facCtg === '요양병원' && (
             <li>
               <strong>등급</strong>
-              <SearchRadioButtonGroup
-                name="grade"
-                value={grade}
-                onChange={(v, e) => changeGrade(e)}
-              >
+              <SearchRadioButtonGroup name="grade" value={grade} onChange={(_v, e) => changeGrade(e)}>
                 <SearchRadioButton id="등급-전체" value="전체">
                   전체
                 </SearchRadioButton>
@@ -117,11 +104,7 @@ const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
           {facCtg === '요양시설' && (
             <li>
               <strong>상세 카테고리</strong>
-              <SearchRadioButtonGroup
-                name="detail-category"
-                value={detailCtg}
-                onChange={(v, e) => changeDetailCtg(e)}
-              >
+              <SearchRadioButtonGroup name="detail-category" value={detailCtg} onChange={(_v, e) => changeDetailCtg(e)}>
                 <SearchRadioButton id="요양시설-전체" value="전체">
                   전체
                 </SearchRadioButton>
@@ -138,11 +121,7 @@ const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
           {facCtg === '재가노인복지시설' && (
             <li>
               <strong>상세 카테고리</strong>
-              <ToggleButtonGroup
-                name="detail-category"
-                value={detailCtg}
-                onChange={(v, e) => changeDetailCtg(e)}
-              >
+              <ToggleButtonGroup name="detail-category" value={detailCtg} onChange={(_v, e) => changeDetailCtg(e)}>
                 <SearchRadioButton id="재가노인복지시설-전체" value="전체">
                   전체
                 </SearchRadioButton>
@@ -159,7 +138,7 @@ const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
           {facCtg !== '요양병원' && (
             <li>
               <strong>영리 여부</strong>
-              <ToggleButtonGroup name="profit" value={profit} onChange={(v, e) => changeProfit(e)}>
+              <ToggleButtonGroup name="profit" value={profit} onChange={(_v, e) => changeProfit(e)}>
                 <SearchRadioButton id="요양병원-전체" value="전체">
                   전체
                 </SearchRadioButton>
