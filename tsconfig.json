@@ -31,7 +31,7 @@
       "@context/*": ["./context/*"]
     }
   },
-  "include": ["src", "vite.config"],
+  "include": ["src", "vite.config.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
