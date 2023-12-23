@@ -1,4 +1,4 @@
-import { CareGradeTotalScore } from '../../types/careGradeTestScore'
+import { CareGradeTotalScore } from 'types/careGradeTestScore'
 import useCareGradeScore from './useCareGradeScore'
 
 const useAssistantScore = (ScoreObj: CareGradeTotalScore) => {

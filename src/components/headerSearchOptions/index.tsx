@@ -1,6 +1,6 @@
 import { FacilityCategory, HosGradeList, SntFacCategory, WfSFacCategory } from '@assets/staticData/facilityType'
 import { FormEventHandler } from 'react'
-import { Containor, HeaderSearchOptionList } from './style'
+import { ButtonBox, Containor, HeaderSearchOptionList } from './style'
 import {
   Button,
   Form,
@@ -28,7 +28,7 @@ const SearchRadioButtonGroup = (props: ToggleButtonGroupProps<any>) => (
   <ToggleButtonGroup {...props} type="radio" name={props.name ?? 'defaultName'} />
 )
 
-const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
+const HeaderSearchOptions = ({ turnOff, states, changeFns }: Props) => {
   const navigate = useNavigate()
   const { facCtg, city, detailCtg, profit, grade } = states
   const getSearchQuery = useSearchQuery()
@@ -153,12 +153,14 @@ const SearchOptions = ({ turnOff, states, changeFns }: Props) => {
           )}
         </HeaderSearchOptionList>
 
-        <Button variant="primary" type="submit" size="lg">
-          검색
-        </Button>
+        <ButtonBox>
+          <Button variant="primary" type="submit" size="lg">
+            검색
+          </Button>
+        </ButtonBox>
       </Form>
     </Containor>
   )
 }
 
-export default SearchOptions
+export default HeaderSearchOptions

@@ -1,6 +1,6 @@
 import HeaderSearchBox from '@components/searchBox/headerSearchBox'
 import useSwitch from '@hooks/useSwitch'
-import HeaderSearchOptions from '@components/searchOptions/headerSearchOptions'
+import HeaderSearchOptions from '@components/headerSearchOptions'
 import {
   BackGround,
   HeaderBox,

@@ -5,7 +5,7 @@ export const ShortCutListContainor = styled.div`
   width: 100%;
   padding: 3rem 6rem;
   background-color: #e7886e;
-  margin-bottom: 4rem;
+  margin-bottom: 4em;
 `
 
 export const ShortCutListBox = styled.div`

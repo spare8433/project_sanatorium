@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Containor = styled.div`
   width: 100%;
-  margin-bottom: 6rem;
+  margin-bottom: 8rem;
 `
 
 const BannerBox = styled.div`
