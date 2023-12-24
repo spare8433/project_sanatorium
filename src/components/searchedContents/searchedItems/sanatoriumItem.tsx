@@ -1,6 +1,7 @@
 import { SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import styled from 'styled-components'
 import { ItemStyle } from './searchedItem.style'
+import { memo } from 'react'
 
 const ItemContainor = styled(ItemStyle)``
 
@@ -26,4 +27,4 @@ const SanatoriumItem = ({ item, showFn }: Props) => {
   )
 }
 
-export default SanatoriumItem
+export default memo(SanatoriumItem)

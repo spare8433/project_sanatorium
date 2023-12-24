@@ -1,5 +1,6 @@
 import { SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import { Container, Row, Col } from 'react-bootstrap'
+import { memo } from 'react'
 
 interface Props {
   data: SanatoriumDetailData | WelfareServiceDetailData
@@ -59,4 +60,4 @@ const SanatoriumModalContent = ({ data }: Props) => {
   )
 }
 
-export default SanatoriumModalContent
+export default memo(SanatoriumModalContent)

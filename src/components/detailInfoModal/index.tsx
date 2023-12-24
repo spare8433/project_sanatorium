@@ -3,6 +3,7 @@ import HospitalModalContent from './hospitalModalContent'
 import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import SanatoriumModalContent from './sanatoriumModalContent'
 import styled from 'styled-components'
+import { memo } from 'react'
 
 export const ModalContainor = styled(Modal)`
   .modal-content {
@@ -76,4 +77,4 @@ const DetailInfoModal = ({ closeFn, show, data, queryFacCtg }: Props) => {
   )
 }
 
-export default DetailInfoModal
+export default memo(DetailInfoModal)

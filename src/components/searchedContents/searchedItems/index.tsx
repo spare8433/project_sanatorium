@@ -1,6 +1,7 @@
 import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import HospitalItem from './hospitalItem'
 import SanatoriumItem from './sanatoriumItem'
+import { memo } from 'react'
 
 interface Props {
   queryFacCtg: string | null
@@ -27,4 +28,4 @@ const SearchedItems = ({ dataArr, showFn, queryFacCtg }: Props) => {
   }
 }
 
-export default SearchedItems
+export default memo(SearchedItems)

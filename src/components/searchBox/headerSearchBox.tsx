@@ -1,4 +1,4 @@
-import { KeyboardEventHandler } from 'react'
+import { KeyboardEventHandler, memo } from 'react'
 import { SearchContainor, SearchFormBox, SearchInputBox } from './style'
 import { useNavigate } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
@@ -51,4 +51,4 @@ const HeaderSearchBox = ({ turnOn, turnOff, states, changeSearchText }: Props) =
   )
 }
 
-export default HeaderSearchBox
+export default memo(HeaderSearchBox)

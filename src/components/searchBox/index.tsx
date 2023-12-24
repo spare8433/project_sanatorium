@@ -1,4 +1,4 @@
-import { KeyboardEventHandler } from 'react'
+import { KeyboardEventHandler, memo } from 'react'
 import { SearchContainor, SearchFormBox, SearchInputBox } from './style'
 import { useNavigate } from 'react-router-dom'
 import { Form } from 'react-bootstrap'
@@ -47,4 +47,4 @@ const SearchBox = ({ states, changeSearchText }: Props) => {
   )
 }
 
-export default SearchBox
+export default memo(SearchBox)
