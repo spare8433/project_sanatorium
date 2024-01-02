@@ -4,7 +4,7 @@
 
 <!-- [![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url] -->
 
-<!-- PROJECT LOGO -->
+<!-- PROJECT MAIN -->
 <br />
 <div align="center">
 
@@ -62,9 +62,11 @@
 - 법에서 정의한 노인 요양 등급 관련 판정 기준과 항목을 토대로 예상 장기 요양 등급을 판정해주는 테스트를 제공합니다.
 - 노인 요양에 관련된 정책과 정보를 제공합니다.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">맨 위로</a>)</p>
 
 ### Built With
+
+<br />
 
 - [![React 18][React.js]][React-url]
 - [![TypeScript][TypeScript]][TypeScript-url]
@@ -72,7 +74,7 @@
 - [![styled-components][styled-components]][styled-components-url]
 - [![vite][vite]][vite-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">맨 위로</a>)</p>
 
 <br />
 
@@ -80,7 +82,7 @@
 
 <br />
 
-Prev-Reademe : https://github.com/spare8433/project_sanatorium/blob/main/PREV_README.md
+Prev-Readme : https://github.com/spare8433/project_sanatorium/blob/main/PREV_README.md
 
 <br />
 
@@ -124,7 +126,7 @@ Prev-Reademe : https://github.com/spare8433/project_sanatorium/blob/main/PREV_RE
   <img src="https://github.com/spare8433/project_sanatorium/assets/80731330/b3cdc375-754e-4bcd-a880-cdf38d8da782" style="width:400px">    
 </details>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">맨 위로</a>)</p>
 
 <br />
 
@@ -138,7 +140,7 @@ gitHub: https://github.com/spare8433
 
 blog : https://spare8433.tistory.com
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">맨 위로</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
