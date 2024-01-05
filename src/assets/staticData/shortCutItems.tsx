@@ -186,7 +186,7 @@ export const ShortCutItems: ShortCutItemType[] = [
       content: (
         <>
           <img src="/img/home-support-service.png" alt="home-support-service" />
-          <span>재가노인지원서비스</span>
+          <span>재가노인지원</span>
         </>
       ),
     },

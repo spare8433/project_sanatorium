@@ -27,10 +27,10 @@ export const WrapHeaderBox = styled.div`
 `
 
 export const HeaderBox = styled.div`
-  width: 1024px;
+  max-width: 1024px;
   height: 9rem;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,8 +47,10 @@ export const SearchOptionContainor = styled.div<{ $isOn: boolean }>`
 `
 
 export const SearchOptionBox = styled.div`
-  width: 1024px;
-  padding-left: 18rem;
+  max-width: 1024px;
+  padding: 0 2rem;
+  /* padding-left: 18rem; */
+
   margin: 0.5rem auto 0;
   transition: inherit;
 `

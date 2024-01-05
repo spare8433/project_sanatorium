@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Containor = styled.div`
-  width: 100%;
-  margin-bottom: 8rem;
+  max-width: 1024px;
+  padding: 0 2rem;
+  margin: 0 auto 8rem;
 `
 
 const BannerBox = styled.div`
-  width: 1024px;
   margin: 0 auto;
   background-color: white;
   border-radius: 1rem;
@@ -19,18 +19,24 @@ const BannerBox = styled.div`
   font-weight: 600;
   box-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 15%);
   border: 1px solid lightgray;
-  h2 {
-    margin-bottom: 1.6rem;
-  }
+
   p {
     font-size: 1.6rem;
+    margin-top: 1.6rem;
+
+    @media ${({ theme }) => theme.device.tablet} {
+      display: none;
+    }
   }
 `
 const MainButton = styled(Link)`
-  width: fit-content;
-  padding: 1.2rem 3rem;
+  text-align: center;
+  min-width: 14rem;
+  margin-left: 2rem;
+  padding: 1.2rem 0;
   border-radius: 3rem;
-  background-color: #e7886e;
+  background-color: ${({ theme }) => theme.colors.main};
+
   color: white;
   font-weight: 600;
   border: gray 1px;

@@ -3,16 +3,16 @@ import styled from 'styled-components'
 
 const FooterContainor = styled.footer`
   width: 100%;
-  height: 18rem;
-  padding: 3rem 0 5rem;
   border-top: 0.1rem solid #ebebeb;
 `
 
 const FooterBox = styled.div`
-  width: 1024px;
+  height: 18rem;
   margin: 0 auto;
+  max-width: 1024px;
   display: flex;
   justify-content: space-between;
+  padding: 3rem 2rem 4rem;
 `
 
 const LogoLink = styled(Link)`

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const SearchContainor = styled.div``
 
@@ -23,9 +23,11 @@ export const SearchInputBox = styled.div`
     border-color 0.5s;
 
   &:hover {
-    border: solid 1px #e7886e;
-    color: #e7886e !important;
-    box-shadow: 0px 0px 6px #e7886e;
+    ${({ theme }) => css`
+      border: solid 1px ${theme.colors.main};
+      color: ${theme.colors.main};
+      box-shadow: 0px 0px 6px ${theme.colors.main};
+    `};
   }
 
   input[type='search'] {
