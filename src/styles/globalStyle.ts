@@ -32,13 +32,23 @@ const GlobalStyles = createGlobalStyle`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 400;
       box-sizing: border-box;
-      color: #3b3b3b;
+      color:  ${({ theme }) => theme.colors.mainBlack};
     }
     html, body{
       width: 100%;      
       height: 100%;
     }
-    html {font-size: 10px;}
+    html {
+      font-size: 10px;
+
+      @media ${({ theme }) => theme.device.tablet} {
+        font-size: 8.75px;
+      }
+
+      @media ${({ theme }) => theme.device.mobile} {
+        font-size: 7px;
+      }
+    }
     body {
       background-color: #fff;
       box-sizing: border-box;
@@ -65,12 +75,12 @@ const GlobalStyles = createGlobalStyle`
     h6 {font-size: 1.4rem}
     a {
       cursor: pointer;
-      color:#3b3b3b;
+      color: ${({ theme }) => theme.colors.mainBlack};
       text-decoration: none;
       outline: none
     }
     a:hover, a:active {
-      color:#3b3b3b;
+      color: ${({ theme }) => theme.colors.mainBlack};
       text-decoration: none;
     }
     div{

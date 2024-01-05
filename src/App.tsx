@@ -9,6 +9,8 @@ import Search from '@routes/search'
 import { CareGradeProvider } from '@context/careGradeContext'
 import TestPage from '@routes/testPage'
 import CareGradePage from '@routes/careGrade'
+import { ThemeProvider } from 'styled-components'
+import theme from '@styles/theme'
 
 const router = createBrowserRouter([
   {
@@ -47,9 +49,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <CareGradeProvider>
-        <ReactQueryDevtools />
-        <GlobalStyles />
-        <RouterProvider router={router}></RouterProvider>
+        <ThemeProvider theme={theme}>
+          <ReactQueryDevtools />
+          <GlobalStyles />
+          <RouterProvider router={router}></RouterProvider>
+        </ThemeProvider>
       </CareGradeProvider>
     </QueryClientProvider>
   )
