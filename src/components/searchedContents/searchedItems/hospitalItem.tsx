@@ -15,13 +15,13 @@ const HospitalItem = ({ item, showFn }: Props) => {
     <ItemContainor onClick={() => showFn(item)}>
       <h4>{item.INST_NM}</h4>
       <li>
-        <b>분류:</b> {item.DIV_NM}
+        <b>분류</b> {item.DIV_NM}
       </li>
       <li>
-        <b>주소:</b> {item.REFINE_ROADNM_ADDR}
+        <b>주소</b> {item.REFINE_ROADNM_ADDR}
       </li>
       <li>
-        <b>등급:</b> {item.GRAD}
+        <b>등급</b> {item.GRAD}
       </li>
     </ItemContainor>
   )

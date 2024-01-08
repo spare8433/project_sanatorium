@@ -5,14 +5,14 @@ export const Containor = styled.div`
 `
 
 export const SearchContainor = styled.div`
-  width: 1024px;
+  max-width: 1024px;
   margin: 0 auto;
 
   .modal-content {
     border-radius: 1rem;
   }
   .modal-header {
-    background-color: #e7886e;
+    background-color: ${({ theme }) => theme.colors.main};
     color: #fff;
     font-size: 1.8rem;
     font-family: 'NotoSansKR_r';

@@ -75,7 +75,7 @@ const Search = () => {
   }
 
   /** 화면에 노출 되는 콘텐츠 갯수 */
-  const SHOW_ITEMS_COUNT = 16
+  const SHOW_ITEMS_COUNT = 12
 
   const fetchAPI = useCallback(
     (page: number): Promise<APIResponse<DetailDataType>> => {
@@ -124,7 +124,7 @@ const Search = () => {
       <SearchContainor>
         <ContentBox>
           {data && <SearchedContents querys={querys} data={data} showItemsCount={SHOW_ITEMS_COUNT} />}
-          {isLoading && <PlaceHolder />}
+          {isLoading && <PlaceHolder showCount={SHOW_ITEMS_COUNT} />}
           {error && <>error 발생</>}
         </ContentBox>
       </SearchContainor>

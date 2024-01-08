@@ -25,7 +25,7 @@ const MainSearchForm = ({ states, changeFns }: Props) => {
           <WrapTitleBox>
             <h1>시설찾기</h1>
           </WrapTitleBox>
-          <span>조건에 맞는 요양시설을 찾아보세요</span>
+          <h1>조건에 맞는 요양시설을 찾아보세요</h1>
         </TitleLine>
 
         <SearchFormBox>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import { Pagination } from 'react-bootstrap'
 import DetailInfoModal from '@components/detailInfoModal'
@@ -16,10 +16,14 @@ const Cotanior = styled.div`
 
 const FacilityGridBox = styled.main`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1.5rem;
-  margin: 2rem 0 8rem;
+  margin: 2rem 2rem 8rem;
   font-size: 1.4rem;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 const PaginationContainor = styled(Pagination)`
@@ -27,14 +31,16 @@ const PaginationContainor = styled(Pagination)`
   justify-content: center;
 
   .page-link {
-    color: #e7886e;
+    color: ${({ theme }) => theme.colors.main};
   }
 
   .active > .page-link,
   .page-link.active {
     color: white;
-    background-color: #e7886e;
-    border-color: #e7886e;
+    ${({ theme }) => css`
+      background-color: ${theme.colors.main};
+      border-color: ${theme.colors.main};
+    `};
   }
 `
 
@@ -64,20 +70,13 @@ const SearchedContents = ({ data, showItemsCount, querys }: Props) => {
 
   return (
     <Cotanior>
-      <DetailInfoModal
-        queryFacCtg={queryFacCtg}
-        show={isModalOn}
-        closeFn={turnOff}
-        data={detailData}
-      />
+      <DetailInfoModal queryFacCtg={queryFacCtg} show={isModalOn} closeFn={turnOff} data={detailData} />
       <FacilityGridBox>
         <SearchedItems queryFacCtg={queryFacCtg} dataArr={dataArr} showFn={showModal} />
       </FacilityGridBox>
       <PaginationContainor size="lg">
         {queryPageNum > 1 && (
-          <Pagination.Prev
-            href={getPaginationQuery({ ...querys, queryPageNum: queryPageNum - 1 })}
-          />
+          <Pagination.Prev href={getPaginationQuery({ ...querys, queryPageNum: queryPageNum - 1 })} />
         )}
         <PaginationItems
           pageNum={queryPageNum}
@@ -86,9 +85,7 @@ const SearchedContents = ({ data, showItemsCount, querys }: Props) => {
           querys={querys}
         />
         {lastIndex > queryPageNum && (
-          <Pagination.Next
-            href={getPaginationQuery({ ...querys, queryPageNum: queryPageNum + 1 })}
-          />
+          <Pagination.Next href={getPaginationQuery({ ...querys, queryPageNum: queryPageNum + 1 })} />
         )}
       </PaginationContainor>
     </Cotanior>

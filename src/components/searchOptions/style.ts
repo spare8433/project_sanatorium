@@ -30,6 +30,18 @@ export const SearchOptionList = styled.div`
       box-sizing: content-box;
     }
   }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    flex-direction: column;
+
+    span {
+      margin-top: 2rem;
+    }
+
+    select {
+      flex: 1;
+    }
+  }
 `
 export const ButtonBox = styled.div`
   display: flex;
@@ -42,7 +54,9 @@ export const ButtonBox = styled.div`
   }
 
   button[type='submit'] {
+    min-width: 14rem;
     font-size: 1.8rem;
-    padding: 0.6rem 5rem;
+    padding: 0.6rem 0;
+    margin-left: 2rem;
   }
 `

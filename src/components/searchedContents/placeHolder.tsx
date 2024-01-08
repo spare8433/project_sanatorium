@@ -13,7 +13,7 @@ const ContentGridBox = styled.div`
   font-size: 1.4rem;
 
   span {
-    background-color: #f2f2f2;
+    background-color: ${({ theme }) => theme.colors.back_white};
     height: 15rem;
     border-radius: 1rem;
     box-shadow: 0.25rem 0.5rem 0.5rem rgb(0 0 0 / 30%);
@@ -37,7 +37,11 @@ const SpinnerBox = styled.div`
   }
 `
 
-const PlaceHolder = () => {
+interface Props {
+  showCount: number
+}
+
+const PlaceHolder = ({ showCount }: Props) => {
   return (
     <Contanior>
       <SpinnerBox>
@@ -47,7 +51,7 @@ const PlaceHolder = () => {
       </SpinnerBox>
       <Placeholder as="div" animation="glow">
         <ContentGridBox>
-          {new Array(16).fill(null).map((_v, i) => (
+          {new Array(showCount).fill(null).map((_v, i) => (
             <Placeholder key={i} as="span" size="sm" />
           ))}
         </ContentGridBox>

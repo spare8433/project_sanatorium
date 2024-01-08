@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 export const Containor = styled.div`
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: ${({ theme }) => theme.colors.back_white};
 `
 
 export const TotalSearchContainor = styled.div`
-  width: 1024px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 3rem 0 2rem;
+  padding: 3rem 2rem 2rem;
 `
 
 export const TitleLine = styled.div`
@@ -17,10 +17,9 @@ export const TitleLine = styled.div`
   align-items: center;
   position: relative;
 
-  h1,
-  span {
-    font-size: 2.4rem;
-    font-weight: 600;
+  @media ${({ theme }) => theme.device.tablet} {
+    justify-content: center;
+    margin-bottom: 2rem;
   }
 `
 
@@ -31,14 +30,22 @@ export const WrapTitleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e7886e;
+  background-color: ${({ theme }) => theme.colors.main};
   color: white;
   margin-right: 4rem;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    display: none;
+  }
 `
 
 export const WrapSearchBox = styled.div`
   position: relative;
   transform: translate(0, -50%);
+
+  @media ${({ theme }) => theme.device.tablet} {
+    transform: none;
+  }
 `
 
 export const SearchFormBox = styled.div`
@@ -49,6 +56,10 @@ export const SearchFormBox = styled.div`
     font-size: 1.8rem;
     padding: 0.6rem 3rem;
   }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    padding-left: 0;
+  }
 `
 
 export const SearchOptionBox = styled.div`
@@ -56,4 +67,8 @@ export const SearchOptionBox = styled.div`
   position: relative;
   transform: translate(0, -15%);
   display: flex;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    transform: none;
+  }
 `
