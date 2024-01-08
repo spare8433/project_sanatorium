@@ -1,6 +1,8 @@
 import { HospitalDetailData } from 'types/apiData'
 import { Container, Row, Col } from 'react-bootstrap'
 import { memo } from 'react'
+import MapContainor from '@util/location'
+import { MapWrapBox } from './modal.style'
 
 interface Props {
   data: HospitalDetailData
@@ -35,7 +37,13 @@ const HospitalModalContent = ({ data }: Props) => {
         <Col className="col_th">우편번호</Col>
         <Col lg={9}>{data.REFINE_ZIP_CD}</Col>
       </Row>
-      <Row>{/*<Col>지도가 들어가질도</Col>*/}</Row>
+      <Row>
+        <MapWrapBox id="map">
+          {data.REFINE_WGS84_LAT && data.REFINE_WGS84_LOGT && (
+            <MapContainor lat={data.REFINE_WGS84_LAT} logt={data.REFINE_WGS84_LOGT} />
+          )}
+        </MapWrapBox>
+      </Row>
     </Container>
   )
 }

@@ -36,6 +36,10 @@ export default defineConfig({
         find: '@context',
         replacement: path.resolve(__dirname, 'src/context'),
       },
+      {
+        find: '@util',
+        replacement: path.resolve(__dirname, 'src/util'),
+      },
     ],
   },
 })

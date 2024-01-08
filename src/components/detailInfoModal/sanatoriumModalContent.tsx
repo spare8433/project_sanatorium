@@ -1,6 +1,8 @@
 import { SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
 import { Container, Row, Col } from 'react-bootstrap'
 import { memo } from 'react'
+import MapContainor from '@util/location'
+import { MapWrapBox } from './modal.style'
 
 interface Props {
   data: SanatoriumDetailData | WelfareServiceDetailData
@@ -55,7 +57,13 @@ const SanatoriumModalContent = ({ data }: Props) => {
         <Col className="col_th">영리/비영리</Col>
         <Col>{data.PRFTMK_DIV_NM}</Col>
       </Row>
-      <Row>{/*<Col>지도가 들어가질도</Col>*/}</Row>
+      <Row>
+        <MapWrapBox id="map">
+          {data.REFINE_WGS84_LAT && data.REFINE_WGS84_LOGT && (
+            <MapContainor lat={data.REFINE_WGS84_LAT} logt={data.REFINE_WGS84_LOGT} />
+          )}
+        </MapWrapBox>
+      </Row>
     </Container>
   )
 }

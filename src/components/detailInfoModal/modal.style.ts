@@ -1,12 +1,12 @@
-import { Container } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import styled from 'styled-components'
 
-export const ModalContainor = styled(Container)`
+export const ModalContainor = styled(Modal)`
   .modal-content {
     border-radius: 1rem;
   }
   .modal-header {
-    background-color: #e7886e;
+    background-color: ${({ theme }) => theme.colors.main};
     color: #fff;
     font-size: 1.8rem;
     border-top-left-radius: calc(1rem - 1px);
@@ -31,4 +31,11 @@ export const ModalContainor = styled(Container)`
     font-size: 1.4rem;
     font-weight: 600;
   }
+`
+
+export const MapWrapBox = styled.div`
+  height: 30rem;
+  margin-top: 1rem;
+  padding: 0;
+  box-shadow: 0 0 1rem rgb(0 0 0 / 25%);
 `

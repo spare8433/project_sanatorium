@@ -28,7 +28,8 @@
       "@hooks/*": ["./hooks/*"],
       "@assets/*": ["./assets/*"],
       "@styles/*": ["./styles/*"],
-      "@context/*": ["./context/*"]
+      "@context/*": ["./context/*"],
+      "@util/*": ["./util/*"]
     }
   },
   "include": ["src", "vite.config.ts"],
