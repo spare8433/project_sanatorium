@@ -16,7 +16,7 @@ export const ResultContentBox = styled(ContentBox)`
   a {
     display: block;
     font-size: 1.8rem;
-    color: #e7886e;
+    color: ${({ theme }) => theme.colors.main};
     font-weight: 600;
     margin-bottom: 3rem;
   }
@@ -35,7 +35,7 @@ export const ScoreBox = styled.div`
   min-width: 80%;
   padding: 3rem 4rem;
   border-radius: 1rem;
-  background-color: #f2f2f2;
+  background-color: ${({ theme }) => theme.colors.back_white};
   margin-bottom: 3rem;
 `
 

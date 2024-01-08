@@ -11,8 +11,10 @@ import {
 } from '@routes/careGrade/style'
 import { useCallback, useContext, useMemo, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 const CareGradeRehabExercise = () => {
+  const navigate = useNavigate()
   const { states, setStates, updateFns } = useContext(CareGradeContext)
   const { rehabExerciseScore } = states
   const { setMode } = setStates
@@ -66,7 +68,7 @@ const CareGradeRehabExercise = () => {
 
   return (
     <ModalContainor show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onClick={() => confirm('현재 화면에서 나가 홈으로 돌아가시겠습니까?') && navigate('/')}>
         <span className="left"></span>
         <Modal.Title>
           <h1>재활 운동 영역 테스트</h1>

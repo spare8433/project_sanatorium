@@ -1,12 +1,12 @@
 import { Modal } from 'react-bootstrap'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const ModalContainor = styled(Modal)`
   .modal-dialog {
     margin: 0 auto;
     padding: 2rem 0;
     height: 100vh;
-    width: 800px !important;
+    max-width: 800px !important;
   }
   .modal-content {
     height: 100%;
@@ -35,11 +35,13 @@ export const ModalContainor = styled(Modal)`
     .modal-header {
       justify-content: space-between;
       padding: 1.6rem 2rem;
-      background-color: #e7886e;
+      background-color: ${({ theme }) => theme.colors.main};
       color: white;
 
       .btn-close {
         margin: 0;
+        width: 2.4rem !important;
+        height: 2.4rem !important;
       }
     }
   }
@@ -73,7 +75,7 @@ export const AnswerRadioItem = styled.li`
   border-radius: 1rem;
   margin-bottom: 2.4rem;
   box-shadow: 0.25rem 0.5rem 0.5rem rgb(0 0 0 / 10%);
-  background-color: #f2f2f2;
+  background-color: ${({ theme }) => theme.colors.back_white};
 
   &.checked,
   &:hover {
@@ -105,9 +107,11 @@ export const ButtonBox = styled.div`
   }
 
   .mainButton {
-    background-color: #e7886e;
+    ${({ theme }) => css`
+      background-color: ${theme.colors.main};
+      border-color: ${theme.colors.main};
+    `};
     color: white;
-    border-color: #e7886e;
     margin-left: 8rem;
   }
 `

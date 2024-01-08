@@ -18,7 +18,7 @@ export const HomeContentBox = styled(ContentBox)`
   }
   a {
     font-size: 1.6rem;
-    color: #e7886e;
+    color: ${({ theme }) => theme.colors.main};
     font-weight: 600;
   }
 `

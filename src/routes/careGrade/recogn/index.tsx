@@ -11,8 +11,10 @@ import {
 } from '@routes/careGrade/style'
 import { useCallback, useContext, useMemo, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 const CareGradeRecogn = () => {
+  const navigate = useNavigate()
   const { states, setStates, updateFns } = useContext(CareGradeContext)
   const { recognScore } = states
   const { setMode } = setStates
@@ -28,8 +30,7 @@ const CareGradeRecogn = () => {
   const handleNextQuestion = useCallback(() => {
     // 최대면 리스트로 넘어가거나 다음 항목으로 넘어감
     if (current >= scoreValueArr.length) {
-      if (confirm('행동변화 항목으로 넘어가시겠습니까? 취소시 평가항목 선택 화면으로 돌아갑니다.'))
-        setMode('behavior')
+      if (confirm('행동변화 항목으로 넘어가시겠습니까? 취소시 평가항목 선택 화면으로 돌아갑니다.')) setMode('behavior')
       else {
         setMode('list')
       }
@@ -66,7 +67,7 @@ const CareGradeRecogn = () => {
 
   return (
     <ModalContainor show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onClick={() => confirm('현재 화면에서 나가 홈으로 돌아가시겠습니까?') && navigate('/')}>
         <span className="left"></span>
         <Modal.Title>
           <h1>인지기능 영역 테스트</h1>

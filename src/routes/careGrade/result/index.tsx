@@ -23,7 +23,7 @@ const CareGradeResult = () => {
 
   return (
     <ModalContainor show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onClick={() => confirm('현재 화면에서 나가 홈으로 돌아가시겠습니까?') && navigate('/')}>
         <span className="left"></span>
         <Modal.Title>
           <h1>테스트 결과</h1>

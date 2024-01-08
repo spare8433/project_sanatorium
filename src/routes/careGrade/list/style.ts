@@ -15,7 +15,7 @@ export const GradeCategory = styled.div`
   font-weight: 600;
   padding: 2.8rem 3.6rem;
   border-radius: 1rem;
-  background-color: #f2f2f2;
+  background-color: ${({ theme }) => theme.colors.back_white};
   margin-bottom: 2.2rem;
   cursor: pointer;
 
