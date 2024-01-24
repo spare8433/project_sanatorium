@@ -134,7 +134,7 @@ Prev-Readme : https://github.com/spare8433/project_sanatorium/blob/main/PREV_REA
 
 ## Contact
 
-email : byeongchan66@google.com
+email : byeongchan8433@gmail.com
 
 gitHub: https://github.com/spare8433
 
