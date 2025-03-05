@@ -1,5 +1,5 @@
-import { Modal } from 'react-bootstrap'
-import styled, { css } from 'styled-components'
+import { Modal } from "react-bootstrap";
+import styled, { css } from "styled-components";
 
 export const ModalContainor = styled(Modal)`
   .modal-dialog {
@@ -45,12 +45,12 @@ export const ModalContainor = styled(Modal)`
       }
     }
   }
-`
+`;
 
 export const ContentBox = styled.div`
   padding: 2rem 3rem;
   height: 100%;
-`
+`;
 
 export const QuestionBox = styled(ContentBox)`
   text-align: center;
@@ -58,24 +58,24 @@ export const QuestionBox = styled(ContentBox)`
   h2 {
     margin-bottom: 5rem;
   }
-`
+`;
 
 export const ProgressLine = styled.div`
   font-size: 2.4rem;
   margin-bottom: 3rem;
-`
+`;
 
 export const AnwserList = styled.ul`
   text-align: center;
   width: 70%;
   margin: 0 auto;
-`
+`;
 
 export const AnswerRadioItem = styled.li`
   border-radius: 1rem;
   margin-bottom: 2.4rem;
   box-shadow: 0.25rem 0.5rem 0.5rem rgb(0 0 0 / 10%);
-  background-color: ${({ theme }) => theme.colors.back_white};
+  background-color: ${({ theme }) => theme.colors.backgroundGray};
 
   &.checked,
   &:hover {
@@ -89,11 +89,11 @@ export const AnswerRadioItem = styled.li`
     font-weight: 600;
     cursor: pointer;
 
-    input[type='radio'] {
+    input[type="radio"] {
       display: none;
     }
   }
-`
+`;
 
 export const ButtonBox = styled.div`
   width: 100%;
@@ -114,4 +114,4 @@ export const ButtonBox = styled.div`
     color: white;
     margin-left: 8rem;
   }
-`
+`;

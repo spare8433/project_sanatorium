@@ -1,9 +1,9 @@
-import { Placeholder, Spinner } from 'react-bootstrap'
-import styled from 'styled-components'
+import { Placeholder, Spinner } from "react-bootstrap";
+import styled from "styled-components";
 
 const Contanior = styled.div`
   position: relative;
-`
+`;
 
 const ContentGridBox = styled.div`
   display: grid;
@@ -13,12 +13,12 @@ const ContentGridBox = styled.div`
   font-size: 1.4rem;
 
   span {
-    background-color: ${({ theme }) => theme.colors.back_white};
+    background-color: ${({ theme }) => theme.colors.backgroundGray};
     height: 15rem;
     border-radius: 1rem;
     box-shadow: 0.25rem 0.5rem 0.5rem rgb(0 0 0 / 30%);
   }
-`
+`;
 
 const SpinnerBox = styled.div`
   width: 10rem;
@@ -35,10 +35,10 @@ const SpinnerBox = styled.div`
     --bs-spinner-border-width: 0.75rem;
     color: lightgray;
   }
-`
+`;
 
 interface Props {
-  showCount: number
+  showCount: number;
 }
 
 const PlaceHolder = ({ showCount }: Props) => {
@@ -57,7 +57,7 @@ const PlaceHolder = ({ showCount }: Props) => {
         </ContentGridBox>
       </Placeholder>
     </Contanior>
-  )
-}
+  );
+};
 
-export default PlaceHolder
+export default PlaceHolder;

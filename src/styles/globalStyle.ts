@@ -1,9 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
-import { normalize } from 'styled-normalize'
-import Bold from '@assets/font/NotoSansKR-Bold.woff2'
-import SemiBold from '@assets/font/NotoSansKR-SemiBold.woff2'
-import Regular from '@assets/font/NotoSansKR-Regular.woff2'
-import Light from '@assets/font/NotoSansKR-Light.woff2'
+import { createGlobalStyle } from "styled-components";
+import { normalize } from "styled-normalize";
+import Bold from "@assets/font/NotoSansKR-Bold.woff2";
+import SemiBold from "@assets/font/NotoSansKR-SemiBold.woff2";
+import Regular from "@assets/font/NotoSansKR-Regular.woff2";
+import Light from "@assets/font/NotoSansKR-Light.woff2";
 
 const GlobalStyles = createGlobalStyle`
     ${normalize}
@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 400;
       box-sizing: border-box;
-      color:  ${({ theme }) => theme.colors.mainBlack};
+      color:  ${({ theme }) => theme.colors.foreground};
     }
     html, body{
       width: 100%;      
@@ -75,12 +75,12 @@ const GlobalStyles = createGlobalStyle`
     h6 {font-size: 1.4rem}
     a {
       cursor: pointer;
-      color: ${({ theme }) => theme.colors.mainBlack};
+      color: ${({ theme }) => theme.colors.foreground};
       text-decoration: none;
       outline: none
     }
     a:hover, a:active {
-      color: ${({ theme }) => theme.colors.mainBlack};
+      color: ${({ theme }) => theme.colors.foreground};
       text-decoration: none;
     }
     div{
@@ -91,6 +91,6 @@ const GlobalStyles = createGlobalStyle`
       margin: 0;
     }
     li {list-style:none}
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;

@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const ShortCutListContainor = styled.div`
   width: 100%;
   padding: 3rem 0;
   background-color: ${({ theme }) => theme.colors.main};
   margin-bottom: 4em;
-`
+`;
 
 export const ShortCutListBox = styled.div`
   max-width: 1024px;
@@ -17,10 +17,10 @@ export const ShortCutListBox = styled.div`
     color: #fff;
     margin-bottom: 1rem;
   }
-`
+`;
 
 export const ShortCutItemList = styled.div`
-  background-color: ${({ theme }) => theme.colors.back_white};
+  background-color: ${({ theme }) => theme.colors.backgroundGray};
   padding: 2rem 4%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -32,7 +32,7 @@ export const ShortCutItemList = styled.div`
     grid-column-gap: 0;
     padding: 2rem 1%;
   }
-`
+`;
 
 export const ShortCutItemLink = styled(Link)`
   /* width: 14rem; */
@@ -66,7 +66,7 @@ export const ShortCutItemLink = styled(Link)`
     width: 6.4rem;
     margin-bottom: 0.5rem;
   }
-`
+`;
 
 export const TextBox = styled.div`
   width: 40rem;
@@ -78,4 +78,4 @@ export const TextBox = styled.div`
   h3 {
     margin-bottom: 1rem;
   }
-`
+`;
