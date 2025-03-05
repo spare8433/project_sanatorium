@@ -44,7 +44,6 @@ export default [
       },
     },
   },
-  pluginPrettierRecommended,
   jsxA11y.configs.recommended,
   {
     plugins: { "unused-imports": unusedImports },
