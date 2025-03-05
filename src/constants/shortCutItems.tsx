@@ -1,17 +1,18 @@
-import { Placement } from 'react-bootstrap/esm/types'
+import { JSX } from "react";
+import { Placement } from "react-bootstrap/esm/types";
 
-interface ShortCutItemType {
-  placement: Placement
-  overlayContent: JSX.Element
-  sortcutItem: {
-    link: string
-    content: JSX.Element
-  }
+interface ShortcutItemType {
+  placement: Placement;
+  overlayContent: JSX.Element;
+  shortcutItem: {
+    link: string;
+    content: JSX.Element;
+  };
 }
 
-export const ShortCutItems: ShortCutItemType[] = [
+export const SHORTCUT_ITEMS: ShortcutItemType[] = [
   {
-    placement: 'right',
+    placement: "right",
     overlayContent: (
       <>
         <h3>요양병원</h3>
@@ -23,8 +24,8 @@ export const ShortCutItems: ShortCutItemType[] = [
         </p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=요양병원',
+    shortcutItem: {
+      link: "/search?facCtg=요양병원",
       content: (
         <>
           <img src="/img/hospital.png" alt="nursing-hospital" />
@@ -34,7 +35,7 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'right',
+    placement: "right",
     overlayContent: (
       <>
         <h3>노인요양시설</h3>
@@ -45,8 +46,8 @@ export const ShortCutItems: ShortCutItemType[] = [
         </p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=요양시설&detailCtg=노인요양공동생활가정',
+    shortcutItem: {
+      link: "/search?facCtg=요양시설&detailCtg=노인요양공동생활가정",
       content: (
         <>
           <img src="/img/stay-home.png" alt="sanatorium " />
@@ -56,7 +57,7 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'right',
+    placement: "right",
     overlayContent: (
       <>
         <h3>공동생활가정</h3>
@@ -67,8 +68,8 @@ export const ShortCutItems: ShortCutItemType[] = [
         </p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=요양시설&detailCtg=노인공동생활가정',
+    shortcutItem: {
+      link: "/search?facCtg=요양시설&detailCtg=노인공동생활가정",
       content: (
         <>
           <img src="/img/nursing-room.png" alt="nursing-room" />
@@ -78,15 +79,15 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'left',
+    placement: "left",
     overlayContent: (
       <>
         <h3>방문 간호</h3>
         <p>의사, 한의사 등이 가정을 방문하여 간호, 진료의 보조, 요양에 관한 상담 등을 제공합니다.</p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=재가노인복지시설&detailCtg=방문간호',
+    shortcutItem: {
+      link: "/search?facCtg=재가노인복지시설&detailCtg=방문간호",
       content: (
         <>
           <img src="/img/nursing-care.png" alt="nursing-care" />
@@ -96,15 +97,15 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'left',
+    placement: "left",
     overlayContent: (
       <>
         <h3>방문요양</h3>
         <p>어르신 가정에 요양보호사가 직접 방문하여 필요한 일상 생활을 지원합니다.</p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=재가노인복지시설&detailCtg=방문요양',
+    shortcutItem: {
+      link: "/search?facCtg=재가노인복지시설&detailCtg=방문요양",
       content: (
         <>
           <img src="/img/support.png" alt="visiting-care" />
@@ -114,15 +115,15 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'right',
+    placement: "right",
     overlayContent: (
       <>
         <h3>방문목욕</h3>
         <p>목욕 시설을 갖춘 차량, 혹은 가정 내에서 목욕을 지원하는 서비스입니다.</p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=재가노인복지시설&detailCtg=방문목욕',
+    shortcutItem: {
+      link: "/search?facCtg=재가노인복지시설&detailCtg=방문목욕",
       content: (
         <>
           <img src="/img/bath.png" alt="visiting-bath" />
@@ -132,15 +133,15 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'right',
+    placement: "right",
     overlayContent: (
       <>
         <h3>주야간보호</h3>
         <p>주간 또는 야간 일정시간 어르신을 보호하며 신체활동 및 심신기능을 지원하는 서비스입니다.</p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=재가노인복지시설&detailCtg=주야간보호',
+    shortcutItem: {
+      link: "/search?facCtg=재가노인복지시설&detailCtg=주야간보호",
       content: (
         <>
           <img src="/img/protect-day.png" alt="all-day-protection" />
@@ -150,7 +151,7 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'right',
+    placement: "right",
     overlayContent: (
       <>
         <h3>단기보호</h3>
@@ -160,8 +161,8 @@ export const ShortCutItems: ShortCutItemType[] = [
         </p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=재가노인복지시설&detailCtg=단기보호',
+    shortcutItem: {
+      link: "/search?facCtg=재가노인복지시설&detailCtg=단기보호",
       content: (
         <>
           <img src="/img/short-term-protection.png" alt="short-term-protection" />
@@ -171,7 +172,7 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'left',
+    placement: "left",
     overlayContent: (
       <>
         <h3>재가노인지원서비스</h3>
@@ -181,8 +182,8 @@ export const ShortCutItems: ShortCutItemType[] = [
         </p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=재가노인복지시설&detailCtg=재가노인지원서비스',
+    shortcutItem: {
+      link: "/search?facCtg=재가노인복지시설&detailCtg=재가노인지원서비스",
       content: (
         <>
           <img src="/img/home-support-service.png" alt="home-support-service" />
@@ -192,7 +193,7 @@ export const ShortCutItems: ShortCutItemType[] = [
     },
   },
   {
-    placement: 'left',
+    placement: "left",
     overlayContent: (
       <>
         <h3>복지용구</h3>
@@ -202,8 +203,8 @@ export const ShortCutItems: ShortCutItemType[] = [
         </p>
       </>
     ),
-    sortcutItem: {
-      link: '/search?facCtg=재가노인복지시설&detailCtg=복지용구',
+    shortcutItem: {
+      link: "/search?facCtg=재가노인복지시설&detailCtg=복지용구",
       content: (
         <>
           <img src="/img/wheelchair.png" alt="wheelchair" />
@@ -212,4 +213,4 @@ export const ShortCutItems: ShortCutItemType[] = [
       ),
     },
   },
-]
+];

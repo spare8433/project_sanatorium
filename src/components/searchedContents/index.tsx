@@ -1,18 +1,15 @@
-import { useState } from 'react'
-import styled, { css } from 'styled-components'
-import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
-import { Pagination } from 'react-bootstrap'
-import DetailInfoModal from '@components/detailInfoModal'
-import useSwitch from '@hooks/useSwitch'
-import { APIResponse } from '@api/type'
-import SearchedItems from './searchedItems'
-import usePaginationQuery from '@hooks/usePaginationQuery'
-import { SearchQueryType } from 'types/searchState'
-import PaginationItems from './paginationItems'
+import { useState } from "react";
+import styled, { css } from "styled-components";
+import { Pagination } from "react-bootstrap";
+import DetailInfoModal from "@components/detailInfoModal";
+import useSwitch from "@hooks/useSwitch";
+import SearchedItems from "./searchedItems";
+import usePaginationQuery from "@hooks/usePaginationQuery";
+import PaginationItems from "./paginationItems";
 
 const Cotanior = styled.div`
   margin: 3rem 0;
-`
+`;
 
 const FacilityGridBox = styled.main`
   display: grid;
@@ -24,7 +21,7 @@ const FacilityGridBox = styled.main`
   @media ${({ theme }) => theme.device.tablet} {
     grid-template-columns: repeat(1, 1fr);
   }
-`
+`;
 
 const PaginationContainor = styled(Pagination)`
   display: flex;
@@ -42,31 +39,31 @@ const PaginationContainor = styled(Pagination)`
       border-color: ${theme.colors.main};
     `};
   }
-`
+`;
 
-type DetailDataType = HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData
+type DetailDataType = HospitalDetailData | SanatoriumDetailData | ServiceFacilityDetailData;
 
 interface Props {
-  data: APIResponse<HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData>
-  showItemsCount: number
-  querys: SearchQueryType
+  data: APIResponse<HospitalDetailData | SanatoriumDetailData | ServiceFacilityDetailData>;
+  showItemsCount: number;
+  querys: SearchQueryType;
 }
 
 const SearchedContents = ({ data, showItemsCount, querys }: Props) => {
-  const getPaginationQuery = usePaginationQuery()
-  const { totalCount, dataArr } = data
-  const { queryFacCtg, queryPageNum } = querys
-  const [isModalOn, turnOn, turnOff] = useSwitch(false)
-  const [detailData, setDetailData] = useState<DetailDataType | null>(null)
+  const getPaginationQuery = usePaginationQuery();
+  const { totalCount, dataArr } = data;
+  const { queryFacCtg, queryPageNum } = querys;
+  const [isModalOn, turnOn, turnOff] = useSwitch(false);
+  const [detailData, setDetailData] = useState<DetailDataType | null>(null);
 
   /** 화면에 노출 되는 콘텐츠 갯수 */
-  const SHOW_MAX_PAGINATION_COUNT = 8
-  const lastIndex = Math.ceil(totalCount / showItemsCount)
+  const SHOW_MAX_PAGINATION_COUNT = 8;
+  const lastIndex = Math.ceil(totalCount / showItemsCount);
 
   const showModal = (item: DetailDataType) => {
-    setDetailData(item)
-    turnOn()
-  }
+    setDetailData(item);
+    turnOn();
+  };
 
   return (
     <Cotanior>
@@ -89,7 +86,7 @@ const SearchedContents = ({ data, showItemsCount, querys }: Props) => {
         )}
       </PaginationContainor>
     </Cotanior>
-  )
-}
+  );
+};
 
-export default SearchedContents
+export default SearchedContents;

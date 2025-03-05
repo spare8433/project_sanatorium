@@ -1,12 +1,4 @@
-interface ConvertedScore {
-  physicalPart: { [index: number]: number }
-  recognPart: { [index: number]: number }
-  behaviorPart: { [index: number]: number }
-  nursingPart: { [index: number]: number }
-  rehabPart: { [index: number]: number }
-}
-
-export const ConvertedScore: ConvertedScore = {
+export const CONVERTED_SCORE: ConvertedScore = {
   /** 신체기능 영역 환산점수 */
   physicalPart: {
     12: 0.0,
@@ -36,7 +28,7 @@ export const ConvertedScore: ConvertedScore = {
     36: 100.0,
   },
   /** 인지기능 영역 환산점수 */
-  recognPart: {
+  recognitionPart: {
     0: 0.0,
     1: 19.71,
     2: 33.81,
@@ -101,4 +93,4 @@ export const ConvertedScore: ConvertedScore = {
     29: 89.57,
     30: 100.0,
   },
-}
+};

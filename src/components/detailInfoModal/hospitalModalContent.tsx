@@ -1,11 +1,10 @@
-import { HospitalDetailData } from 'types/apiData'
-import { Container, Row, Col } from 'react-bootstrap'
-import { memo } from 'react'
-import MapContainor from '@util/location'
-import { MapWrapBox } from './modal.style'
+import { Container, Row, Col } from "react-bootstrap";
+import { memo } from "react";
+import MapContainor from "@util/location";
+import { MapWrapBox } from "./modal.style";
 
 interface Props {
-  data: HospitalDetailData
+  data: HospitalDetailData;
 }
 
 const HospitalModalContent = ({ data }: Props) => {
@@ -45,7 +44,7 @@ const HospitalModalContent = ({ data }: Props) => {
         </MapWrapBox>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default memo(HospitalModalContent)
+export default memo(HospitalModalContent);

@@ -1,28 +1,27 @@
-import { KeyboardEventHandler, memo } from 'react'
-import { SearchContainor, SearchFormBox, SearchInputBox } from './style'
-import { useNavigate } from 'react-router-dom'
-import { Form } from 'react-bootstrap'
-import useSearchQuery from '@hooks/useSearchQuery'
-import { SearchStatesType } from 'types/searchState'
+import { KeyboardEventHandler, memo } from "react";
+import { SearchContainor, SearchFormBox, SearchInputBox } from "./style";
+import { useNavigate } from "react-router-dom";
+import { Form } from "react-bootstrap";
+import useSearchQuery from "@hooks/useSearchQuery";
 
 interface Props {
-  states: SearchStatesType
-  changeSearchText: (e: React.ChangeEvent) => void
+  states: SearchStatesType;
+  changeSearchText: (e: React.ChangeEvent) => void;
 }
 
 const SearchBox = ({ states, changeSearchText }: Props) => {
-  const navigate = useNavigate()
-  const getSearchQuery = useSearchQuery()
-  const { searchText } = states
+  const navigate = useNavigate();
+  const getSearchQuery = useSearchQuery();
+  const { searchText } = states;
 
   const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       navigate({
         pathname: `/search`,
         search: getSearchQuery(states),
-      })
+      });
     }
-  }
+  };
 
   return (
     <SearchContainor>
@@ -44,7 +43,7 @@ const SearchBox = ({ states, changeSearchText }: Props) => {
         </Form>
       </SearchFormBox>
     </SearchContainor>
-  )
-}
+  );
+};
 
-export default memo(SearchBox)
+export default memo(SearchBox);

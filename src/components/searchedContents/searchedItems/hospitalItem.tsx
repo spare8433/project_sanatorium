@@ -1,13 +1,12 @@
-import { HospitalDetailData } from 'types/apiData'
-import styled from 'styled-components'
-import { ItemStyle } from './searchedItem.style'
-import { memo } from 'react'
+import styled from "styled-components";
+import { ItemStyle } from "./searchedItem.style";
+import { memo } from "react";
 
-const ItemContainor = styled(ItemStyle)``
+const ItemContainor = styled(ItemStyle)``;
 
 interface Props {
-  item: HospitalDetailData
-  showFn: (item: HospitalDetailData) => void
+  item: HospitalDetailData;
+  showFn: (item: HospitalDetailData) => void;
 }
 
 const HospitalItem = ({ item, showFn }: Props) => {
@@ -24,7 +23,7 @@ const HospitalItem = ({ item, showFn }: Props) => {
         <b>등급</b> {item.GRAD}
       </li>
     </ItemContainor>
-  )
-}
+  );
+};
 
-export default memo(HospitalItem)
+export default memo(HospitalItem);

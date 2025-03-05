@@ -1,13 +1,12 @@
-import { SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
-import styled from 'styled-components'
-import { ItemStyle } from './searchedItem.style'
-import { memo } from 'react'
+import styled from "styled-components";
+import { ItemStyle } from "./searchedItem.style";
+import { memo } from "react";
 
-const ItemContainor = styled(ItemStyle)``
+const ItemContainor = styled(ItemStyle)``;
 
 interface Props {
-  item: SanatoriumDetailData | WelfareServiceDetailData
-  showFn: (item: SanatoriumDetailData | WelfareServiceDetailData) => void
+  item: SanatoriumDetailData | ServiceFacilityDetailData;
+  showFn: (item: SanatoriumDetailData | ServiceFacilityDetailData) => void;
 }
 
 const SanatoriumItem = ({ item, showFn }: Props) => {
@@ -24,7 +23,7 @@ const SanatoriumItem = ({ item, showFn }: Props) => {
         <b>설립일자</b> {item.FACLT_INSTL_DETAIL_DE}
       </li>
     </ItemContainor>
-  )
-}
+  );
+};
 
-export default memo(SanatoriumItem)
+export default memo(SanatoriumItem);

@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Containor = styled.div`
   width: 100%;
-`
+`;
 
 export const SearchContainor = styled.div`
   max-width: 1024px;
@@ -15,13 +15,13 @@ export const SearchContainor = styled.div`
     background-color: ${({ theme }) => theme.colors.main};
     color: #fff;
     font-size: 1.8rem;
-    font-family: 'NotoSansKR_r';
+    font-family: "NotoSansKR_r";
     border-top-left-radius: calc(1rem - 1px);
     border-top-right-radius: calc(1rem - 1px);
   }
   .modal-body {
     font-size: 1.8rem;
-    font-family: 'NotoSansKR_r';
+    font-family: "NotoSansKR_r";
     padding-top: 2rem;
   }
   .btn-outline-secondary {
@@ -30,6 +30,6 @@ export const SearchContainor = styled.div`
     font-size: 1.4rem;
     font-weight: 600;
   }
-`
+`;
 
-export const ContentBox = styled.div``
+export const ContentBox = styled.div``;

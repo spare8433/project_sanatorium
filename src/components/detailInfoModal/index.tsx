@@ -1,30 +1,29 @@
-import { Modal, Button } from 'react-bootstrap'
-import HospitalModalContent from './hospitalModalContent'
-import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
-import SanatoriumModalContent from './sanatoriumModalContent'
-import { memo } from 'react'
-import { ModalContainor } from './modal.style'
+import { Modal, Button } from "react-bootstrap";
+import HospitalModalContent from "./hospitalModalContent";
+import SanatoriumModalContent from "./sanatoriumModalContent";
+import { memo } from "react";
+import { ModalContainor } from "./modal.style";
 
 interface Props {
-  closeFn: () => void
-  queryFacCtg: string | null
-  show: boolean
-  data: HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData | null
+  closeFn: () => void;
+  queryFacCtg: string | null;
+  show: boolean;
+  data: HospitalDetailData | SanatoriumDetailData | ServiceFacilityDetailData | null;
 }
 
 const DetailInfoModal = ({ closeFn, show, data, queryFacCtg }: Props) => {
   const renderModalContent = () => {
     switch (queryFacCtg) {
-      case '요양병원':
-        return <HospitalModalContent data={data as HospitalDetailData} />
-      case '요양시설':
-        return <SanatoriumModalContent data={data as SanatoriumDetailData} />
-      case '재가노인복지시설':
-        return <SanatoriumModalContent data={data as WelfareServiceDetailData} />
+      case "요양병원":
+        return <HospitalModalContent data={data as HospitalDetailData} />;
+      case "요양시설":
+        return <SanatoriumModalContent data={data as SanatoriumDetailData} />;
+      case "재가노인복지시설":
+        return <SanatoriumModalContent data={data as ServiceFacilityDetailData} />;
       default:
-        return <>데이터가 없습니다</>
+        return <>데이터가 없습니다</>;
     }
-  }
+  };
 
   return (
     <ModalContainor show={show} onHide={closeFn} backdrop="static" keyboard={false} centered={true} size="lg">
@@ -42,7 +41,7 @@ const DetailInfoModal = ({ closeFn, show, data, queryFacCtg }: Props) => {
         </div>
       </Modal.Footer>
     </ModalContainor>
-  )
-}
+  );
+};
 
-export default memo(DetailInfoModal)
+export default memo(DetailInfoModal);

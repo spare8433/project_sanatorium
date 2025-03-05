@@ -29,6 +29,7 @@
       "@assets/*": ["./assets/*"],
       "@styles/*": ["./styles/*"],
       "@context/*": ["./context/*"],
+      "@constants/*": ["./constants/*"],
       "@util/*": ["./util/*"]
     }
   },

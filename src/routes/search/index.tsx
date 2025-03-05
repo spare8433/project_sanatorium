@@ -1,49 +1,43 @@
-import { useCallback, useState } from 'react'
-import { getHospitalAPI, getSanatoriumAPI, getWelfareServiceAPI } from '@api/openAPI'
-import { useQuery } from '@tanstack/react-query'
-import SearchedContents from '@components/searchedContents'
-import {
-  DetailCtgType,
-  FacilityCategory,
-  FacilityType,
-  HosGradeList,
-  HosGradeListType,
-  ProfitCategory,
-  ProfitType,
-  SntFacCategory,
-  WfSFacCategory,
-} from '@assets/staticData/facilityType'
-import { APIResponse } from '@api/type'
-import { HospitalDetailData, SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
-import MainSearchForm from '@components/mainSearchForm'
-import useInput from '@hooks/useInput'
-import useCheckQuery from '@hooks/useCheckQuery'
-import { Containor, ContentBox, SearchContainor } from './style'
-import { FullSearchStatesType, SearchChangeFnsType, SearchQueryType } from 'types/searchState'
-import PlaceHolder from '@components/searchedContents/placeHolder'
+import { useCallback, useState } from "react";
+import { getHospitalAPI, getSanatoriumAPI, getWelfareServiceAPI } from "@api/openAPI";
+import { useQuery } from "@tanstack/react-query";
+import SearchedContents from "@components/searchedContents";
+import MainSearchForm from "@components/mainSearchForm";
+import useInput from "@hooks/useInput";
+import useCheckQuery from "@hooks/useCheckQuery";
+import { Containor, ContentBox, SearchContainor } from "./style";
 
-type DetailDataType = HospitalDetailData | SanatoriumDetailData | WelfareServiceDetailData
+import PlaceHolder from "@components/searchedContents/placeHolder";
+import {
+  FACILITY_CATEGORIES,
+  HOSPITAL_GRADES,
+  PROFIT_CATEGORIES,
+  SANATORIUM_CATEGORIES,
+  SERVICE_FACILITY_CATEGORIES,
+} from "@constants/facility";
+
+type DetailDataType = HospitalDetailData | SanatoriumDetailData | ServiceFacilityDetailData;
 
 const Search = () => {
-  const querySearchText = useCheckQuery<string>('searchText', '')
-  const queryFacCtg = useCheckQuery<FacilityType>('facCtg', '요양시설', FacilityCategory)
-  const queryDetailCtg = useCheckQuery<DetailCtgType | '전체'>('detailCtg', '전체', [
-    ...SntFacCategory,
-    ...WfSFacCategory,
-  ])
-  const queryProfit = useCheckQuery<ProfitType | '전체'>('profit', '전체', ProfitCategory)
-  const queryGrade = useCheckQuery<HosGradeListType | '전체'>('grade', '전체', HosGradeList)
-  const queryCity = useCheckQuery<string>('city', '전체')
-  const queryPageNum = parseInt(useCheckQuery<string>('p', '1'))
+  const querySearchText = useCheckQuery<string>("searchText", "");
+  const queryFacCtg = useCheckQuery<FacilityType>("facCtg", "요양시설", FACILITY_CATEGORIES);
+  const queryDetailCtg = useCheckQuery<DetailFacilityCategory | "전체">("detailCtg", "전체", [
+    ...SANATORIUM_CATEGORIES,
+    ...SERVICE_FACILITY_CATEGORIES,
+  ]);
+  const queryProfit = useCheckQuery<ProfitType | "전체">("profit", "전체", PROFIT_CATEGORIES);
+  const queryGrade = useCheckQuery<HospitalGrade | "전체">("grade", "전체", HOSPITAL_GRADES);
+  const queryCity = useCheckQuery<string>("city", "전체");
+  const queryPageNum = parseInt(useCheckQuery<string>("p", "1"));
 
-  const [searchText, changeSearchText] = useInput(querySearchText)
+  const [searchText, changeSearchText] = useInput(querySearchText);
   // const [province, changeProvince, setProvince] = useInput('경기도')
-  const [facCtg, changeFacCtg] = useInput<FacilityType>(queryFacCtg)
-  const [city, changeCity] = useInput<string | '전체'>(queryCity)
-  const [detailCtg, changeDetailCtg] = useInput<DetailCtgType | '전체'>(queryDetailCtg)
-  const [profit, changeProfit] = useInput<ProfitType | '전체'>(queryProfit)
-  const [grade, changeGrade] = useInput<HosGradeListType | '전체'>(queryGrade)
-  const [pageNum] = useState(queryPageNum)
+  const [facCtg, changeFacCtg] = useInput<FacilityType>(queryFacCtg);
+  const [city, changeCity] = useInput<string | "전체">(queryCity);
+  const [detailCtg, changeDetailCtg] = useInput<DetailFacilityCategory | "전체">(queryDetailCtg);
+  const [profit, changeProfit] = useInput<ProfitType | "전체">(queryProfit);
+  const [grade, changeGrade] = useInput<HospitalGrade | "전체">(queryGrade);
+  const [pageNum] = useState(queryPageNum);
 
   const querys: SearchQueryType = {
     querySearchText,
@@ -53,7 +47,7 @@ const Search = () => {
     queryGrade,
     queryCity,
     queryPageNum,
-  }
+  };
 
   const states: FullSearchStatesType = {
     searchText,
@@ -63,7 +57,7 @@ const Search = () => {
     profit,
     grade,
     pageNum,
-  }
+  };
 
   const changeFns: SearchChangeFnsType = {
     changeSearchText,
@@ -72,10 +66,10 @@ const Search = () => {
     changeDetailCtg,
     changeProfit,
     changeGrade,
-  }
+  };
 
   /** 화면에 노출 되는 콘텐츠 갯수 */
-  const SHOW_ITEMS_COUNT = 12
+  const SHOW_ITEMS_COUNT = 12;
 
   const fetchAPI = useCallback(
     (page: number): Promise<APIResponse<DetailDataType>> => {
@@ -87,7 +81,7 @@ const Search = () => {
         notiCount: SHOW_ITEMS_COUNT,
         detailCategory: detailCtg,
         profit,
-      }
+      };
 
       // 병원용 API param obj
       const hosParamObj = {
@@ -96,27 +90,27 @@ const Search = () => {
         page,
         notiCount: SHOW_ITEMS_COUNT,
         grade,
-      }
+      };
 
       switch (facCtg) {
-        case '요양병원':
-          return getHospitalAPI(hosParamObj)
-        case '요양시설':
-          return getSanatoriumAPI(paramObj)
-        case '재가노인복지시설':
-          return getWelfareServiceAPI(paramObj)
+        case "요양병원":
+          return getHospitalAPI(hosParamObj);
+        case "요양시설":
+          return getSanatoriumAPI(paramObj);
+        case "재가노인복지시설":
+          return getWelfareServiceAPI(paramObj);
         default:
-          throw Error
+          throw Error;
       }
     },
-    [facCtg, city, searchText, SHOW_ITEMS_COUNT, detailCtg, profit, grade],
-  )
+    [facCtg, city, searchText, SHOW_ITEMS_COUNT, detailCtg, profit, grade]
+  );
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['searchedData', window.location.search, pageNum],
+    queryKey: ["searchedData", window.location.search, pageNum],
     staleTime: 60 * 1000,
     queryFn: () => fetchAPI(pageNum),
-  })
+  });
 
   return (
     <Containor>
@@ -129,7 +123,7 @@ const Search = () => {
         </ContentBox>
       </SearchContainor>
     </Containor>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

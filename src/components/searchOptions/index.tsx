@@ -1,30 +1,29 @@
+import { FormEventHandler } from "react";
+import { ButtonBox, Containor, SearchOptionList } from "./style";
+import { Button, Form } from "react-bootstrap";
+import { CITY_NAMES } from "@constants/city";
+import useSearchQuery from "@hooks/useSearchQuery";
 import {
-  FacilityCategory,
-  HosGradeList,
-  SntFacCategory,
-  WfSFacCategory,
-} from '@assets/staticData/facilityType'
-import { FormEventHandler } from 'react'
-import { ButtonBox, Containor, SearchOptionList } from './style'
-import { Button, Form } from 'react-bootstrap'
-import { CityList } from '@assets/staticData/cityList'
-import { FullSearchStatesType, SearchChangeFnsType } from 'types/searchState'
-import useSearchQuery from '@hooks/useSearchQuery'
+  FACILITY_CATEGORIES,
+  HOSPITAL_GRADES,
+  SANATORIUM_CATEGORIES,
+  SERVICE_FACILITY_CATEGORIES,
+} from "@constants/facility";
 
 interface Props {
-  states: FullSearchStatesType
-  changeFns: SearchChangeFnsType
+  states: FullSearchStatesType;
+  changeFns: SearchChangeFnsType;
 }
 
 const SearchOptions = ({ states, changeFns }: Props) => {
-  const getSearchQuery = useSearchQuery()
-  const { facCtg, city, detailCtg, profit, grade } = states
-  const { changeFacCtg, changeCity, changeDetailCtg, changeProfit, changeGrade } = changeFns
+  const getSearchQuery = useSearchQuery();
+  const { facCtg, city, detailCtg, profit, grade } = states;
+  const { changeFacCtg, changeCity, changeDetailCtg, changeProfit, changeGrade } = changeFns;
 
   const submitSearchOption: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault()
-    location.href = getSearchQuery(states)
-  }
+    e.preventDefault();
+    location.href = getSearchQuery(states);
+  };
 
   return (
     <Containor>
@@ -47,7 +46,7 @@ const SearchOptions = ({ states, changeFns }: Props) => {
           <span>
             <strong>시설 분류</strong>
             <Form.Select onChange={changeFacCtg} value={facCtg}>
-              {FacilityCategory.map((ctg) => (
+              {FACILITY_CATEGORIES.map((ctg) => (
                 <option key={`facilityCategory-${ctg}`} value={ctg}>
                   {ctg}
                 </option>
@@ -59,7 +58,7 @@ const SearchOptions = ({ states, changeFns }: Props) => {
             <strong>시 · 군</strong>
             <Form.Select onChange={changeCity} value={city}>
               <option value="전체">전체</option>
-              {CityList.map((city) => (
+              {CITY_NAMES.map((city) => (
                 <option key={`cityList-${city}`} value={city}>
                   {city}
                 </option>
@@ -67,12 +66,12 @@ const SearchOptions = ({ states, changeFns }: Props) => {
             </Form.Select>
           </span>
 
-          {facCtg === '요양병원' && (
+          {facCtg === "요양병원" && (
             <span>
               <strong>등급</strong>
               <Form.Select onChange={changeGrade} value={grade}>
                 <option value="전체">전체</option>
-                {HosGradeList.map((grd) => (
+                {HOSPITAL_GRADES.map((grd) => (
                   <option key={`hosGradeList-${grd}`} value={grd}>
                     {grd}
                   </option>
@@ -82,12 +81,12 @@ const SearchOptions = ({ states, changeFns }: Props) => {
           )}
 
           {/* 요양시설의 상세카테고리  */}
-          {facCtg === '요양시설' && (
+          {facCtg === "요양시설" && (
             <span>
               <strong>상세 카테고리</strong>
               <Form.Select onChange={changeDetailCtg} value={detailCtg}>
                 <option value="전체">전체</option>
-                {SntFacCategory.map((ctg) => (
+                {SANATORIUM_CATEGORIES.map((ctg) => (
                   <option key={`sntFacCategory-${ctg}`} value={ctg}>
                     {ctg}
                   </option>
@@ -97,13 +96,13 @@ const SearchOptions = ({ states, changeFns }: Props) => {
           )}
 
           {/* 재가노인복지시설의 상세카테고리  */}
-          {facCtg === '재가노인복지시설' && (
+          {facCtg === "재가노인복지시설" && (
             <span>
               <strong>상세 분류</strong>
               <Form.Select onChange={changeDetailCtg} value={detailCtg}>
                 <option value="전체">전체</option>
-                {WfSFacCategory.map((ctg) => (
-                  <option key={`WfSFacCategory-${ctg}`} value={ctg}>
+                {SERVICE_FACILITY_CATEGORIES.map((ctg) => (
+                  <option key={`SERVICE_FACILITY_CATEGORIES-${ctg}`} value={ctg}>
                     {ctg}
                   </option>
                 ))}
@@ -112,7 +111,7 @@ const SearchOptions = ({ states, changeFns }: Props) => {
           )}
 
           {/* 요양병원 제외 재가노인복지시설과 요양시설인경우 추가되는 영리 여부 옵션  */}
-          {facCtg !== '요양병원' && (
+          {facCtg !== "요양병원" && (
             <span>
               <strong>영리 여부</strong>
               <Form.Select onChange={changeProfit} value={profit}>
@@ -132,7 +131,7 @@ const SearchOptions = ({ states, changeFns }: Props) => {
         </ButtonBox>
       </Form>
     </Containor>
-  )
-}
+  );
+};
 
-export default SearchOptions
+export default SearchOptions;

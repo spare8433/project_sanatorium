@@ -1,4 +1,4 @@
-import { BEHAVIOR_ANSWERS, BEHAVIOR_QUESTIONS } from "@constants/careGradeQuestions";
+import { RECOGNITION_ANSWERS, RECOGNITION_QUESTIONS } from "@constants/careGradeQuestions";
 import CareGradeContext from "@context/careGradeContext";
 import useInput from "@hooks/useInput";
 import {
@@ -11,15 +11,17 @@ import {
 } from "@routes/careGrade/style";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-const CareGradeBehavior = () => {
+const CareGradeRecognition = () => {
+  const navigate = useNavigate();
   const { states, setStates, updateFns } = useContext(CareGradeContext);
-  const { behaviorScore } = states;
+  const { recognitionScore } = states;
   const { setMode } = setStates;
-  const { updateBehaviorScore } = updateFns;
+  const { updateRecognitionScore } = updateFns;
 
-  const scoreValueArr = useMemo(() => Object.values(behaviorScore), [behaviorScore]);
-  const scoreKeyArr = useMemo(() => Object.keys(behaviorScore), [behaviorScore]);
+  const scoreValueArr = useMemo(() => Object.values(recognitionScore), [recognitionScore]);
+  const scoreKeyArr = useMemo(() => Object.keys(recognitionScore), [recognitionScore]);
 
   const [current, setCurrent] = useState(scoreValueArr.indexOf(-1) + 1 || scoreValueArr.length);
   const [answerScore, changeAnswerScore, setAnswerScore] = useInput(scoreValueArr[current - 1]);
@@ -28,12 +30,12 @@ const CareGradeBehavior = () => {
   const handleNextQuestion = useCallback(() => {
     // 최대면 리스트로 넘어가거나 다음 항목으로 넘어감
     if (current >= scoreValueArr.length) {
-      if (confirm("간호처치 항목으로 넘어가시겠습니까? 취소시 평가항목 선택 화면으로 돌아갑니다.")) setMode("nursing");
+      if (confirm("행동변화 항목으로 넘어가시겠습니까? 취소시 평가항목 선택 화면으로 돌아갑니다.")) setMode("behavior");
       else {
         setMode("list");
       }
     } else {
-      updateBehaviorScore(scoreKeyArr[current - 1], answerScore);
+      updateRecognitionScore(scoreKeyArr[current - 1], answerScore);
       setCurrent((prev) => prev + 1);
       setAnswerScore(scoreValueArr[current]);
     }
@@ -53,7 +55,7 @@ const CareGradeBehavior = () => {
   }, [current, scoreValueArr]);
 
   const AnswerItems = () => {
-    return BEHAVIOR_ANSWERS.map(({ answer, score }, key) => (
+    return RECOGNITION_ANSWERS.map(({ answer, score }, key) => (
       <AnswerRadioItem className={answerScore == score ? "checked" : ""} key={`${answer}_${key}`}>
         <label>
           <input type="radio" value={score} name="radioGroup" onChange={changeAnswerScore} />
@@ -65,16 +67,16 @@ const CareGradeBehavior = () => {
 
   return (
     <ModalContainor show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onClick={() => confirm("현재 화면에서 나가 홈으로 돌아가시겠습니까?") && navigate("/")}>
         <span className="left"></span>
         <Modal.Title>
-          <h1>행동변화 영역 테스트</h1>
+          <h1>인지기능 영역 테스트</h1>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <QuestionBox>
           <ProgressLine>{`${current}/${scoreValueArr.length}`}</ProgressLine>
-          <h2>{BEHAVIOR_QUESTIONS[current - 1].question}</h2>
+          <h2>{RECOGNITION_QUESTIONS[current - 1].question}</h2>
           <AnwserList>
             <AnswerItems />
           </AnwserList>
@@ -94,4 +96,4 @@ const CareGradeBehavior = () => {
   );
 };
 
-export default CareGradeBehavior;
+export default CareGradeRecognition;

@@ -1,6 +1,6 @@
-import HeaderSearchBox from '@components/searchBox/headerSearchBox'
-import useSwitch from '@hooks/useSwitch'
-import HeaderSearchOptions from '@components/headerSearchOptions'
+import HeaderSearchBox from "@components/searchBox/headerSearchBox";
+import useSwitch from "@hooks/useSwitch";
+import HeaderSearchOptions from "@components/headerSearchOptions";
 import {
   BackGround,
   HeaderBox,
@@ -10,21 +10,19 @@ import {
   SearchOptionBox,
   SearchOptionContainor,
   WrapHeaderBox,
-} from './style'
-import useInput from '@hooks/useInput'
-import { DetailCtgType, FacilityType, HosGradeListType, ProfitType } from '@assets/staticData/facilityType'
-import { SearchChangeFnsType, SearchStatesType } from 'types/searchState'
+} from "./style";
+import useInput from "@hooks/useInput";
 
 const Header = () => {
-  const [searchText, changeSearchText] = useInput('')
+  const [searchText, changeSearchText] = useInput("");
   // const [province, changeProvince, setProvince] = useInput('경기도')
-  const [facCtg, changeFacCtg] = useInput<FacilityType>('요양병원')
-  const [city, changeCity] = useInput('전체')
-  const [detailCtg, changeDetailCtg] = useInput<DetailCtgType | '전체'>('전체')
-  const [profit, changeProfit] = useInput<ProfitType | '전체'>('전체')
-  const [grade, changeGrade] = useInput<HosGradeListType | '전체'>('전체')
+  const [facCtg, changeFacCtg] = useInput<FacilityType>("요양병원");
+  const [city, changeCity] = useInput("전체");
+  const [detailCtg, changeDetailCtg] = useInput<DetailFacilityCategory | "전체">("전체");
+  const [profit, changeProfit] = useInput<ProfitType | "전체">("전체");
+  const [grade, changeGrade] = useInput<HospitalGrade | "전체">("전체");
 
-  const [isOnSearchOptions, turnOnSearchOptions, turnOffSearchOptions] = useSwitch(false)
+  const [isOnSearchOptions, turnOnSearchOptions, turnOffSearchOptions] = useSwitch(false);
 
   const states: SearchStatesType = {
     searchText,
@@ -33,7 +31,7 @@ const Header = () => {
     detailCtg,
     profit,
     grade,
-  }
+  };
 
   const changeFns: SearchChangeFnsType = {
     changeSearchText,
@@ -42,7 +40,7 @@ const Header = () => {
     changeDetailCtg,
     changeProfit,
     changeGrade,
-  }
+  };
 
   return (
     <HeaderContainor>
@@ -71,7 +69,7 @@ const Header = () => {
 
       {isOnSearchOptions && <BackGround onClick={turnOffSearchOptions} />}
     </HeaderContainor>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

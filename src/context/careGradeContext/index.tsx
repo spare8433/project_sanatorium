@@ -1,20 +1,49 @@
-import useObjectState from '@hooks/useObjectState'
-import { createContext, useState } from 'react'
+import useObjectState from "@hooks/useObjectState";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import {
-  PhysicalInitObj,
+  PHYSICAL_INIT_STATE,
   BehaviorInitObj,
   NursingInitObj,
-  RecognInitObj,
+  RECOGNITION_INIT_STATE,
   RehabExerciseInitObj,
   RehabJointInitObj,
-} from '@assets/staticData/careGradeInitData'
-import { ContextType, ModeType } from './type'
+} from "@constants/careGradeInitData";
+
+interface ContextType {
+  states: {
+    mode: CareGradeModeType;
+    physicalScore: PhysicalScoreObjType;
+    recognitionScore: RecognitionScoreObjType;
+    behaviorScore: BehaviorScoreObjType;
+    nursingScore: NursingScoreObjType;
+    rehabExerciseScore: RehabExerciseScoreObjType;
+    rehabJointScore: RehabJointScoreObjType;
+  };
+  setStates: {
+    setMode: Dispatch<SetStateAction<CareGradeModeType>>;
+    setPhysicalScore: Dispatch<SetStateAction<PhysicalScoreObjType>>;
+    setRecognitionScore: Dispatch<SetStateAction<RecognitionScoreObjType>>;
+    setBehaviorScore: Dispatch<SetStateAction<BehaviorScoreObjType>>;
+    setNursingScore: Dispatch<SetStateAction<NursingScoreObjType>>;
+    setRehabExerciseScore: Dispatch<SetStateAction<RehabExerciseScoreObjType>>;
+    setRehabJointScore: Dispatch<SetStateAction<RehabJointScoreObjType>>;
+  };
+  updateFns: {
+    updatePhysicalScore: (key: string, value: any) => void;
+    updateRecognitionScore: (key: string, value: any) => void;
+    updateBehaviorScore: (key: string, value: any) => void;
+    updateNursingScore: (key: string, value: any) => void;
+    updateRehabExerciseScore: (key: string, value: any) => void;
+    updateRehabJointScore: (key: string, value: any) => void;
+  };
+  resetContext: () => void;
+}
 
 const CareGradeContext = createContext<ContextType>({
   states: {
-    mode: 'home',
-    physicalScore: PhysicalInitObj,
-    recognScore: RecognInitObj,
+    mode: "home",
+    physicalScore: PHYSICAL_INIT_STATE,
+    recognitionScore: RECOGNITION_INIT_STATE,
     behaviorScore: BehaviorInitObj,
     nursingScore: NursingInitObj,
     rehabExerciseScore: RehabExerciseInitObj,
@@ -23,7 +52,7 @@ const CareGradeContext = createContext<ContextType>({
   setStates: {
     setMode: () => {},
     setPhysicalScore: () => {},
-    setRecognScore: () => {},
+    setRecognitionScore: () => {},
     setBehaviorScore: () => {},
     setNursingScore: () => {},
     setRehabJointScore: () => {},
@@ -31,70 +60,70 @@ const CareGradeContext = createContext<ContextType>({
   },
   updateFns: {
     updatePhysicalScore: () => {},
-    updateRecognScore: () => {},
+    updateRecognitionScore: () => {},
     updateBehaviorScore: () => {},
     updateNursingScore: () => {},
     updateRehabExerciseScore: () => {},
     updateRehabJointScore: () => {},
   },
   resetContext: () => {},
-})
+});
 
 const CareGradeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [mode, setMode] = useState<ModeType>('home')
-  const [physicalScore, setPhysicalScore, updatePhysicalScore] = useObjectState(PhysicalInitObj)
-  const [recognScore, setRecognScore, updateRecognScore] = useObjectState(RecognInitObj)
-  const [behaviorScore, setBehaviorScore, updateBehaviorScore] = useObjectState(BehaviorInitObj)
-  const [nursingScore, setNursingScore, updateNursingScore] = useObjectState(NursingInitObj)
-  const [rehabExerciseScore, setRehabExerciseScore, updateRehabExerciseScore] = useObjectState(RehabExerciseInitObj)
-  const [rehabJointScore, setRehabJointScore, updateRehabJointScore] = useObjectState(RehabJointInitObj)
+  const [mode, setMode] = useState<CareGradeModeType>("home");
+  const [physicalScore, setPhysicalScore, updatePhysicalScore] = useObjectState(PHYSICAL_INIT_STATE);
+  const [recognitionScore, setRecognitionScore, updateRecognitionScore] = useObjectState(RECOGNITION_INIT_STATE);
+  const [behaviorScore, setBehaviorScore, updateBehaviorScore] = useObjectState(BehaviorInitObj);
+  const [nursingScore, setNursingScore, updateNursingScore] = useObjectState(NursingInitObj);
+  const [rehabExerciseScore, setRehabExerciseScore, updateRehabExerciseScore] = useObjectState(RehabExerciseInitObj);
+  const [rehabJointScore, setRehabJointScore, updateRehabJointScore] = useObjectState(RehabJointInitObj);
 
   const states = {
     mode,
     physicalScore,
-    recognScore,
+    recognitionScore,
     behaviorScore,
     nursingScore,
     rehabExerciseScore,
     rehabJointScore,
-  }
+  };
 
   const setStates = {
     setMode,
     setPhysicalScore,
-    setRecognScore,
+    setRecognitionScore,
     setBehaviorScore,
     setNursingScore,
     setRehabExerciseScore,
     setRehabJointScore,
-  }
+  };
 
   const updateFns = {
     updatePhysicalScore,
-    updateRecognScore,
+    updateRecognitionScore,
     updateBehaviorScore,
     updateNursingScore,
     updateRehabExerciseScore,
     updateRehabJointScore,
-  }
+  };
 
   const resetContext = () => {
-    setMode('home')
-    setPhysicalScore(PhysicalInitObj)
-    setRecognScore(RecognInitObj)
-    setBehaviorScore(BehaviorInitObj)
-    setNursingScore(NursingInitObj)
-    setRehabExerciseScore(RehabExerciseInitObj)
-    setRehabJointScore(RehabJointInitObj)
-  }
+    setMode("home");
+    setPhysicalScore(PHYSICAL_INIT_STATE);
+    setRecognitionScore(RECOGNITION_INIT_STATE);
+    setBehaviorScore(BehaviorInitObj);
+    setNursingScore(NursingInitObj);
+    setRehabExerciseScore(RehabExerciseInitObj);
+    setRehabJointScore(RehabJointInitObj);
+  };
 
   return (
     <CareGradeContext.Provider value={{ states, setStates, updateFns, resetContext }}>
       {children}
     </CareGradeContext.Provider>
-  )
-}
+  );
+};
 
-export { CareGradeProvider }
+export { CareGradeProvider };
 
-export default CareGradeContext
+export default CareGradeContext;

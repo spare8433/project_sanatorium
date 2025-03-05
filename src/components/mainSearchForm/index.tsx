@@ -1,6 +1,5 @@
-import SearchBox from '@components/searchBox'
-import SearchOptions from '@components/searchOptions'
-import { FullSearchStatesType, SearchChangeFnsType } from 'types/searchState'
+import SearchBox from "@components/searchBox";
+import SearchOptions from "@components/searchOptions";
 import {
   Containor,
   SearchFormBox,
@@ -9,15 +8,15 @@ import {
   TotalSearchContainor,
   WrapSearchBox,
   WrapTitleBox,
-} from './style'
+} from "./style";
 
 interface Props {
-  states: FullSearchStatesType
-  changeFns: SearchChangeFnsType
+  states: FullSearchStatesType;
+  changeFns: SearchChangeFnsType;
 }
 
 const MainSearchForm = ({ states, changeFns }: Props) => {
-  const { changeSearchText } = changeFns
+  const { changeSearchText } = changeFns;
   return (
     <Containor>
       <TotalSearchContainor>
@@ -39,7 +38,7 @@ const MainSearchForm = ({ states, changeFns }: Props) => {
         </SearchFormBox>
       </TotalSearchContainor>
     </Containor>
-  )
-}
+  );
+};
 
-export default MainSearchForm
+export default MainSearchForm;

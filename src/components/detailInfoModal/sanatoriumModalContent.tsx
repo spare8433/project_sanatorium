@@ -1,11 +1,10 @@
-import { SanatoriumDetailData, WelfareServiceDetailData } from 'types/apiData'
-import { Container, Row, Col } from 'react-bootstrap'
-import { memo } from 'react'
-import MapContainor from '@util/location'
-import { MapWrapBox } from './modal.style'
+import { Container, Row, Col } from "react-bootstrap";
+import { memo } from "react";
+import MapContainor from "@util/location";
+import { MapWrapBox } from "./modal.style";
 
 interface Props {
-  data: SanatoriumDetailData | WelfareServiceDetailData
+  data: SanatoriumDetailData | ServiceFacilityDetailData;
 }
 
 const SanatoriumModalContent = ({ data }: Props) => {
@@ -65,7 +64,7 @@ const SanatoriumModalContent = ({ data }: Props) => {
         </MapWrapBox>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default memo(SanatoriumModalContent)
+export default memo(SanatoriumModalContent);

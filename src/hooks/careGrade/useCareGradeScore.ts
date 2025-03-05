@@ -1,29 +1,27 @@
-import { ConvertedScore } from '@assets/staticData/convertedScore'
-import { CareGradeTotalScore } from 'types/careGradeTestScore'
+import { CONVERTED_SCORE } from "@constants/convertedScore";
 
 const useCareGradeScore = (ScoreObj: CareGradeTotalScore) => {
-  const { physicalPart, recognPart, behaviorPart, nursingPart, rehabExercisePart, rehabJointPart } =
-    ScoreObj
+  const { physicalPart, recognitionPart, behaviorPart, nursingPart, rehabExercisePart, rehabJointPart } = ScoreObj;
   const getTotalScore = (obj: object): number =>
-    Object.values(obj).reduce((prevValue, currentValue) => prevValue + currentValue)
+    Object.values(obj).reduce((prevValue, currentValue) => prevValue + currentValue);
 
   const totalScore = {
     physicalPart: getTotalScore(physicalPart),
-    recognPart: getTotalScore(recognPart),
+    recognitionPart: getTotalScore(recognitionPart),
     behaviorPart: getTotalScore(behaviorPart),
     nursingPart: getTotalScore(nursingPart),
     rehabPart: getTotalScore(rehabExercisePart) + getTotalScore(rehabJointPart),
-  }
+  };
 
   const convertedScore = {
-    physicalPart: ConvertedScore.physicalPart[totalScore.physicalPart],
-    recognPart: ConvertedScore.recognPart[totalScore.recognPart],
-    behaviorPart: ConvertedScore.behaviorPart[totalScore.behaviorPart],
-    nursingPart: ConvertedScore.nursingPart[totalScore.nursingPart],
-    rehabPart: ConvertedScore.rehabPart[totalScore.rehabPart],
-  }
+    physicalPart: CONVERTED_SCORE.physicalPart[totalScore.physicalPart],
+    recognitionPart: CONVERTED_SCORE.recognitionPart[totalScore.recognitionPart],
+    behaviorPart: CONVERTED_SCORE.behaviorPart[totalScore.behaviorPart],
+    nursingPart: CONVERTED_SCORE.nursingPart[totalScore.nursingPart],
+    rehabPart: CONVERTED_SCORE.rehabPart[totalScore.rehabPart],
+  };
 
-  return [totalScore, convertedScore]
-}
+  return [totalScore, convertedScore];
+};
 
-export default useCareGradeScore
+export default useCareGradeScore;
