@@ -1,4 +1,5 @@
 import { DefaultTheme } from "styled-components";
+
 import DeviceSizes from "./device";
 
 const colors = {

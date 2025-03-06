@@ -31,7 +31,7 @@ export const CITY_CODE = {
   포천시: 41650,
   하남시: 41450,
   화성시: 41590,
-};
+} as const;
 
 export const CITY_NAMES = [
   "가평군",
@@ -65,4 +65,4 @@ export const CITY_NAMES = [
   "포천시",
   "하남시",
   "화성시",
-];
+] as const;

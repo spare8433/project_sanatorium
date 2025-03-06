@@ -1,11 +1,12 @@
 import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import pluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import pluginReact from "eslint-plugin-react";
 import pluginReactHook from "eslint-plugin-react-hooks";
-import pluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import jsxA11y from "eslint-plugin-jsx-a11y";
 import unusedImports from "eslint-plugin-unused-imports";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -15,6 +16,7 @@ export default [
   ...tseslint.configs.recommended,
   {
     ...pluginReact.configs.flat.recommended,
+    settings: { react: { version: "19" } },
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
@@ -27,27 +29,30 @@ export default [
   {
     ...pluginPrettierRecommended,
     rules: {
-      "prettier/prettier": {
-        useTabs: false,
-        printWidth: 120,
-        tabWidth: 2,
-        singleQuote: false,
-        jsxSingleQuote: false,
-        semi: true,
-        bracketSpacing: true,
-        jsxBracketSameLine: false,
-        quoteProps: "as-needed",
-        trailingComma: "all",
-        arrowParens: "always",
-        proseWrap: "never",
-        endOfLine: "auto",
-      },
+      "prettier/prettier": [
+        "error",
+        {
+          useTabs: false,
+          printWidth: 120,
+          tabWidth: 2,
+          singleQuote: false,
+          jsxSingleQuote: false,
+          semi: true,
+          bracketSpacing: true,
+          jsxBracketSameLine: false,
+          quoteProps: "as-needed",
+          trailingComma: "all",
+          arrowParens: "always",
+          proseWrap: "never",
+          endOfLine: "auto",
+        },
+      ],
     },
   },
-  jsxA11y.configs.recommended,
+  jsxA11y.flatConfigs.recommended,
   {
     plugins: { "unused-imports": unusedImports },
-    rules: { "unused-imports/no-unused-imports-ts": "error" },
+    rules: { "unused-imports/no-unused-imports": "error" },
   },
   {
     plugins: { "simple-import-sort": simpleImportSort },

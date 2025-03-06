@@ -1,9 +1,9 @@
+import Bold from "@assets/font/NotoSansKR-Bold.woff2";
+import Light from "@assets/font/NotoSansKR-Light.woff2";
+import Regular from "@assets/font/NotoSansKR-Regular.woff2";
+import SemiBold from "@assets/font/NotoSansKR-SemiBold.woff2";
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import Bold from "@assets/font/NotoSansKR-Bold.woff2";
-import SemiBold from "@assets/font/NotoSansKR-SemiBold.woff2";
-import Regular from "@assets/font/NotoSansKR-Regular.woff2";
-import Light from "@assets/font/NotoSansKR-Light.woff2";
 
 const GlobalStyles = createGlobalStyle`
     ${normalize}

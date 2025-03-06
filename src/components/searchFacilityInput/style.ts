@@ -1,19 +1,10 @@
-import styled, { css } from 'styled-components'
-
-export const SearchContainor = styled.div``
-
-export const SearchFormBox = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-`
+import styled, { css } from "styled-components";
 
 export const SearchInputBox = styled.div`
-  flex: 1;
-  font-size: 1.8rem;
   background-color: white;
   height: auto;
   display: flex;
+  align-items: center;
   border-radius: 5rem;
   padding: 1rem 2rem;
   border: 1px solid #d7d7da;
@@ -30,15 +21,18 @@ export const SearchInputBox = styled.div`
     `};
   }
 
-  input[type='search'] {
+  .image {
+    display: flex;
+  }
+
+  input[type="search"] {
+    flex: 1;
     background-color: white;
-    width: 90%;
     margin: 0;
     margin-left: 1.5rem;
-    padding: 0%;
+    font-size: 1.6rem;
+    padding: 0;
     border: none !important;
     outline: none !important;
   }
-`
-
-export const OptionLine = styled.span``
+`;

@@ -1,8 +1,8 @@
-import { HeaderBox, HeaderContainor, LogoLink, WrapHeaderBox } from './style'
+import { HeaderBox, HeaderContainer, LogoLink, WrapHeaderBox } from "./style";
 
 const SearchHeader = () => {
   return (
-    <HeaderContainor>
+    <HeaderContainer>
       <WrapHeaderBox>
         <HeaderBox>
           <LogoLink to={`/`}>
@@ -10,8 +10,8 @@ const SearchHeader = () => {
           </LogoLink>
         </HeaderBox>
       </WrapHeaderBox>
-    </HeaderContainor>
-  )
-}
+    </HeaderContainer>
+  );
+};
 
-export default SearchHeader
+export default SearchHeader;
