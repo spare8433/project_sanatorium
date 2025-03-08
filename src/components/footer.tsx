@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const FooterContainor = styled.footer`
+const FooterContainer = styled.footer`
   width: 100%;
   border-top: 0.1rem solid #ebebeb;
-`
+`;
 
 const FooterBox = styled.div`
   height: 18rem;
@@ -13,31 +13,32 @@ const FooterBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 3rem 2rem 4rem;
-`
+`;
 
 const LogoLink = styled(Link)`
   height: fit-content;
-`
+`;
 
 const OtherInfoBox = styled.div`
   text-align: right;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-`
+`;
 
 const MyProfileInfoBox = styled.ul`
   li {
     font-size: 1.4rem;
     margin-bottom: 0.3rem;
   }
-`
-
-const CopyrightText = styled.h4``
+  a {
+    text-decoration: underline;
+  }
+`;
 
 const Footer = () => {
   return (
-    <FooterContainor>
+    <FooterContainer>
       <FooterBox>
         <LogoLink to="/">
           <img src="/img/logo.png" alt="logo" />
@@ -53,11 +54,10 @@ const Footer = () => {
               blog : <Link to="https://spare8433.tistory.com">https://spare8433.tistory.com</Link>
             </li>
           </MyProfileInfoBox>
-          <CopyrightText>Copyright © 2023 spare8433 All Rights Reserved.</CopyrightText>
         </OtherInfoBox>
       </FooterBox>
-    </FooterContainor>
-  )
-}
+    </FooterContainer>
+  );
+};
 
-export default Footer
+export default Footer;
