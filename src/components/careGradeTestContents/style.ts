@@ -1,7 +1,7 @@
 import { Modal } from "react-bootstrap";
 import styled, { css } from "styled-components";
 
-export const ModalContainor = styled(Modal)`
+export const ModalContainer = styled(Modal)`
   .modal-dialog {
     margin: 0 auto;
     padding: 2rem 0;
@@ -65,7 +65,7 @@ export const ProgressLine = styled.div`
   margin-bottom: 3rem;
 `;
 
-export const AnwserList = styled.ul`
+export const AnswerList = styled.ul`
   text-align: center;
   width: 70%;
   margin: 0 auto;
@@ -75,11 +75,11 @@ export const AnswerRadioItem = styled.li`
   border-radius: 1rem;
   margin-bottom: 2.4rem;
   box-shadow: 0.25rem 0.5rem 0.5rem rgb(0 0 0 / 10%);
-  background-color: ${({ theme }) => theme.colors.backgroundGray};
+  background-color: ${({ theme }) => theme.colors["background-muted"]};
 
   &.checked,
   &:hover {
-    background-color: lightgray;
+    background-color: lightgrey;
   }
 
   label {
@@ -103,7 +103,7 @@ export const ButtonBox = styled.div`
   button {
     width: 18rem;
     height: 5rem;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .mainButton {

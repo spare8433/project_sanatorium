@@ -1,17 +1,18 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 
-type UseObjectStateType = <OT = any>(obj: OT) => [OT, Dispatch<SetStateAction<OT>>, (key: string, value: any) => void]
+type UseObjectStateType = <OT extends Record<string, any>>(
+  obj: OT,
+) => [OT, (key: keyof OT, value: OT[keyof OT]) => void];
 
-const useObjectState: UseObjectStateType = (obj) => {
-  const [state, setState] = useState(obj)
+const useObjectState: UseObjectStateType = <OT extends Record<string, any>>(obj: OT) => {
+  const [state, setState] = useState<OT>(obj);
 
-  const updateObject = (key: string, value: any) => {
-    setState((prev) => {
-      return { ...prev, [key]: value }
-    })
-  }
+  const updateObject = (key: keyof OT, value: OT[keyof OT]) => {
+    setState((prev) => ({ ...prev, [key]: value }));
+  };
 
-  return [state, setState, updateObject]
-}
+  return [state, updateObject];
+};
 
-export default useObjectState
+export default useObjectState;

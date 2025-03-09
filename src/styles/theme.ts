@@ -5,7 +5,7 @@ import DeviceSizes from "./device";
 const colors = {
   main: "#e7886e",
   background: "#FFFFFF",
-  backgroundGray: "#FBFBFB",
+  "background-muted": "#f6f8fa",
   foreground: "#3B3B3B",
 };
 

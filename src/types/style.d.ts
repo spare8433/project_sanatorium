@@ -5,7 +5,7 @@ declare module "styled-components" {
     colors: {
       main: string;
       background: string;
-      backgroundGray: string;
+      "background-muted": string;
       foreground: string;
     };
     device: {

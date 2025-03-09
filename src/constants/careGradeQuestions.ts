@@ -12,14 +12,14 @@ export const PHYSICAL_QUESTIONS = [
   { category: "useBathRoom", question: "화장실 이용이 가능하십니까?" },
   { category: "fecalControl", question: "대변 조절이 가능하십니까?" },
   { category: "urineControl", question: "소변 조절이 가능하십니까?" },
-];
+] as const;
 
 /** 신체기능 답변 목록 */
 export const PHYSICAL_ANSWERS = [
   { answer: "혼자서 가능합니다.", score: 1 },
   { answer: "일부 도움이 필요합니다.", score: 2 },
   { answer: "완전히 도움이 필요합니다.", score: 3 },
-];
+] as const;
 
 /** 인지기능 질문 목록 */
 export const RECOGNITION_QUESTIONS = [
@@ -30,13 +30,13 @@ export const RECOGNITION_QUESTIONS = [
   { category: "InstructionRecognition", question: "지시를 이해하기 힘드십니까?" },
   { category: "decisionDecline", question: "상황 판단이 힘드십니까?" },
   { category: "communicationRecognition", question: "의사소통하기가 힘드십니까?" },
-];
+] as const;
 
 /** 인지기능 답변 목록 */
 export const RECOGNITION_ANSWERS = [
   { answer: "예", score: 1 },
   { answer: "아니오", score: 0 },
-];
+] as const;
 
 /** 행동변화 질문 목록 */
 export const BEHAVIOR_QUESTIONS = [
@@ -54,13 +54,13 @@ export const BEHAVIOR_QUESTIONS = [
   { category: "hideThings", question: "돈이나 물건을 감추십니까?" },
   { category: "inappropriateDressing", question: "옷을 부적절하게 입으십니까?" },
   { category: "impurityFecesAct", question: "대소변으로 불결한 행위를 하십니까?" },
-];
+] as const;
 
 /** 행동변화 답변 목록 */
 export const BEHAVIOR_ANSWERS = [
   { answer: "예", score: 1 },
   { answer: "아니오", score: 0 },
-];
+] as const;
 
 /** 간호처치 질문 목록 */
 export const NURSING_QUESTIONS = [
@@ -85,13 +85,13 @@ export const NURSING_QUESTIONS = [
   },
   { category: "stoma", question: "장루간호(인공항문 관리)가 필요하십니까?" },
   { category: "dialysis", question: "투석이 필요하십니까?" },
-];
+] as const;
 
 /** 간호처치 답변 목록 */
 export const NURSING_ANSWERS = [
   { answer: "예", score: 1 },
   { answer: "아니오", score: 0 },
-];
+] as const;
 
 /** 재활 운동 장애 질문 목록 */
 export const REHAB_EXERCISE_QUESTIONS = [
@@ -111,14 +111,14 @@ export const REHAB_EXERCISE_QUESTIONS = [
     category: "leftLowerLimb",
     question: "좌측하지(왼쪽 발, 다리) 움직이시는데 문제가 없습니까?",
   },
-];
+] as const;
 
 /** 재활 운동 장애 답변 목록 */
 export const REHAB_EXERCISE_ANSWERS = [
   { answer: "움직이는데 문제가 없습니다.", score: 1 },
   { answer: "움직이는데 약간의 문제가 있습니다.", score: 2 },
   { answer: "움직이는데 많은 문제가 있습니다.", score: 3 },
-];
+] as const;
 
 /** 재활 관절 제한 질문 목록 */
 export const REHAB_JOINT_QUESTIONS = [
@@ -128,11 +128,11 @@ export const REHAB_JOINT_QUESTIONS = [
   { category: "hipJoint", question: "고관절" },
   { category: "kneeJoint", question: "무릎관절" },
   { category: "ankleJoint", question: "발목관절" },
-];
+] as const;
 
 /** 재활 관절 제한 답변 목록 */
 export const REHAB_JOINT_ANSWERS = [
   { answer: "제한이 없습니다.", score: 1 },
   { answer: "한쪽에 제한이 있습니다.", score: 2 },
   { answer: "양쪽에 제한이 있습니다.", score: 3 },
-];
+] as const;

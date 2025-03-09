@@ -1,30 +1,28 @@
-import { Button, Modal } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import { ButtonBox, ModalContainor } from '../style'
-import { useContext } from 'react'
-import CareGradeContext from '@context/careGradeContext'
-import useCareGradeFinalScore from '@hooks/careGrade/useCareGradeFinalScore'
-import { GradeCriteriaTable, GradeLine, ResultContentBox, ScoreBox, ScoreLine } from './style'
+import CareGradeContext from "@context/careGradeContext";
+import { getCareGradeFinalScore } from "@lib/careGradeScore";
+import { useContext } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+import { ButtonBox, ContentBox, ModalContainer } from "./style";
 
 const CareGradeResult = () => {
-  const navigate = useNavigate()
-  const { states, setStates } = useContext(CareGradeContext)
-  const { nursingScore, physicalScore, recognScore, behaviorScore, rehabExerciseScore, rehabJointScore } = states
-  const { setMode } = setStates
+  const navigate = useNavigate();
+  const { physicalResponse, recognitionResponse, rehabExerciseResponse, rehabJointResponse, updateMode } =
+    useContext(CareGradeContext);
 
-  const [finalScore, grade] = useCareGradeFinalScore({
-    physicalPart: physicalScore,
-    recognPart: recognScore,
-    behaviorPart: behaviorScore,
-    nursingPart: nursingScore,
-    rehabExercisePart: rehabExerciseScore,
-    rehabJointPart: rehabJointScore,
-  })
+  const [finalScore, grade] = getCareGradeFinalScore({
+    physicalResponse,
+    recognitionResponse,
+    rehabExerciseResponse,
+    rehabJointResponse,
+  });
 
   return (
-    <ModalContainor show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
-      <Modal.Header closeButton onClick={() => confirm('현재 화면에서 나가 홈으로 돌아가시겠습니까?') && navigate('/')}>
-        <span className="left"></span>
+    <ModalContainer show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
+      <Modal.Header closeButton onClick={() => confirm("현재 화면에서 나가 홈으로 돌아가시겠습니까?") && navigate("/")}>
         <Modal.Title>
           <h1>테스트 결과</h1>
         </Modal.Title>
@@ -101,16 +99,71 @@ const CareGradeResult = () => {
       </Modal.Body>
       <Modal.Footer>
         <ButtonBox>
-          <Button variant="outline-secondary" onClick={() => navigate('/')}>
+          <Button variant="outline-secondary" onClick={() => navigate("/")}>
             나가기
           </Button>
-          <Button className="mainButton" onClick={() => setMode('list')}>
+          <Button className="mainButton" onClick={() => updateMode("list")}>
             선택 화면으로
           </Button>
         </ButtonBox>
       </Modal.Footer>
-    </ModalContainor>
-  )
-}
+    </ModalContainer>
+  );
+};
 
-export default CareGradeResult
+export default CareGradeResult;
+
+const ResultContentBox = styled(ContentBox)`
+  text-align: center;
+
+  h2 {
+    margin-bottom: 3rem;
+  }
+
+  a {
+    display: block;
+    font-size: 1.8rem;
+    color: ${({ theme }) => theme.colors.main};
+    font-weight: 600;
+    margin-bottom: 3rem;
+  }
+
+  span {
+    width: 100%;
+    display: block;
+    font-size: 1.4rem;
+    color: gray;
+    font-weight: 600;
+    margin-bottom: 4rem;
+  }
+`;
+
+const ScoreBox = styled.div`
+  min-width: 80%;
+  padding: 3rem 4rem;
+  border-radius: 1rem;
+  background-color: ${({ theme }) => theme.colors["background-muted"]};
+  margin-bottom: 3rem;
+`;
+
+const ResultLine = styled.div`
+  font-size: 2.8rem;
+  font-weight: 600;
+`;
+const GradeLine = styled(ResultLine)`
+  margin-bottom: 2rem;
+`;
+
+const ScoreLine = styled(ResultLine)``;
+
+const GradeCriteriaTable = styled(Table)`
+  font-size: 1.4rem;
+
+  th:nth-child(1) {
+    width: 20%;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+`;

@@ -17,7 +17,7 @@ type CareGradeModeType =
   | "rehabJoint"
   | "result";
 
-interface PhysicalScoreObjType {
+interface PhysicalResponse {
   /** 옷 벗고 입기 */
   cloth: number;
   /** 세수하기 */
@@ -44,7 +44,7 @@ interface PhysicalScoreObjType {
   urineControl: number;
 }
 
-interface RecognitionScoreObjType {
+interface RecognitionResponse {
   /** 단기 기억장애 */
   shortTermMemoryAngle: number;
   /** 날짜불인지 */
@@ -61,7 +61,7 @@ interface RecognitionScoreObjType {
   communicationRecognition: number;
 }
 
-interface BehaviorScoreObjType {
+interface BehaviorResponse {
   /** 망상 */
   delusion: number;
   /** 환각, 환청 */
@@ -92,7 +92,7 @@ interface BehaviorScoreObjType {
   impurityFecesAct: number;
 }
 
-interface NursingScoreObjType {
+interface NursingResponse {
   /** 기관지 절개관 간호 */
   bronchostomyTube: number;
   /** 흡인 */
@@ -113,7 +113,7 @@ interface NursingScoreObjType {
   dialysis: number;
 }
 
-interface RehabExerciseScoreObjType {
+interface RehabExerciseResponse {
   /** 우측상지 */
   rightUpperLimb: number;
   /** 우측하지 */
@@ -124,7 +124,7 @@ interface RehabExerciseScoreObjType {
   leftLowerLimb: number;
 }
 
-interface RehabJointScoreObjType {
+interface RehabJointResponse {
   /** 어깨관절 */
   shoulderJoint: number;
   /** 팔꿈치관절 */
@@ -139,22 +139,41 @@ interface RehabJointScoreObjType {
   ankleJoint: number;
 }
 
-interface CareGradeTotalScore {
+interface CareGradeResponse {
   /** 신체기능 영역 점수 (완전자립: 1, 부분 도움: 2, 완전 도움: 3) */
-  physicalPart: PhysicalScoreObjType;
+  physicalResponse: PhysicalResponse;
 
   /** 인지기능 영역 점수 (예: 1, 아니오: 0) */
-  recognitionPart: RecognitionScoreObjType;
+  recognitionResponse: RecognitionResponse;
 
   /** 행동변화 영역 점수 (예: 1, 아니오: 0) */
-  behaviorPart: BehaviorScoreObjType;
+  behaviorResponse: BehaviorResponse;
 
   /** 간호처치 영역 점수 (있다: 1, 없다: 0) */
-  nursingPart: NursingScoreObjType;
+  nursingResponse: NursingResponse;
 
   /** 재활 운동 장애 영역 점수 (운동장애없음: 1, 불운동장애: 2, 완전운동장애: 3) */
-  rehabExercisePart: RehabExerciseScoreObjType;
+  rehabExerciseResponse: RehabExerciseResponse;
 
   /** 재활 관절 제한 영역 점수 (제한없음: 1, 한쪽관절제한: 2, 양관절제한: 3) */
-  rehabJointPart: RehabJointScoreObjType;
+  rehabJointResponse: RehabJointResponse;
 }
+
+interface TotalCareGradeScore {
+  /** 신체기능 영역 통합 점수 */
+  physicalScore: number;
+
+  /** 인지기능 영역 통합 점수 */
+  recognitionScore: number;
+
+  /** 행동변화 영역 통합 점수 */
+  behaviorScore: number;
+
+  /** 간호처치 영역 통합 점수 */
+  nursingScore: number;
+
+  /** 재활 운동 장애 영역 통합 점수 */
+  rehabScore: number;
+}
+
+type FinalGrade = "등급 외" | "1등급" | "2등급" | "3등급" | "4등급" | "5등급" | "인지지원 등급";

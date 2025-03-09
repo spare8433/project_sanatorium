@@ -1,19 +1,18 @@
-import { Button, Modal } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import { ButtonBox, ModalContainor } from '../style'
-import { useContext } from 'react'
-import CareGradeContext from '@context/careGradeContext'
-import { HomeContentBox } from './style'
+import CareGradeContext from "@context/careGradeContext";
+import { useContext } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-const CareGradeHome = () => {
-  const navigate = useNavigate()
-  const { setStates } = useContext(CareGradeContext)
-  const { setMode } = setStates
+import { ButtonBox, ContentBox, ModalContainer } from "./style";
+
+const CareGradeTestStart = () => {
+  const navigate = useNavigate();
+  const { updateMode } = useContext(CareGradeContext);
 
   return (
-    <ModalContainor show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
-      <Modal.Header closeButton onClick={() => confirm('현재 화면에서 나가 홈으로 돌아가시겠습니까?') && navigate('/')}>
-        <span className="left"></span>
+    <ModalContainer show={true} keyboard={false} centered={true} size="xl" scrollable={true}>
+      <Modal.Header closeButton onHide={() => confirm("현재 화면에서 나가 홈으로 돌아가시겠습니까?") && navigate("/")}>
         <Modal.Title>
           <h1>장기요양등급 테스트</h1>
         </Modal.Title>
@@ -26,8 +25,8 @@ const CareGradeHome = () => {
             <br />
             <br />
             다만 실제 평가 과정에서는 여러 판단 근거들을 토대로 점수를 산정하고 어르신의 증세가 본인이 느끼거나 보호자가
-            알고 있는 것과 다를 수 있기 때문에 실제 등급과는 일치하지 않을 수 있습니다. 따라서{' '}
-            <b>참고용으로만 활용 하시기를 추천드립니다.</b>
+            알고 있는 것과 다를 수 있기 때문에 실제 등급과는 일치하지 않을 수 있습니다. 따라서
+            <b> 참고용으로만 활용 하시기를 추천드립니다.</b>
           </p>
           <br />
           <h3>등급판정 기준</h3>
@@ -46,17 +45,39 @@ const CareGradeHome = () => {
       </Modal.Body>
       <Modal.Footer>
         <ButtonBox>
-          <Button variant="outline-secondary" onClick={() => navigate('/')}>
+          <Button variant="outline-secondary" onClick={() => navigate("/")}>
             나가기
           </Button>
 
-          <Button className="mainButton" onClick={() => setMode('list')}>
+          <Button className="mainButton" onClick={() => updateMode("list")}>
             시작하기
           </Button>
         </ButtonBox>
       </Modal.Footer>
-    </ModalContainor>
-  )
-}
+    </ModalContainer>
+  );
+};
 
-export default CareGradeHome
+export default CareGradeTestStart;
+
+const HomeContentBox = styled(ContentBox)`
+  padding: 2rem 3rem;
+  height: 100%;
+  line-height: 2.4rem;
+  h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  h3 {
+    margin-bottom: 1.6rem;
+  }
+  p {
+    margin-bottom: 4rem;
+    font-size: 1.8rem;
+  }
+  a {
+    font-size: 1.6rem;
+    color: ${({ theme }) => theme.colors.main};
+    font-weight: 600;
+  }
+`;

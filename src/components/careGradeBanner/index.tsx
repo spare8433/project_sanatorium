@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const Containor = styled.div`
+const Container = styled.div`
   max-width: 1024px;
   padding: 0 2rem;
   margin: 0 auto 8rem;
-`
+`;
 
 const BannerBox = styled.div`
   margin: 0 auto;
@@ -28,7 +28,7 @@ const BannerBox = styled.div`
       display: none;
     }
   }
-`
+`;
 const MainButton = styled(Link)`
   text-align: center;
   min-width: 14rem;
@@ -40,23 +40,23 @@ const MainButton = styled(Link)`
   color: white;
   font-weight: 600;
   border: gray 1px;
-`
+`;
 
-const TextBox = styled.div``
+const TextBox = styled.div``;
 
 const CareGradeBanner = () => {
   return (
-    <Containor>
+    <Container>
       <BannerBox>
         <TextBox>
           <h2>장기요양 등급 테스트</h2>
           <p>간단한 테스트를 통해 예상 장기요양등급을 알아보세요 😀</p>
         </TextBox>
 
-        <MainButton to="/caregrade">바로가기</MainButton>
+        <MainButton to="/care-grade">바로가기</MainButton>
       </BannerBox>
-    </Containor>
-  )
-}
+    </Container>
+  );
+};
 
-export default CareGradeBanner
+export default CareGradeBanner;

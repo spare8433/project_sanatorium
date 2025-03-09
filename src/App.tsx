@@ -1,35 +1,36 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import GlobalStyles from '@styles/globalStyle'
-import Layout from '@components/layout'
-import SearchLayout from '@components/layout/searchLayout'
-import Home from './routes/home'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import Search from '@routes/search'
-import { CareGradeProvider } from '@context/careGradeContext'
-import TestPage from '@routes/testPage'
-import CareGradePage from '@routes/careGrade'
-import { ThemeProvider } from 'styled-components'
-import theme from '@styles/theme'
+import Layout from "@components/layout";
+import SearchLayout from "@components/layout/searchLayout";
+import { CareGradeProvider } from "@context/careGradeContext";
+import CareGradePage from "@routes/careGrade";
+import Search from "@routes/search";
+import TestPage from "@routes/testPage";
+import GlobalStyles from "@styles/globalStyle";
+import theme from "@styles/theme";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+
+import Home from "./routes/home";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Layout></Layout>,
+    path: "/",
+    element: <Layout />,
     children: [
       {
         index: true,
         element: <Home />,
       },
       {
-        path: '/test',
+        path: "/test",
         element: <TestPage />,
       },
     ],
   },
   {
-    path: '/search',
-    element: <SearchLayout></SearchLayout>,
+    path: "/search",
+    element: <SearchLayout />,
     children: [
       {
         index: true,
@@ -38,25 +39,27 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/caregrade',
-    element: <CareGradePage />,
+    path: "/care-grade",
+    element: (
+      <CareGradeProvider>
+        <CareGradePage />
+      </CareGradeProvider>
+    ),
   },
-])
+]);
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CareGradeProvider>
-        <ThemeProvider theme={theme}>
-          <ReactQueryDevtools />
-          <GlobalStyles />
-          <RouterProvider router={router}></RouterProvider>
-        </ThemeProvider>
-      </CareGradeProvider>
+      <ThemeProvider theme={theme}>
+        <ReactQueryDevtools />
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;
