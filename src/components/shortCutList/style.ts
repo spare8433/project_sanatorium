@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const ShortCutListContainor = styled.div`
+export const ShortCutListContainer = styled.div`
   width: 100%;
   padding: 3rem 0;
   background-color: ${({ theme }) => theme.colors.main};
@@ -13,48 +13,36 @@ export const ShortCutListBox = styled.div`
   padding: 0 2rem;
   margin: 0 auto;
 
-  h4 {
+  h1 {
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 1.4rem;
   }
 `;
 
 export const ShortCutItemList = styled.div`
-  background-color: ${({ theme }) => theme.colors.backgroundGray};
+  background-color: ${({ theme }) => theme.colors.background};
   padding: 2rem 4%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  /* grid-template-rows: 12rem; */
-  grid-column-gap: 4%;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  grid-column-gap: 2rem;
   grid-auto-flow: row;
-
-  @media ${({ theme }) => theme.device.tablet} {
-    grid-column-gap: 0;
-    padding: 2rem 1%;
-  }
 `;
 
 export const ShortCutItemLink = styled(Link)`
-  /* width: 14rem; */
   aspect-ratio: 1/1;
-  width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   transition: background-color 0.2 ease-in-out;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 2rem;
   gap: 0.5rem;
 
   &:hover {
-    background-color: lightgray;
-  }
-
-  @media ${({ theme }) => theme.device.tablet} {
-    font-size: 1.6rem;
+    background-color: ${({ theme }) => theme.colors["background-muted"]};
   }
 
   span {
@@ -68,12 +56,14 @@ export const ShortCutItemLink = styled(Link)`
   }
 `;
 
-export const TextBox = styled.div`
+export const DescriptionBox = styled.div`
   width: 40rem;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors["background-muted"]};
+  border: 0.1rem black;
   padding: 2rem;
   border-radius: 1rem;
   margin: 0 1rem;
+  border: 0.1rem lightgrey solid;
 
   h3 {
     margin-bottom: 1rem;

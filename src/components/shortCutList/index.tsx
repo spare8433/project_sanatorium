@@ -1,20 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { OverlayTrigger } from "react-bootstrap";
-import { ShortCutItemLink, ShortCutItemList, ShortCutListBox, ShortCutListContainor, TextBox } from "./style";
-import { ReactNode } from "react";
-import { Placement } from "react-bootstrap/esm/types";
+
 import { SHORTCUT_ITEMS } from "@constants/shortCutItems";
+import { ReactNode } from "react";
+import { OverlayTrigger } from "react-bootstrap";
+
+import { DescriptionBox, ShortCutItemLink, ShortCutItemList, ShortCutListBox, ShortCutListContainer } from "./style";
 
 interface ShortCutItemProps {
   overlayContent: ReactNode;
-  placement: Placement;
   link: string;
   children: ReactNode;
 }
 
-const ShortCutItem = ({ overlayContent, placement, link, children }: ShortCutItemProps) => {
+const ShortCutItem = ({ overlayContent, link, children }: ShortCutItemProps) => {
   return (
-    <OverlayTrigger placement={placement} overlay={<TextBox>{overlayContent}</TextBox>}>
+    <OverlayTrigger placement="auto" overlay={<DescriptionBox>{overlayContent}</DescriptionBox>}>
       <ShortCutItemLink to={link}>{children}</ShortCutItemLink>
     </OverlayTrigger>
   );
@@ -22,24 +22,19 @@ const ShortCutItem = ({ overlayContent, placement, link, children }: ShortCutIte
 
 const ShortCutList = () => {
   return (
-    <ShortCutListContainor>
+    <ShortCutListContainer>
       <ShortCutListBox>
-        <h4> 특정 요양시설을 찾으세요?</h4>
+        <h1> 특정 요양시설을 찾으세요?</h1>
 
         <ShortCutItemList>
-          {SHORTCUT_ITEMS.map(({ placement, overlayContent, shortcutItem }, index) => (
-            <ShortCutItem
-              key={`shortCutItem_${index}`}
-              placement={placement}
-              overlayContent={overlayContent}
-              link={shortcutItem.link}
-            >
+          {SHORTCUT_ITEMS.map(({ overlayContent, shortcutItem }, index) => (
+            <ShortCutItem key={`shortCutItem_${index}`} overlayContent={overlayContent} link={shortcutItem.link}>
               {shortcutItem.content}
             </ShortCutItem>
           ))}
         </ShortCutItemList>
       </ShortCutListBox>
-    </ShortCutListContainor>
+    </ShortCutListContainer>
   );
 };
 
