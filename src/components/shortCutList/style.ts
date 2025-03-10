@@ -46,7 +46,7 @@ export const ShortCutItemLink = styled(Link)`
   }
 
   span {
-    font-weight: 600;
+    font-weight: bold;
     text-align: center;
   }
 

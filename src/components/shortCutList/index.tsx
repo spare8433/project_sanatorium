@@ -7,14 +7,14 @@ import { OverlayTrigger } from "react-bootstrap";
 import { DescriptionBox, ShortCutItemLink, ShortCutItemList, ShortCutListBox, ShortCutListContainer } from "./style";
 
 interface ShortCutItemProps {
-  overlayContent: ReactNode;
+  description: ReactNode;
   link: string;
   children: ReactNode;
 }
 
-const ShortCutItem = ({ overlayContent, link, children }: ShortCutItemProps) => {
+const ShortCutItem = ({ description, link, children }: ShortCutItemProps) => {
   return (
-    <OverlayTrigger placement="auto" overlay={<DescriptionBox>{overlayContent}</DescriptionBox>}>
+    <OverlayTrigger placement="auto" overlay={<DescriptionBox>{description}</DescriptionBox>}>
       <ShortCutItemLink to={link}>{children}</ShortCutItemLink>
     </OverlayTrigger>
   );
@@ -28,7 +28,7 @@ const ShortCutList = () => {
 
         <ShortCutItemList>
           {SHORTCUT_ITEMS.map(({ overlayContent, shortcutItem }, index) => (
-            <ShortCutItem key={`shortCutItem_${index}`} overlayContent={overlayContent} link={shortcutItem.link}>
+            <ShortCutItem key={`shortCutItem_${index}`} description={overlayContent} link={shortcutItem.link}>
               {shortcutItem.content}
             </ShortCutItem>
           ))}
