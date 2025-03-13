@@ -7,7 +7,7 @@
 type FacilityType = "hospital" | "serviceFacility" | "sanatorium";
 
 /**
- * 요양시설 카테고리 (type)
+ * 재가노인복지시설 카테고리 (type)
  * visitCare: 방문요양
  * visitBath: 방문목욕
  * allDayProtection: 주야간보호
@@ -26,7 +26,7 @@ type ServiceFacilityCategory =
   | "homeSeniorSupport";
 
 /**
- * 재가노인복지시설 카테고리 (type)
+ * 요양시설 카테고리 (type)
  * seniorCoLiving: 노인요양공동생활가정
  * seniorCareFacility: 노인요양시설
  */

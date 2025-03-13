@@ -1,20 +1,18 @@
-import { Outlet } from 'react-router-dom'
-import SearchHeader from '@components/header/searchHeader'
-import Footer from '@components/footer'
-import styled from 'styled-components'
-
-const Containor = styled.div`
-  width: 100%;
-`
+import Footer from "@components/footer";
+import SearchHeader from "@components/header/searchHeader";
+import { Container } from "@styles/common";
+import { Outlet } from "react-router-dom";
 
 const SearchLayout = () => {
   return (
-    <Containor>
+    <Container>
       <SearchHeader />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
-    </Containor>
-  )
-}
+    </Container>
+  );
+};
 
-export default SearchLayout
+export default SearchLayout;

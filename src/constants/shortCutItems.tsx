@@ -43,7 +43,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=sanatorium&detailCtg=seniorCareFacility",
+      link: "/search?facility=sanatorium&sanatoriumCategory=seniorCareFacility",
       content: (
         <>
           <img src="/img/stay-home.png" alt="sanatorium " />
@@ -64,7 +64,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=sanatorium&detailCtg=seniorCoLiving",
+      link: "/search?facility=sanatorium&sanatoriumCategory=seniorCoLiving",
       content: (
         <>
           <img src="/img/nursing-room.png" alt="nursing-room" />
@@ -81,7 +81,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=serviceFacility&detailCtg=visitNursing",
+      link: "/search?facility=serviceFacility&serviceFacilityCategory=visitNursing",
       content: (
         <>
           <img src="/img/nursing-care.png" alt="nursing-care" />
@@ -98,7 +98,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=serviceFacility&detailCtg=visitCare",
+      link: "/search?facility=serviceFacility&serviceFacilityCategory=visitCare",
       content: (
         <>
           <img src="/img/support.png" alt="visiting-care" />
@@ -115,7 +115,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=serviceFacility&detailCtg=visitBath",
+      link: "/search?facility=serviceFacility&serviceFacilityCategory=visitBath",
       content: (
         <>
           <img src="/img/bath.png" alt="visiting-bath" />
@@ -132,7 +132,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=serviceFacility&detailCtg=allDayProtection",
+      link: "/search?facility=serviceFacility&serviceFacilityCategory=allDayProtection",
       content: (
         <>
           <img src="/img/protect-day.png" alt="all-day-protection" />
@@ -152,7 +152,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=serviceFacility&detailCtg=shortProtection",
+      link: "/search?facility=serviceFacility&serviceFacilityCategory=shortProtection",
       content: (
         <>
           <img src="/img/short-term-protection.png" alt="short-term-protection" />
@@ -172,7 +172,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=serviceFacility&detailCtg=homeSeniorSupport",
+      link: "/search?facility=serviceFacility&serviceFacilityCategory=homeSeniorSupport",
       content: (
         <>
           <img src="/img/home-support-service.png" alt="home-support-service" />
@@ -192,7 +192,7 @@ export const SHORTCUT_ITEMS: ShortcutItemType[] = [
       </>
     ),
     shortcutItem: {
-      link: "/search?facility=serviceFacility&detailCtg=welfareEquipment",
+      link: "/search?facility=serviceFacility&serviceFacilityCategory=welfareEquipment",
       content: (
         <>
           <img src="/img/wheelchair.png" alt="wheelchair" />

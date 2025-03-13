@@ -11,8 +11,6 @@ type UseInputType = <VT = unknown>(
 const useInput: UseInputType = <VT>(inputValue: VT) => {
   const [value, setValue] = useState<VT>(inputValue);
 
-  // const onChange = ;
-
   return [value, (e) => setValue(e.currentTarget.value as VT), setValue];
 };
 

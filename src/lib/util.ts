@@ -1,27 +1,33 @@
-interface QueryObj {
+interface BasicQuery {
   searchText: string;
   facility: FacilityType;
-  city: string;
-  detailFacility: DetailFacilityCategory | "all";
-  profit: ProfitType | "all";
-  grade: HospitalGrade | "all";
+  city: CityName | "all";
   pageNum: number;
 }
 
-export function getSearchFacilityQuery(queryObj: QueryObj) {
-  const { facility, city, searchText, detailFacility, profit, grade, pageNum } = queryObj;
-  let searchQuery = `?facility=${facility}&city=${city}&searchText=${searchText}`;
-  switch (facility) {
-    case "hospital":
-      searchQuery += `&grade=${grade}`;
-      break;
-    case "sanatorium":
-    case "serviceFacility":
-      searchQuery += `&detailFacility=${detailFacility}&profit=${profit}`;
-      break;
-    default:
-      throw Error;
-  }
-  searchQuery += `&p=${pageNum}`;
-  return searchQuery;
+interface HospitalQuery extends BasicQuery {
+  grade: HospitalGrade | "all";
+}
+interface SanatoriumQuery extends BasicQuery {
+  facilityCategory: SanatoriumFacilityCategory | "all";
+  profit: ProfitType | "all";
+}
+interface ServiceFacilityQuery extends BasicQuery {
+  facilityCategory: ServiceFacilityCategory | "all";
+  profit: ProfitType | "all";
+}
+
+export function getHospitalQuery(query: HospitalQuery) {
+  const { facility, city, searchText, pageNum, grade } = query;
+  return `?facility=${facility}&city=${city}&searchText=${searchText}&pageNum=${pageNum}&grade=${grade}`;
+}
+
+export function getSanatoriumQuery(query: SanatoriumQuery) {
+  const { facility, city, searchText, pageNum, facilityCategory, profit } = query;
+  return `?facility=${facility}&city=${city}&searchText=${searchText}&pageNum=${pageNum}&sanatoriumCategory=${facilityCategory}&profit=${profit}`;
+}
+
+export function getServiceFacilityQuery(query: ServiceFacilityQuery) {
+  const { facility, city, searchText, pageNum, facilityCategory, profit } = query;
+  return `?facility=${facility}&city=${city}&searchText=${searchText}&pageNum=${pageNum}&serviceFacilityCategory=${facilityCategory}&profit=${profit}`;
 }

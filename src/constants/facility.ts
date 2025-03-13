@@ -39,13 +39,12 @@ export const SANATORIUM_CATEGORIES = ["seniorCoLiving", "seniorCareFacility"] as
 export const SANATORIUM_CATEGORY_TYPE = {
   seniorCoLiving: "노인요양공동생활가정",
   seniorCareFacility: "노인요양시설",
-};
+} as const;
 
 /**
  * 요양병원 등급 종류
  */
 export const HOSPITAL_GRADES = ["1", "2", "3", "4", "5", "none"] as const;
-
 export const HOSPITAL_GRADE_TYPE = {
   "1": "1등급",
   "2": "2등급",

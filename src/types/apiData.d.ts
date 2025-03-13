@@ -1,26 +1,31 @@
-/** 요양 병원 검색 API 요청인자 */
-interface GetHospitalsParam {
-  SIGName: string;
+interface BasicFacilityParam {
+  city: CityName | "all";
   searchText: string;
   notiCount: number;
-  page: number;
-  grade: string;
+  pageNum: number;
 }
 
-/** 재가 노인 복지시설 + 요양 시설 검색 API 요청인자 */
-interface GetSanatoriumParam {
-  SIGName: string;
-  searchText: string;
-  page: number;
-  notiCount: number;
-  detailCategory: string;
-  profit: string;
+/** 요양 병원 검색 API 요청인자 */
+interface GetHospitalsParam extends BasicFacilityParam {
+  grade: HospitalGrade | "all";
+}
+
+/** 요양 시설 검색 API 요청인자 */
+interface GetSanatoriumParam extends BasicFacilityParam {
+  facilityCategory: SanatoriumFacilityCategory | "all";
+  profit: ProfitType | "all";
+}
+
+/** 재가 노인 복지시설 API 요청인자 */
+interface GetServiceFacilityParam extends BasicFacilityParam {
+  facilityCategory: ServiceFacilityCategory | "all";
+  profit: ProfitType | "all";
 }
 
 type GetServiceFacilityParam = GetSanatoriumParam;
 
 /** 리스트 검색 API 함수 반환 타입 */
-type APIResponse<T = any> = { dataArr: T[]; totalCount: number };
+type APIResponse<T = unknown> = { dataArr: T[]; totalCount: number };
 
 /** 요양 병원 리스트 검색 API 함수 타입 */
 type GetHospitalAPI = (param: GetHospitalsParam) => Promise<APIResponse<HospitalDetailData>>;

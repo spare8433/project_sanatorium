@@ -14,7 +14,7 @@ import {
 } from "@constants/facility";
 import useInput from "@hooks/useInput";
 import useSwitch from "@hooks/useSwitch";
-import { getSearchFacilityQuery } from "@lib/util";
+import { getHospitalQuery, getSanatoriumQuery, getServiceFacilityQuery } from "@lib/util";
 import { Button, Form, ToggleButton, ToggleButtonGroup, ToggleButtonProps } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -34,8 +34,10 @@ const Header = () => {
   const navigate = useNavigate();
   const [searchText, changeSearchText] = useInput("");
   const [facility, changeFacility] = useInput<FacilityType>("hospital");
-  const [city, changeCity] = useInput<CityName | "all">("all");
-  const [detailFacility, changeDetailFacility, setDetailFacility] = useInput<DetailFacilityCategory | "all">("all");
+  const [city, changeCityCode] = useInput<CityName | "all">("all");
+
+  const [sanatoriumCategory, changeSanatoriumCategory] = useInput<SanatoriumFacilityCategory | "all">("all");
+  const [serviceFacilityCategory, changeServiceFacilityCategory] = useInput<ServiceFacilityCategory | "all">("all");
   const [profit, changeProfit] = useInput<ProfitType | "all">("all");
   const [grade, changeGrade] = useInput<HospitalGrade | "all">("all");
 
@@ -43,11 +45,17 @@ const Header = () => {
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+
+    const basicQuery = { searchText, facility, city, pageNum: 1 };
+
+    const searchQuery = {
+      hospital: getHospitalQuery({ grade, ...basicQuery }),
+      sanatorium: getSanatoriumQuery({ profit, facilityCategory: sanatoriumCategory, ...basicQuery }),
+      serviceFacility: getServiceFacilityQuery({ profit, facilityCategory: serviceFacilityCategory, ...basicQuery }),
+    };
+
     turnOffSearchOptions();
-    navigate({
-      pathname: "/search",
-      search: getSearchFacilityQuery({ searchText, facility, city, detailFacility, profit, grade, pageNum: 1 }),
-    });
+    return navigate({ pathname: "/search", search: searchQuery[facility] });
   };
 
   return (
@@ -71,7 +79,7 @@ const Header = () => {
               <HeaderSearchOptionList>
                 <li>
                   <strong>시 · 군</strong>
-                  <Form.Select onChange={(e) => changeCity(e)} value={city}>
+                  <Form.Select onChange={(e) => changeCityCode(e)} value={city}>
                     <option value="all">전체</option>
                     {CITY_NAMES.map((city) => (
                       <option key={`cityList-${city}`} value={CITY_CODE[city]}>
@@ -85,12 +93,9 @@ const Header = () => {
                   <strong>시설 분류</strong>
                   <ToggleButtonGroup
                     type="radio"
-                    name="facility-category"
+                    name="facility"
                     value={facility}
-                    onChange={(_v, e) => {
-                      changeFacility(e);
-                      setDetailFacility("all");
-                    }}
+                    onChange={(_v, e) => changeFacility(e)}
                   >
                     {FACILITY_CATEGORIES.map((ctg) => (
                       <SearchRadioButton key={`facilityCategory-${ctg}`} id={`facilityCategory-${ctg}`} value={ctg}>
@@ -122,8 +127,8 @@ const Header = () => {
                     <ToggleButtonGroup
                       type="radio"
                       name="sanatorium-detail"
-                      value={detailFacility}
-                      onChange={(_v, e) => changeDetailFacility(e)}
+                      value={sanatoriumCategory}
+                      onChange={(_v, e) => changeSanatoriumCategory(e)}
                     >
                       {/* 요양시설 상세 카테고리 */}
 
@@ -145,8 +150,8 @@ const Header = () => {
                     <ToggleButtonGroup
                       type="radio"
                       name="serviceFacility-detail"
-                      value={detailFacility}
-                      onChange={(_v, e) => changeDetailFacility(e)}
+                      value={serviceFacilityCategory}
+                      onChange={(_v, e) => changeServiceFacilityCategory(e)}
                     >
                       <SearchRadioButton id="serviceFacility-all" value="all">
                         전체

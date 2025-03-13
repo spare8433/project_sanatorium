@@ -1,38 +1,30 @@
-import { Modal, Button } from "react-bootstrap";
-import HospitalModalContent from "./hospitalModalContent";
-import SanatoriumModalContent from "./sanatoriumModalContent";
 import { memo } from "react";
-import { ModalContainor } from "./modal.style";
+import { Button, Modal } from "react-bootstrap";
+
+import HospitalModalContent from "./hospitalModalContent";
+import { ModalContainer } from "./modal.style";
+import SanatoriumModalContent from "./sanatoriumModalContent";
 
 interface Props {
   closeFn: () => void;
-  queryFacCtg: string | null;
+  facility: FacilityType;
   show: boolean;
   data: HospitalDetailData | SanatoriumDetailData | ServiceFacilityDetailData | null;
 }
 
-const DetailInfoModal = ({ closeFn, show, data, queryFacCtg }: Props) => {
-  const renderModalContent = () => {
-    switch (queryFacCtg) {
-      case "요양병원":
-        return <HospitalModalContent data={data as HospitalDetailData} />;
-      case "요양시설":
-        return <SanatoriumModalContent data={data as SanatoriumDetailData} />;
-      case "재가노인복지시설":
-        return <SanatoriumModalContent data={data as ServiceFacilityDetailData} />;
-      default:
-        return <>데이터가 없습니다</>;
-    }
-  };
-
+const DetailInfoModal = ({ facility, closeFn, show, data }: Props) => {
   return (
-    <ModalContainor show={show} onHide={closeFn} backdrop="static" keyboard={false} centered={true} size="lg">
+    <ModalContainer show={show} onHide={closeFn} backdrop="static" keyboard={false} centered={true} size="lg">
       <Modal.Header closeButton>
         <Modal.Title>
           <h3>시설 상세정보</h3>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>{renderModalContent()}</Modal.Body>
+      <Modal.Body>
+        {facility === "hospital" && <HospitalModalContent data={data as HospitalDetailData} />}
+        {facility === "sanatorium" && <SanatoriumModalContent data={data as SanatoriumDetailData} />}
+        {facility === "serviceFacility" && <SanatoriumModalContent data={data as ServiceFacilityDetailData} />}
+      </Modal.Body>
       <Modal.Footer>
         <div className="d-grid gap-2">
           <Button variant="outline-secondary" size="lg" onClick={closeFn}>
@@ -40,7 +32,7 @@ const DetailInfoModal = ({ closeFn, show, data, queryFacCtg }: Props) => {
           </Button>
         </div>
       </Modal.Footer>
-    </ModalContainor>
+    </ModalContainer>
   );
 };
 

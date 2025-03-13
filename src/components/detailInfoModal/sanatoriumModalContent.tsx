@@ -1,6 +1,7 @@
-import { Container, Row, Col } from "react-bootstrap";
+import KakaoMap from "@components/kakaoMap";
 import { memo } from "react";
-import MapContainor from "@util/location";
+import { Col, Container, Row } from "react-bootstrap";
+
 import { MapWrapBox } from "./modal.style";
 
 interface Props {
@@ -59,7 +60,7 @@ const SanatoriumModalContent = ({ data }: Props) => {
       <Row>
         <MapWrapBox id="map">
           {data.REFINE_WGS84_LAT && data.REFINE_WGS84_LOGT && (
-            <MapContainor lat={data.REFINE_WGS84_LAT} logt={data.REFINE_WGS84_LOGT} />
+            <KakaoMap lat={data.REFINE_WGS84_LAT} logt={data.REFINE_WGS84_LOGT} />
           )}
         </MapWrapBox>
       </Row>

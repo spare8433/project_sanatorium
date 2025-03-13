@@ -1,7 +1,7 @@
-import { Modal } from 'react-bootstrap'
-import styled from 'styled-components'
+import { Modal } from "react-bootstrap";
+import styled from "styled-components";
 
-export const ModalContainor = styled(Modal)`
+export const ModalContainer = styled(Modal)`
   .modal-content {
     border-radius: 1rem;
   }
@@ -31,11 +31,11 @@ export const ModalContainor = styled(Modal)`
     font-size: 1.4rem;
     font-weight: 600;
   }
-`
+`;
 
 export const MapWrapBox = styled.div`
   height: 30rem;
   margin-top: 1rem;
   padding: 0;
   box-shadow: 0 0 1rem rgb(0 0 0 / 25%);
-`
+`;
