@@ -29,7 +29,8 @@
       "@assets/*": ["./assets/*"],
       "@styles/*": ["./styles/*"],
       "@context/*": ["./context/*"],
-      "@util/*": ["./util/*"]
+      "@constants/*": ["./constants/*"],
+      "@lib/*": ["./lib/*"]
     }
   },
   "include": ["src", "vite.config.ts"],

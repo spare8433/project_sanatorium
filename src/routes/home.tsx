@@ -1,6 +1,6 @@
-import CareGradeBanner from '@components/careGradeBanner'
-import ShortCutList from '@components/shortCutList'
-import TabMenu from '@components/mainTabMenu'
+import CareGradeBanner from "@components/careGradeBanner";
+import TabMenu from "@components/mainTabMenu";
+import ShortCutList from "@components/shortCutList";
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <CareGradeBanner />
       <TabMenu />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

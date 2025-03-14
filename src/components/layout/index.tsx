@@ -1,20 +1,16 @@
-import { Outlet } from 'react-router-dom'
-import Header from '@components/header'
-import Footer from '@components/footer'
-import styled from 'styled-components'
-
-const Containor = styled.div`
-  width: 100%;
-`
+import Footer from "@components/footer";
+import Header from "@components/header";
+import { Container } from "@styles/common";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <Containor>
+    <Container>
       <Header />
       <Outlet />
       <Footer />
-    </Containor>
-  )
-}
+    </Container>
+  );
+};
 
-export default Layout
+export default Layout;
