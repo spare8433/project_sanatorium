@@ -25,6 +25,12 @@ const SearchContentsPagination = ({ facility }: Props) => {
 
 export default SearchContentsPagination;
 
+const PaginationPlaceHolder = () => (
+  <PlaceholderContainer>
+    <Placeholder xs={6} size="lg" />
+  </PlaceholderContainer>
+);
+
 const HospitalItems = () => {
   const { searchText, facility, city, grade, pageNum } = useSearchQuery();
 
@@ -34,7 +40,7 @@ const HospitalItems = () => {
     queryFn: () => getHospitalAPI({ city, searchText, pageNum, grade, notiCount: SHOW_ITEMS_COUNT }),
   });
 
-  if (!isSuccess) return <Placeholder xs={6} size="lg" />;
+  if (!isSuccess) return <PaginationPlaceHolder />;
 
   const sectionNum = Math.ceil(pageNum / SHOW_ITEMS_COUNT);
   const startNum = (sectionNum - 1) * SHOW_ITEMS_COUNT + 1;
@@ -78,7 +84,7 @@ const SanatoriumItems = () => {
       }),
   });
 
-  if (!isSuccess) return <Placeholder xs={6} size="lg" />;
+  if (!isSuccess) return <PaginationPlaceHolder />;
 
   const sectionNum = Math.ceil(pageNum / SHOW_ITEMS_COUNT);
   const startNum = (sectionNum - 1) * SHOW_ITEMS_COUNT + 1;
@@ -122,7 +128,7 @@ const ServiceFacilityItems = () => {
       }),
   });
 
-  if (!isSuccess) return <Placeholder xs={8} size="lg" />;
+  if (!isSuccess) return <PaginationPlaceHolder />;
 
   const sectionNum = Math.ceil(pageNum / SHOW_ITEMS_COUNT);
   const startNum = (sectionNum - 1) * SHOW_ITEMS_COUNT + 1;
@@ -164,5 +170,15 @@ const PaginationContainer = styled(Pagination)`
       background-color: ${theme.colors.main};
       border-color: ${theme.colors.main};
     `};
+  }
+`;
+
+const PlaceholderContainer = styled.div`
+  text-align: center;
+
+  span {
+    background-color: ${({ theme }) => theme.colors["background-muted"]};
+    height: 3rem;
+    border-radius: 1rem;
   }
 `;
