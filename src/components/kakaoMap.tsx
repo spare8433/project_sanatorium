@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -18,8 +18,17 @@ interface Props {
 
 const KakaoMap = ({ lat, logt }: Props) => {
   const mapRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // 클라이언트 사이드에서만 실행되도록 state 설정
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    // 클라이언트 사이드에서만 실행
+    if (!isClient) return;
+
     if (!mapRef.current) return;
 
     const { kakao } = window;
@@ -44,7 +53,7 @@ const KakaoMap = ({ lat, logt }: Props) => {
     };
 
     new kakao.maps.StaticMap(container as HTMLElement, options); //지도 생성 및 객체 리턴
-  }, [lat, logt]);
+  }, [lat, logt, isClient]);
 
   return <div id="map" ref={mapRef} />;
 };
