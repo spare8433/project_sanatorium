@@ -150,6 +150,6 @@ interface SanatoriumAPIObj {
 }
 
 /** 재가 노인복지시설 API 결과 객체 */
-interface WelfareServiceAPIObj {
+interface ServiceFacilityAPIObj {
   HtygdWelfaclt: [CommonAPIObjHead, { row: ServiceFacilityDetailData[] }];
 }

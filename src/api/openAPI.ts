@@ -1,4 +1,9 @@
-import { PROFIT_CATEGORY_TYPE, SANATORIUM_CATEGORY_TYPE, SERVICE_FACILITY_TYPE } from "@constants/facility";
+import {
+  HOSPITAL_GRADE_TYPE,
+  PROFIT_CATEGORY_TYPE,
+  SANATORIUM_CATEGORY_TYPE,
+  SERVICE_FACILITY_TYPE,
+} from "@constants/facility";
 import axios from "axios";
 
 const API_URL = "https://openapi.gg.go.kr/";
@@ -31,9 +36,10 @@ export const getHospitalAPI: GetHospitalAPI = async (param) => {
 
             // 필터링
             if (
-              (city === "all" || city === SIGUN_NM) &&
-              (grade === "all" || grade === GRAD) &&
-              [INST_NM, REFINE_LOTNO_ADDR, REFINE_ROADNM_ADDR].some((field) => field?.includes(searchText))
+              (city === "all" || SIGUN_NM.includes(city)) &&
+              (grade === "all" || HOSPITAL_GRADE_TYPE[grade] === GRAD) &&
+              (searchText === "" ||
+                [INST_NM, REFINE_LOTNO_ADDR, REFINE_ROADNM_ADDR].some((field) => field?.includes(searchText)))
             )
               return true;
           }),
@@ -84,7 +90,7 @@ export const getSanatoriumAPI: GetSanatoriumAPI = async (param) => {
 
             // 필터링
             if (
-              (city === "all" || city === SIGUNGU_NM) &&
+              (city === "all" || SIGUNGU_NM.includes(city)) &&
               (facilityCategory === "all" || FACLT_KIND_NM.includes(SANATORIUM_CATEGORY_TYPE[facilityCategory])) &&
               (profit === "all" || PROFIT_CATEGORY_TYPE[profit] === PRFTMK_DIV_NM) &&
               (searchText === "" ||
@@ -119,7 +125,7 @@ export const getServiceFacilityAPI: GetServiceFacilityAPI = async (param) => {
 
     // 실제 axios 인스턴스 실행 부분
     await axiosInstance("HtygdWelfaclt")
-      .get<WelfareServiceAPIObj>(query)
+      .get<ServiceFacilityAPIObj>(query)
       .then(async (data) => {
         const [head, wfsDataObj] = data.data.HtygdWelfaclt;
         // api 요청시 가져올 수 있는 전체 데이터 갯수 데이터
@@ -139,23 +145,17 @@ export const getServiceFacilityAPI: GetServiceFacilityAPI = async (param) => {
               COPRTN_GRP_NM,
             } = data;
 
-            console.log(
-              facilityCategory === "all" ||
-                (FACLT_KIND_NM.includes(SERVICE_FACILITY_TYPE[facilityCategory]) && "check"),
-            );
-
             // 필터링
             if (
-              (city === "all" || city === SIGUNGU_NM) &&
+              (city === "all" || SIGUNGU_NM.includes(city)) &&
               (facilityCategory === "all" || FACLT_KIND_NM.includes(SERVICE_FACILITY_TYPE[facilityCategory])) &&
               (profit === "all" || PROFIT_CATEGORY_TYPE[profit] === PRFTMK_DIV_NM) &&
-              [FACLT_NM, REFINE_LOTNO_ADDR, REFINE_ROADNM_ADDR, COPRTN_GRP_NM].some(
-                (field) => field?.includes(searchText),
-              )
+              (searchText === "" ||
+                [FACLT_NM, REFINE_LOTNO_ADDR, REFINE_ROADNM_ADDR, COPRTN_GRP_NM].some(
+                  (field) => field?.includes(searchText),
+                ))
             )
               return true;
-
-            return true;
           }),
         );
 
