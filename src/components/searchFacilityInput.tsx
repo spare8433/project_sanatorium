@@ -1,4 +1,18 @@
+import { Form, FormControlProps } from "react-bootstrap";
 import styled, { css } from "styled-components";
+
+const SearchFacilityInput = (props: FormControlProps) => {
+  return (
+    <SearchInputBox>
+      <div className="image">
+        <img src="img/search.png" alt="search-icon" />
+      </div>
+      <Form.Control type="search" placeholder="시설 검색" id="search-text" aria-describedby="search-text" {...props} />
+    </SearchInputBox>
+  );
+};
+
+export default SearchFacilityInput;
 
 export const SearchInputBox = styled.div`
   background-color: white;

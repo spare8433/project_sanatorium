@@ -1,4 +1,4 @@
-import DetailInfoModal from "@components/detailInfoModal";
+import FacilityDetailModal from "@components/facilityDetailModal";
 import MainSearchForm from "@components/mainSearchForm";
 import SearchContentsPagination from "@components/searchContentsPagination";
 import SearchedItems from "@components/searchedItems";
@@ -6,8 +6,7 @@ import { useSearchQuery } from "@hooks/useSearchQuery";
 import useSwitch from "@hooks/useSwitch";
 import { Container } from "@styles/common";
 import { useState } from "react";
-
-import { ContentBox, SearchContainer } from "./style";
+import styled from "styled-components";
 
 type DetailDataType = HospitalDetailData | SanatoriumDetailData | ServiceFacilityDetailData;
 
@@ -28,7 +27,7 @@ const Search = () => {
       <SearchContainer>
         <ContentBox>
           {/* 상세정보 모달 */}
-          <DetailInfoModal show={isModalOn} facility={facility} data={detailData} closeFn={turnOff} />
+          <FacilityDetailModal show={isModalOn} facility={facility} data={detailData} closeFn={turnOff} />
 
           {/* 검색된 내용 */}
           <SearchedItems facility={facility} showDetailModal={showDetailModal} />
@@ -42,3 +41,12 @@ const Search = () => {
 };
 
 export default Search;
+
+export const SearchContainer = styled.div`
+  max-width: 1024px;
+  margin: 0 auto;
+`;
+
+export const ContentBox = styled.div`
+  margin: 3rem 0;
+`;

@@ -1,51 +1,58 @@
 import { CONVERTED_SCORE } from "@constants/convertedScore";
 
-function getTotalCareGradeScore(score: CareGradeScore): TotalCareGradeScore {
-  const { physicalPart, recognitionPart, behaviorPart, nursingPart, rehabExercisePart, rehabJointPart } = score;
+function getTotalCareGradeScore(score: CareGradeResponse): TotalCareGradeScore {
+  const {
+    physicalResponse,
+    recognitionResponse,
+    behaviorResponse,
+    nursingResponse,
+    rehabExerciseResponse,
+    rehabJointResponse,
+  } = score;
 
   const getSumScore = (obj: object): number =>
     Object.values(obj).reduce((prevValue, currentValue) => prevValue + currentValue);
 
   const convertedScore: TotalCareGradeScore = {
-    physicalScore: CONVERTED_SCORE.physicalPart[getSumScore(physicalPart)],
-    recognitionScore: CONVERTED_SCORE.recognitionPart[getSumScore(recognitionPart)],
-    behaviorScore: CONVERTED_SCORE.behaviorPart[getSumScore(behaviorPart)],
-    nursingScore: CONVERTED_SCORE.nursingPart[getSumScore(nursingPart)],
-    rehabScore: CONVERTED_SCORE.rehabPart[getSumScore(rehabExercisePart) + getSumScore(rehabJointPart)],
+    physicalScore: CONVERTED_SCORE.physicalPart[getSumScore(physicalResponse)],
+    recognitionScore: CONVERTED_SCORE.recognitionPart[getSumScore(recognitionResponse)],
+    behaviorScore: CONVERTED_SCORE.behaviorPart[getSumScore(behaviorResponse)],
+    nursingScore: CONVERTED_SCORE.nursingPart[getSumScore(nursingResponse)],
+    rehabScore: CONVERTED_SCORE.rehabPart[getSumScore(rehabExerciseResponse) + getSumScore(rehabJointResponse)],
   };
 
   return convertedScore;
 }
 
-function getAssistantScore(score: CareGradeScore) {
-  const { physicalPart, behaviorPart, nursingPart, rehabExercisePart } = score;
+function getAssistantScore(score: CareGradeResponse) {
+  const { physicalResponse, behaviorResponse, nursingResponse, rehabExerciseResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
   if (totalScore.physicalScore <= 47.64) {
     if (totalScore.physicalScore <= 25.14) {
       return totalScore.physicalScore <= 6.59 ? 1.2 : 2.7;
     } else {
-      if (physicalPart.useBathRoom === 1) {
-        if (physicalPart.washTeeth <= 2) {
-          return rehabExercisePart.rightLowerLimb === 1 ? 3.6 : 6.0;
+      if (physicalResponse.useBathRoom === 1) {
+        if (physicalResponse.washTeeth <= 2) {
+          return rehabExerciseResponse.rightLowerLimb === 1 ? 3.6 : 6.0;
         } else return 6.8;
       } else {
-        return behaviorPart.meaninglessBehavior === 0 ? 6.6 : 9.2;
+        return behaviorResponse.meaninglessBehavior === 0 ? 6.6 : 9.2;
       }
     }
   } else {
-    if (physicalPart.washTeeth <= 2) {
-      if (physicalPart.standing <= 2) {
+    if (physicalResponse.washTeeth <= 2) {
+      if (physicalResponse.standing <= 2) {
         return totalScore.behaviorScore <= 28.83 ? 6.4 : 9.3;
       } else return 10.9;
     } else {
-      return nursingPart.bedsores === 0 ? 14.0 : 18.7;
+      return nursingResponse.bedsores === 0 ? 14.0 : 18.7;
     }
   }
 }
 
-function getBehaviorScore(score: CareGradeScore) {
-  const { physicalPart, behaviorPart } = score;
+function getBehaviorScore(score: CareGradeResponse) {
+  const { physicalResponse, behaviorResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
   if (totalScore.behaviorScore <= 34.69) {
@@ -58,17 +65,17 @@ function getBehaviorScore(score: CareGradeScore) {
     if (totalScore.recognitionScore <= 39.21) {
       return 1.4;
     } else {
-      if (behaviorPart.leave === 0) {
+      if (behaviorResponse.leave === 0) {
         return 1.6;
       } else {
-        return physicalPart.washFace <= 2 ? 2.2 : 3.2;
+        return physicalResponse.washFace <= 2 ? 2.2 : 3.2;
       }
     }
   }
 }
 
-function getCleanScore(score: CareGradeScore) {
-  const { physicalPart, recognitionPart } = score;
+function getCleanScore(score: CareGradeResponse) {
+  const { physicalResponse, recognitionResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
   if (totalScore.physicalScore <= 34.15) {
@@ -79,16 +86,16 @@ function getCleanScore(score: CareGradeScore) {
         return totalScore.physicalScore <= 39.21 ? 2.9 : 4.1;
       }
     } else {
-      return recognitionPart.ageBirthRecognition === 0 ? 9.0 : 13.0;
+      return recognitionResponse.ageBirthRecognition === 0 ? 9.0 : 13.0;
     }
   } else {
-    if (physicalPart.washTeeth <= 2) {
-      if (physicalPart.useBathRoom === 1) return 8.6;
+    if (physicalResponse.washTeeth <= 2) {
+      if (physicalResponse.useBathRoom === 1) return 8.6;
       else {
-        return recognitionPart.dateRecognition === 0 ? 9.0 : 13.0;
+        return recognitionResponse.dateRecognition === 0 ? 9.0 : 13.0;
       }
     } else {
-      if (physicalPart.useBathRoom === 1) return 11.6;
+      if (physicalResponse.useBathRoom === 1) return 11.6;
       else {
         if (totalScore.rehabScore <= 40.16) {
           return totalScore.behaviorScore <= 60.34 ? 15.4 : 19.6;
@@ -100,72 +107,72 @@ function getCleanScore(score: CareGradeScore) {
   }
 }
 
-function getExcretionScore(score: CareGradeScore) {
-  const { physicalPart, recognitionPart, behaviorPart, nursingPart, rehabJointPart } = score;
+function getExcretionScore(score: CareGradeResponse) {
+  const { physicalResponse, recognitionResponse, behaviorResponse, nursingResponse, rehabJointResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
-  if (physicalPart.changeBodyPosition === 1) {
-    if (physicalPart.urineControl === 1) {
-      if (physicalPart.cloth <= 1) {
+  if (physicalResponse.changeBodyPosition === 1) {
+    if (physicalResponse.urineControl === 1) {
+      if (physicalResponse.cloth <= 1) {
         if (totalScore.physicalScore === 0) {
-          if (recognitionPart.decisionDecline === 0) {
+          if (recognitionResponse.decisionDecline === 0) {
             return totalScore.behaviorScore <= 15.58 ? 0.3 : 0.7;
           } else {
             return 1.2;
           }
         } else {
-          if (rehabJointPart.kneeJoint <= 1) {
+          if (rehabJointResponse.kneeJoint <= 1) {
             return 1.0;
           } else {
-            return recognitionPart.dateRecognition === 0 ? 1.2 : 2.5;
+            return recognitionResponse.dateRecognition === 0 ? 1.2 : 2.5;
           }
         }
       } else {
         return 2.6;
       }
-    } else if (physicalPart.urineControl === 2) {
-      if (physicalPart.moveAndSitting === 1) {
-        return physicalPart.useBathRoom === 1 ? 2.9 : 5.0;
+    } else if (physicalResponse.urineControl === 2) {
+      if (physicalResponse.moveAndSitting === 1) {
+        return physicalResponse.useBathRoom === 1 ? 2.9 : 5.0;
       } else {
         return 8.3;
       }
     } else {
-      /**physicalPart.urineControl === 3 일때 */
-      if (behaviorPart.leave === 0) {
-        return physicalPart.washFace === 1 ? 5.3 : 10.2;
+      /**physicalResponse.urineControl === 3 일때 */
+      if (behaviorResponse.leave === 0) {
+        return physicalResponse.washFace === 1 ? 5.3 : 10.2;
       } else {
         return 15.0;
       }
     }
   } else {
-    if (physicalPart.eating === 1) {
+    if (physicalResponse.eating === 1) {
       return 6.8;
     } else {
-      if (nursingPart.bedsores === 0) {
-        return physicalPart.fecalControl <= 2 ? 8.8 : 12.5;
+      if (nursingResponse.bedsores === 0) {
+        return physicalResponse.fecalControl <= 2 ? 8.8 : 12.5;
       } else {
-        return behaviorPart.sadFeeling === 0 ? 12.8 : 18.7;
+        return behaviorResponse.sadFeeling === 0 ? 12.8 : 18.7;
       }
     }
   }
 }
 
-function getMealScore(score: CareGradeScore) {
-  const { physicalPart, behaviorPart } = score;
+function getMealScore(score: CareGradeResponse) {
+  const { physicalResponse, behaviorResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
-  if (physicalPart.eating <= 2) {
-    if (physicalPart.washTeeth <= 2) {
-      if (physicalPart.washTeeth === 1) {
+  if (physicalResponse.eating <= 2) {
+    if (physicalResponse.washTeeth <= 2) {
+      if (physicalResponse.washTeeth === 1) {
         return totalScore.physicalScore <= 6.59 ? 7.1 : 9.4;
       } else {
-        if (physicalPart.moveAndSitting === 1) {
-          return behaviorPart.leave === 0 ? 11.5 : 14.3;
+        if (physicalResponse.moveAndSitting === 1) {
+          return behaviorResponse.leave === 0 ? 11.5 : 14.3;
         } else return 15.1;
       }
     } else {
-      if (physicalPart.useBathRoom <= 2) {
-        if (physicalPart.fecalControl === 1) {
+      if (physicalResponse.useBathRoom <= 2) {
+        if (physicalResponse.fecalControl === 1) {
           return 13.9;
         } else {
           return totalScore.physicalScore <= 30.77 ? 17.5 : 21.4;
@@ -177,17 +184,17 @@ function getMealScore(score: CareGradeScore) {
   }
 }
 
-function getNursingScore(score: CareGradeScore) {
-  const { physicalPart, behaviorPart, nursingPart, rehabExercisePart } = score;
+function getNursingScore(score: CareGradeResponse) {
+  const { physicalResponse, behaviorResponse, nursingResponse, rehabExerciseResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
-  if (nursingPart.bedsores === 0) {
+  if (nursingResponse.bedsores === 0) {
     if (totalScore.nursingScore === 0) {
-      if (behaviorPart.IrregularSleep === 0) {
-        if (rehabExercisePart.leftUpperLimb === 1) {
-          return behaviorPart.lost === 0 ? 6.7 : 8.1;
+      if (behaviorResponse.IrregularSleep === 0) {
+        if (rehabExerciseResponse.leftUpperLimb === 1) {
+          return behaviorResponse.lost === 0 ? 6.7 : 8.1;
         } else {
-          return physicalPart.washTeeth <= 2 ? 7.4 : 11.6;
+          return physicalResponse.washTeeth <= 2 ? 7.4 : 11.6;
         }
       } else return 9.7;
     } else if (totalScore.nursingScore === 19.84) {
@@ -196,51 +203,51 @@ function getNursingScore(score: CareGradeScore) {
       return 14.6;
     }
   } else {
-    if (physicalPart.eating <= 2) {
-      return physicalPart.washTeeth <= 2 ? 9.6 : 14.7;
+    if (physicalResponse.eating <= 2) {
+      return physicalResponse.washTeeth <= 2 ? 9.6 : 14.7;
     } else return 22.5;
   }
 }
 
-function getRehabScore(score: CareGradeScore) {
-  const { physicalPart, recognitionPart, behaviorPart } = score;
+function getRehabScore(score: CareGradeResponse) {
+  const { physicalResponse, recognitionResponse, behaviorResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
   if (totalScore.rehabScore === 0) {
-    return behaviorPart.lost === 0 ? 2.5 : 3.7;
+    return behaviorResponse.lost === 0 ? 2.5 : 3.7;
   } else if (0 < totalScore.rehabScore && totalScore.rehabScore <= 39.46) {
-    if (physicalPart.washFace <= 2) {
-      if (physicalPart.moveAndSitting === 1) {
-        if (recognitionPart.placeRecognition === 0) {
-          return physicalPart.washTeeth === 1 ? 4.0 : 5.7;
+    if (physicalResponse.washFace <= 2) {
+      if (physicalResponse.moveAndSitting === 1) {
+        if (recognitionResponse.placeRecognition === 0) {
+          return physicalResponse.washTeeth === 1 ? 4.0 : 5.7;
         } else {
-          return physicalPart.cloth === 1 ? 3.8 : 2.7;
+          return physicalResponse.cloth === 1 ? 3.8 : 2.7;
         }
       } else return 6.3;
     } else {
-      return physicalPart.standing <= 2 ? 2.1 : 4.2;
+      return physicalResponse.standing <= 2 ? 2.1 : 4.2;
     }
   } else {
-    return behaviorPart.sadFeeling === 0 ? 4.8 : 6.3;
+    return behaviorResponse.sadFeeling === 0 ? 4.8 : 6.3;
   }
 }
 
-function getSubSupportScore(score: CareGradeScore) {
-  const { physicalPart, behaviorPart } = score;
+function getSubSupportScore(score: CareGradeResponse) {
+  const { physicalResponse, behaviorResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
   if (totalScore.physicalScore <= 25.14) {
     return totalScore.physicalScore <= 6.59 ? 12.5 : 16.9;
   } else {
-    if (behaviorPart.leave === 0) {
-      if (physicalPart.urineControl === 1) {
+    if (behaviorResponse.leave === 0) {
+      if (physicalResponse.urineControl === 1) {
         return 17.6;
       } else {
-        if (behaviorPart.sadFeeling === 0) {
-          if (physicalPart.eating === 1) {
+        if (behaviorResponse.sadFeeling === 0) {
+          if (physicalResponse.eating === 1) {
             return 17.3;
           } else {
-            return behaviorPart.IrregularSleep === 0 ? 19.7 : 23.6;
+            return behaviorResponse.IrregularSleep === 0 ? 19.7 : 23.6;
           }
         } else return 23.0;
       }
@@ -250,8 +257,8 @@ function getSubSupportScore(score: CareGradeScore) {
   }
 }
 
-export function getCareGradeFinalScore(score: CareGradeScore): [number, FinalGrade] {
-  const { recognitionPart, behaviorPart, nursingPart, rehabExercisePart } = score;
+export function getCareGradeFinalScore(score: CareGradeResponse): [number, FinalGrade] {
+  const { recognitionResponse, behaviorResponse, nursingResponse, rehabExerciseResponse } = score;
   const totalScore = getTotalCareGradeScore(score);
 
   const cleanScore = getCleanScore(score);
@@ -275,14 +282,14 @@ export function getCareGradeFinalScore(score: CareGradeScore): [number, FinalGra
 
   const exceptionNum = Math.exp(
     -27.0 +
-      1.37 * recognitionPart.dateRecognition +
-      1.2 * behaviorPart.IrregularSleep +
-      0.89 * behaviorPart.lost +
-      3.29 * behaviorPart.leave +
-      0.51 * behaviorPart.meaninglessBehavior +
-      1.54 * nursingPart.bedsores +
-      1.94 * nursingPart.manageCartheter +
-      0.5 * rehabExercisePart.leftUpperLimb +
+      1.37 * recognitionResponse.dateRecognition +
+      1.2 * behaviorResponse.IrregularSleep +
+      0.89 * behaviorResponse.lost +
+      3.29 * behaviorResponse.leave +
+      0.51 * behaviorResponse.meaninglessBehavior +
+      1.54 * nursingResponse.bedsores +
+      1.94 * nursingResponse.manageCartheter +
+      0.5 * rehabExerciseResponse.leftUpperLimb +
       0.89 * totalScore.physicalScore +
       0.18 * totalScore.behaviorScore,
   );

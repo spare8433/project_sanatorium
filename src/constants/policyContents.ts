@@ -1,6 +1,6 @@
 export type PolicyKeywordsType = "노인정책" | "노인지원" | "요양보험제도" | "요양보험운영";
 
-export const POLICY_KEYWORDS: PolicyKeywordsType[] = ["노인정책", "노인지원", "요양보험제도", "요양보험운영"];
+export const POLICY_KEYWORDS = ["노인정책", "노인지원", "요양보험제도", "요양보험운영"] as const;
 
 export const POLICY_CONTENTS: {
   [key in PolicyKeywordsType]: {

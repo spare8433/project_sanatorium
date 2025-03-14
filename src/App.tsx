@@ -3,7 +3,6 @@ import SearchLayout from "@components/layout/searchLayout";
 import { CareGradeProvider } from "@context/careGradeContext";
 import CareGradePage from "@routes/careGrade";
 import Search from "@routes/search";
-import TestPage from "@routes/testPage";
 import GlobalStyles from "@styles/globalStyle";
 import theme from "@styles/theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -21,10 +20,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-      },
-      {
-        path: "/test",
-        element: <TestPage />,
       },
     ],
   },
