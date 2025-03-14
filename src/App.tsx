@@ -49,7 +49,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <ReactQueryDevtools />
+        {import.meta.env.DEV && <ReactQueryDevtools />}
         <GlobalStyles />
         <RouterProvider router={router} />
       </ThemeProvider>
