@@ -14,7 +14,7 @@ import useInput from "@hooks/useInput";
 import { useSearchQuery } from "@hooks/useSearchQuery";
 import { getHospitalQuery, getSanatoriumQuery, getServiceFacilityQuery } from "@lib/util";
 import { Container } from "@styles/common";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -185,4 +185,4 @@ const MainSearchForm = () => {
   );
 };
 
-export default MainSearchForm;
+export default memo(MainSearchForm);

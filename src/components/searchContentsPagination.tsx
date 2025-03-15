@@ -2,7 +2,7 @@ import { getHospitalAPI, getSanatoriumAPI, getServiceFacilityAPI } from "@api/op
 import { useSearchQuery } from "@hooks/useSearchQuery";
 import { getHospitalQuery, getSanatoriumQuery, getServiceFacilityQuery } from "@lib/util";
 import { useQuery } from "@tanstack/react-query";
-import { JSX } from "react";
+import { type JSX, memo } from "react";
 import { Pagination, Placeholder } from "react-bootstrap";
 import styled, { css } from "styled-components";
 
@@ -23,7 +23,7 @@ const SearchContentsPagination = ({ facility }: Props) => {
   );
 };
 
-export default SearchContentsPagination;
+export default memo(SearchContentsPagination);
 
 const PaginationPlaceHolder = () => (
   <PlaceholderContainer>

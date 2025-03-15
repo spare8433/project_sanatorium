@@ -5,7 +5,7 @@ import SearchedItems from "@components/searchedItems";
 import { useSearchQuery } from "@hooks/useSearchQuery";
 import useSwitch from "@hooks/useSwitch";
 import { Container } from "@styles/common";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 
 type DetailDataType = HospitalDetailData | SanatoriumDetailData | ServiceFacilityDetailData;
@@ -15,10 +15,13 @@ const Search = () => {
   const [isModalOn, turnOn, turnOff] = useSwitch(false);
   const [detailData, setDetailData] = useState<DetailDataType | null>(null);
 
-  const showDetailModal = (item: DetailDataType) => {
-    setDetailData(item);
-    turnOn();
-  };
+  const showDetailModal = useCallback(
+    (item: DetailDataType) => {
+      setDetailData(item);
+      turnOn();
+    },
+    [turnOn],
+  );
 
   return (
     <Container>
